@@ -49,15 +49,13 @@ Also it is possible to filter the pages inside the backend. On default was the s
 See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
 If you need the functionality, that the Quicktags of this plugin works on the Quickedit of comments as well, remove the `.example`-part of `addquicktag_quickedit_comment.php.example` filename. The file is a stand alone helper plugin for Add Quicktag and you'll need to activate this file (plugin) separately in 'Manage Plugins'.
 
-**Bugs, technical hints or contribute**
+= Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
 
-**More Plugins**
-
+= More Plugins =
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
 
-**Interested in WordPress tips and tricks**
-
+= Interested in WordPress tips and tricks =
 You may also be interested in WordPress tips and tricks at [WP Engineer](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
 
 
@@ -95,7 +93,7 @@ If you will use this plugin with an older version of WordPress, please use an ol
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Translations =
-The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or plugin for WordPress [Localization](http://wordpress.org/extend/plugins/codestyling-localization/).
+The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or the plugin [Localization](http://wordpress.org/extend/plugins/codestyling-localization/) for WordPress.
 
 
 == Changelog ==
