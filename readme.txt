@@ -13,7 +13,7 @@ This plugin make it easy, Quicktags add to the html - and visual-editor.. It is 
 
 WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
 
-The plugin add the quicktag on default to post types `post` and `page`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
 
 	// add custom function to filter hook 'addquicktag_post_types'
 	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
@@ -30,6 +30,22 @@ The plugin add the quicktag on default to post types `post` and `page`. If you w
 		return $post_types;
 	}
 
+Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `comment.php`. The follow example change this for an another page.
+
+	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
+	/**
+	 * Return array $page with custom page strings
+	 * 
+	 * @param   $page Array
+	 * @return  $page Array
+	 */
+	function my_addquicktag_pages( $page ) {
+		
+		$page[] = 'my_page.php';
+		
+		return $page;
+	}
+	
 **More Plugins**
 
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
@@ -79,6 +95,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 == Changelog ==
 = 2.0.5 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
+* See Quicktag button in visual editor, onbly if an button is actove for visual
+* Change hooks for include scripts
+* Add filter for page in backend
+* Add edit comments to use quicktags
 
 = 2.0.4 =
 * Add fix for use older settings from previous versions

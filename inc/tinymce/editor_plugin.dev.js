@@ -8,8 +8,18 @@
 	
 	if ( typeof addquicktag_tags  == 'undefined' )
 		return;
+	
+	// if not visual button
+	var visual = 0;
+	for ( i=0; i < addquicktag_tags.buttons.length; i++ ) {
+		if ( 0 != addquicktag_tags.buttons[i]['visual'] )
+			visual = addquicktag_tags.buttons[i]['visual'];
+	}
+	if ( 0 == visual )
+		return;
+		
 	// Load plugin specific language pack
-	tinymce.PluginManager.requireLangPack('rmnlQuicktagSettings_tmce' );
+	tinymce.PluginManager.requireLangPack( 'rmnlQuicktagSettings_tmce' );
 	
 	/*
 	 * @see  http://www.tinymce.com/wiki.php/API3:class.tinymce.ui.ListBox

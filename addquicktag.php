@@ -32,11 +32,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 Requirements:
 ==============================================================================
-This plugin requires WordPress >= 3.0 and tested with PHP Interpreter >= 5.3
+This plugin requires WordPress >= 3.3 and tested with PHP Interpreter >= 5.3
 */
 
 /**
+ * Add Quicktag Plugin class
  * 
+ * @since   2.0.0
  */
 class Add_Quicktag {
 	
@@ -44,9 +46,9 @@ class Add_Quicktag {
 	
 	static private $option_string      = 'rmnlQuicktagSettings';
 	
-	static private $admin_pages_for_js = array( 'post.php', 'post-new.php', );
+	static private $admin_pages_for_js = array( 'post.php', 'comment.php' );
 	// use filter 'addquicktag_post_types' for add custom post_types
-	static private $post_types_for_js   = array( 'post', 'page' );
+	static private $post_types_for_js   = array( 'post', 'page', 'comment' );
 	
 	static private $plugin;
 	
@@ -73,14 +75,16 @@ class Add_Quicktag {
 		add_action( 'admin_init', array( $this, 'localize_plugin' ) );
 		// Include settings
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
-		
 		// Include solution for TinyMCe
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-tinymce.php';
-		// print json in head
-		add_action( 'admin_enqueue_scripts', array( $this, 'print_scripts' ) );
-		// inlcude scripts
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts') );
 		
+		// filter for custom post types
+		self::$post_types_for_js  = apply_filters( 'addquicktag_post_types', self::$post_types_for_js );
+		$admin_pages_for_js       = apply_filters( 'addquicktag_pages', self::$admin_pages_for_js );
+		foreach ( $admin_pages_for_js as $page ) {
+			add_action( 'admin_print_scripts-' . $page, array( $this, 'print_scripts' ) );
+			add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_enqueue_scripts') );
+		}
 	}
 	
 	/**
@@ -104,22 +108,21 @@ class Add_Quicktag {
 	public function print_scripts() {
 		global $current_screen;
 		
-		if ( isset( $current_screen -> post_type ) && 
+		if ( isset( $current_screen->id ) && 
 			 ! in_array( 
-				$current_screen -> post_type, 
-				// filter for custom post types
-				apply_filters( 'addquicktag_post_types', self :: $post_types_for_js )
+				$current_screen->id,
+				self :: $post_types_for_js
 			 )
 			)
-			return;
-		
+			return NULL;
+			
 		if ( is_multisite() && is_plugin_active_for_network( $this -> get_plugin_string() ) )
 			$options = get_site_option( self :: $option_string );
 		else
 			$options = get_option( self :: $option_string );
 		
 		if ( ! $options )
-			return;
+			return NULL;
 		
 		if ( 1 < count($options['buttons']) ) {
 			// sort array by order value
@@ -148,9 +151,15 @@ class Add_Quicktag {
 	 * @return  void
 	 */
 	public function admin_enqueue_scripts( $where ) {
+		global $current_screen;
 		
-		if ( ! in_array( $where, self :: $admin_pages_for_js ) )
-			return;
+		if ( isset( $current_screen->id ) && 
+			 ! in_array( 
+				$current_screen->id,
+				self :: $post_types_for_js
+			 )
+			)
+			return NULL;
 		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 		
@@ -224,6 +233,12 @@ class Add_Quicktag {
 		return $plugin_value;
 	}
 	
+	/**
+	 * Return string of plugin
+	 * 
+	 * @since   2.0.0
+	 * @return  string
+	 */
 	public function get_plugin_string() {
 		
 		return self :: $plugin;
