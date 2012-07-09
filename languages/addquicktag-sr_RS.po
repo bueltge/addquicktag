@@ -1,0 +1,164 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag v1.6.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-06-16 20:31-0300\n"
+"PO-Revision-Date: 2011-12-05 13:04-0800\n"
+"Last-Translator: Brian Flores <baflores@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: Serbo-Croatian\n"
+"X-Poedit-Country: ARGENTINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;__ngettext_noop:1,2;_c\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: addquicktag.php:172
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "Опције не ажурирање - немате привилегије да то урадите! "
+
+#: addquicktag.php:231
+msgid "Options saved."
+msgstr "Опције сачуване"
+
+#: addquicktag.php:234
+#: addquicktag.php:249
+msgid "You do not have sufficient permissions to edit plugins for this blog."
+msgstr "Немате довољне дозволе да измените плагинс за овај блог,"
+
+#: addquicktag.php:245
+msgid "AddQuicktag options have been deleted!"
+msgstr "AddQuicktag опција је избрисана!"
+
+#: addquicktag.php:253
+msgid "Add or delete Quicktag buttons"
+msgstr "Додај или избриши Quicktag тастер"
+
+#: addquicktag.php:254
+msgid "Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields."
+msgstr "Попуни поља да би додао или изменио quicktag. Поља са * су обавезна. Да избришеш tag једноставно избриши сва поља"
+
+#: addquicktag.php:255
+msgid "Button Label*"
+msgstr "Обележје тастатуре*"
+
+#: addquicktag.php:256
+msgid "Title Attribute"
+msgstr "Назив додељене функције"
+
+#: addquicktag.php:257
+msgid "Start Tag(s)*"
+msgstr "Почни сa tag(oвим)"
+
+#: addquicktag.php:258
+msgid "End Tag(s)"
+msgstr "Заврши са tag(овима)"
+
+#: addquicktag.php:259
+msgid "Update Options &raquo;"
+msgstr "Ажурирај опције"
+
+#: addquicktag.php:262
+msgid "Export &raquo;"
+msgstr "Експортуј"
+
+#: addquicktag.php:263
+msgid "Export/Import AddQuicktag buttons options"
+msgstr "Eкспортуј-Импортуј AddQuictag опције тастатуре"
+
+#: addquicktag.php:264
+msgid "You can save a .wpaq file with your options."
+msgstr "Можете сачувати .wpaq  фајл са вашим опцијама"
+
+#: addquicktag.php:265
+msgid "Export"
+msgstr "Експортуј"
+
+#: addquicktag.php:268
+msgid "Upload file and import &raquo;"
+msgstr "Учитај фајл и импортуј "
+
+#: addquicktag.php:269
+msgid "Import"
+msgstr "Импортуј"
+
+#: addquicktag.php:270
+msgid "Choose a Quicktag (<em>.wpaq</em>) file to upload, then click <em>Upload file and import</em>."
+msgstr "Изабери Quicktag (<em>.wpaq</em>) фајл да учиташ, oнда притисни <em>. Учитај фајл и унеси </em>."
+
+#: addquicktag.php:271
+msgid "Choose a file from your computer: "
+msgstr "Изабери фајл са свог компјутера"
+
+#: addquicktag.php:274
+msgid "Uninstall Options &raquo;"
+msgstr "Деинсталирај Опције>>"
+
+#: addquicktag.php:275
+msgid "Uninstall options"
+msgstr "Деинсталирај опције "
+
+#: addquicktag.php:276
+msgid "This button deletes all options of the WP-AddQuicktag plugin. <strong>Attention: </strong>You cannot undo this!"
+msgstr "Ово дугме брише све опције од WP-AddQuictag плагина. Пажња: Не можете ово да радите!"
+
+#: addquicktag.php:279
+msgid "About the plugin"
+msgstr "О плагину"
+
+#: addquicktag.php:280
+msgid "Further information: Visit the <a href='http://bueltge.de/wp-addquicktags-de-plugin/120'>plugin homepage</a> for further information or to grab the latest version of this plugin."
+msgstr "Даљна информација: Посети<a href='http://bueltge.de/wp-addquicktags-de-plugin/120'>насловну старну пагина </a> за даље информације или да мнабавиш последњу верзију тог плагина"
+
+#: addquicktag.php:281
+msgid "You want to thank me? Visit my <a href='http://bueltge.de/wunschliste/'>wishlist</a> or donate."
+msgstr "Желиш да ми се захвалиш? Посети моју <a href='http://bueltge.de/wunschliste/'>листу жеља</a> или дај прилог"
+
+#: addquicktag.php:287
+msgid "AddQuicktag options imported!"
+msgstr "AddQuicktag oпција је импортована!"
+
+#: addquicktag.php:289
+msgid "File is exist!"
+msgstr "Фајл постоји!"
+
+#: addquicktag.php:291
+msgid "Invalid file extension!"
+msgstr "Погрешна екстензија фајла!"
+
+#: addquicktag.php:300
+msgid "WP-Quicktag Management"
+msgstr "WP-Quictag менаџмент"
+
+#: addquicktag.php:305
+#: addquicktag.php:360
+#: addquicktag.php:393
+#: addquicktag.php:412
+msgid "Click to toggle"
+msgstr "Кликни да отлључаш"
+
+#: addquicktag.php:827
+#: addquicktag.php:849
+msgid "Settings"
+msgstr "Подешавања"
+
+#: addquicktag.php:922
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+#: addquicktag.php:924
+msgid "WP-Quicktag &ndash; AddQuicktag"
+msgstr "WP_Quicktag - AddQuicktag"
+
+#: addquicktag.php:945
+msgid "Version"
+msgstr "Верзија"
+
+#: addquicktag.php:945
+msgid "Author"
+msgstr "Аутор"
+

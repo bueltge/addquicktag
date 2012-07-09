@@ -1,0 +1,7 @@
+/**
+ * AddQuicktag Script to add listbox to visual-editor
+ * @since    2.0.0
+ * @package  AddQuicktag Plugin
+ */
+
+(function(){if(typeof addquicktag_tags=="undefined")return;tinymce.PluginManager.requireLangPack("rmnlQuicktagSettings_tmce");tinymce.create("tinymce.plugins.AddQuicktag",{createControl:function(a,b){switch(a){case"rmnlQuicktagSettings_tmce":var c=addquicktag_tags["buttons"];var d=0;var e="";var f=b.createListBox("rmnlQuicktagSettings_tmce",{title:"Quicktags",onselect:function(a){var b=tinyMCE.activeEditor.selection.getContent();var d=true;switch(a){case"null":var d=false;break;default:break}if(d==true){if(typeof c[a].end=="undefined")c[a].end="";tinyMCE.activeEditor.selection.setContent(c[a].start+b+c[a].end)}}});if(typeof c!=="undefined"){for(d=0;d<c.length;d++){if(1==c[d].visual)f.add(c[d].text,String(d))}}else{f.add("rmnlQuicktagSettings_tmce.addquicktag_select_error","null")}return f;break}return null},getInfo:function(){return{longname:"AddQuicktag Plugin for TinyMCE in WordPress",author:"Frank Bueltge",authorurl:"http://bueltge.de/",infourl:"http://wordpress.org/extend/plugins/addquicktag/",version:tinymce.majorVersion+"."+tinymce.minorVersion}}});tinymce.PluginManager.add("rmnlQuicktagSettings_tmce",tinymce.plugins.AddQuicktag)})()
