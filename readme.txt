@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
 Tested up to: 3.5-Alpha
-Stable tag: 2.0.5
+Stable tag: 2.1.0
 
 This plugin make it easy, Quicktags add to the html - and visual-editor.
 
@@ -96,7 +96,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.0.5 =
+= 2.1.0 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
 * See Quicktag button in visual editor, onbly if an button is actove for visual
 * Change hooks for include scripts
