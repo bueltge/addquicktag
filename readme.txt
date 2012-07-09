@@ -49,6 +49,9 @@ Also it is possible to filter the pages inside the backend. On default was the s
 See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
 If you need the functionality, that the Quicktags of this plugin works on the Quickedit of comments as well, remove the `.example`-part of `addquicktag_quickedit_comment.php.example` filename. The file is a stand alone helper plugin for Add Quicktag and you'll need to activate this file (plugin) separately in 'Manage Plugins'.
 
+**Bugs, technical hints or contribute**
+Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
+
 **More Plugins**
 
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
