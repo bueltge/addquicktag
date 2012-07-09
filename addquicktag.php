@@ -45,10 +45,10 @@ class Add_Quicktag {
 	static private $classobj;
 	
 	static private $option_string      = 'rmnlQuicktagSettings';
-	
+	// use filter 'addquicktag_pages' for add custom pages
 	static private $admin_pages_for_js = array( 'post.php', 'comment.php' );
 	// use filter 'addquicktag_post_types' for add custom post_types
-	static private $post_types_for_js   = array( 'post', 'page', 'comment' );
+	static private $post_types_for_js  = array( 'post', 'page', 'comment' );
 	
 	static private $plugin;
 	
@@ -75,7 +75,7 @@ class Add_Quicktag {
 		add_action( 'admin_init', array( $this, 'localize_plugin' ) );
 		// Include settings
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
-		// Include solution for TinyMCe
+		// Include solution for TinyMCE
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-tinymce.php';
 		
 		// filter for custom post types

@@ -25,7 +25,7 @@ The plugin add the quicktag on default to post types/ID `post`, `page` and `comm
 	 */
 	function my_addquicktag_post_types( $post_types ) {
 		
-		$post_types[] = 'my_custom_post_type';
+		$post_types[] = 'edit-comments';
 		
 		return $post_types;
 	}
@@ -41,7 +41,7 @@ Also it is possible to filter the pages inside the backend. On default was the s
 	 */
 	function my_addquicktag_pages( $page ) {
 		
-		$page[] = 'my_page.php';
+		$page[] = 'edit-comments.php';
 		
 		return $page;
 	}
