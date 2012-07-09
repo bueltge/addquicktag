@@ -45,7 +45,9 @@ Also it is possible to filter the pages inside the backend. On default was the s
 		
 		return $page;
 	}
-	
+
+See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
+
 **More Plugins**
 
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
