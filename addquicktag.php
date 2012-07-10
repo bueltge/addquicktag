@@ -46,7 +46,7 @@ class Add_Quicktag {
 	
 	static private $option_string      = 'rmnlQuicktagSettings';
 	// use filter 'addquicktag_pages' for add custom pages
-	static private $admin_pages_for_js = array( 'post.php', 'comment.php' );
+	static private $admin_pages_for_js = array( 'post.php', 'post-new.php', 'comment.php' );
 	// use filter 'addquicktag_post_types' for add custom post_types
 	static private $post_types_for_js  = array( 'post', 'page', 'comment' );
 	
