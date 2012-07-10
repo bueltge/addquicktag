@@ -1,9 +1,13 @@
 <?php
 /**
  * AddQuicktag - Settings
- * @license GPLv3
- * @package AddQuicktag
+ * 
+ * @license    GPLv3
+ * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
+ * @author     Frank Bueltge <frank@bueltge.de>
+ * @version    07/10/2012
+ * @since      2.0.0
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -15,13 +19,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	
 	static private $classobj = NULL;
 	// string for translation
-	static public $textdomain;
+	static public  $textdomain;
 	// string for options in table options
 	static private $option_string;
 	// string for plugin file
 	static private $plugin;
 	// string for nonce fields
-	static public $nonce_string;
+	static public  $nonce_string;
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -53,10 +57,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			return NULL;
 		
 		// textdomain from parent class
-		self :: $textdomain    = parent :: get_textdomain();
-		$this -> option_string = parent :: get_option_string();
-		$this -> plugin        = parent :: get_plugin_string();
-		$this -> nonce_string  = 'addquicktag_nonce';
+		self::$textdomain        = parent::get_textdomain();
+		$this->option_string     = parent::get_option_string();
+		$this->plugin            = parent::get_plugin_string();
+		$this->post_types_for_js = parent::get_post_types_for_js();
+		$this->nonce_string      = 'addquicktag_nonce';
 		
 		register_uninstall_hook( __FILE__,       array( 'Add_Quicktag_Settings', 'unregister_settings' ) );
 		// settings for an active multisite
@@ -205,6 +210,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					}
 					array_multisort( $tmp, SORT_ASC, $options['buttons'] );
 				}
+				
+				// loop about the post types, create html an values for title in table
+				$pt_title      = '';
+				foreach ( $this->post_types_for_js as $post_type ) {
+						
+					$pt_title .= '<th class="row-title" style="width:5%;">' . $post_type . '</th>' . "\n";
+				}
 				?>
 				
 				<table class="widefat">
@@ -216,6 +228,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<th class="row-title" style="width:5%;"><?php _e('Access Key', $this -> get_textdomain() ); ?></th>
 						<th class="row-title" style="width:5%;"><?php _e('Order', $this -> get_textdomain() ); ?></th>
 						<th class="row-title" style="width:5%;"><?php _e('Visual', $this -> get_textdomain() ); ?></th>
+						<?php echo $pt_title ?>
 					</tr>
 					<?php
 					if ( empty($options['buttons']) )
@@ -241,6 +254,25 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$checked = ' checked="checked"';
 						else 
 							$checked = '';
+						// loop about the post types, create html an values
+						$pt_checkboxes = '';
+						foreach ( $this->post_types_for_js as $post_type ) {
+							if ( ! isset( $b[$post_type] ) )
+								$b[$post_type] = 0;
+							
+							$b[$post_type] = intval( $b[$post_type] );
+							
+							if ( 1 == $b[$post_type] )
+								$pt_checked = ' checked="checked"';
+							else 
+								$pt_checked = '';
+							
+							$pt_checkboxes .= '<td><input type="checkbox" name="' . 
+								$this -> option_string . '[buttons][' . 
+								$i . '][' . $post_type . ']" value="1"' . 
+								$pt_checked . ' style="width: 95%;" /></td>' . "\n";
+						}
+						
 						$nr          = $i + 1;
 					echo '
 					<tr>
@@ -257,9 +289,28 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="text" name="' . $this -> option_string . '[buttons][' . $i 
 						. '][order]" value="' . $b['order'] . '" style="width: 95%;" /></td>
 						<td><input type="checkbox" name="' . $this -> option_string . '[buttons][' . $i 
-						. '][visual]" value="1"' . $checked . ' style="width: 95%;" /></td>
+						. '][visual]" value="1"' . $checked . ' style="width: 95%;" /></td>' . 
+						$pt_checkboxes . '
 					</tr>
 					';
+					}
+					
+					// loop about the post types, create html an values for empty new checkboxes
+					$pt_new_boxes  = '';
+					foreach ( $this->post_types_for_js as $post_type ) {
+						if ( ! isset( $b[$post_type] ) )
+							$b[$post_type] = 0;
+						
+						$b[$post_type] = intval( $b[$post_type] );
+						
+						if ( 1 == $b[$post_type] )
+							$pt_checked = ' checked="checked"';
+						else 
+							$pt_checked = '';
+						
+						$pt_new_boxes .= '<td><input type="checkbox" name="' . 
+							$this -> option_string . '[buttons][' . 
+							$i . '][' . $post_type . ']" value="1" style="width: 95%;" /></td>' . "\n";
 					}
 					?>
 					<tr>
@@ -270,6 +321,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="text" name="<?php echo $this -> option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" class="code" style="width: 95%;" /></td>
 						<td><input type="text" name="<?php echo $this -> option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" style="width: 95%;" /></td>
 						<td><input type="checkbox" name="<?php echo $this -> option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" style="width: 95%;" /></td>
+						<?php echo $pt_new_boxes; ?>
 					</tr>
 				</table>
 				

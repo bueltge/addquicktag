@@ -1,9 +1,11 @@
 <?php
 /**
  * AddQuicktag - to TinyMCE Editor
- * @license GPLv3
- * @package AddQuicktag
+ * 
+ * @license    GPLv3
+ * @package    AddQuicktag
  * @subpackage AddQuicktag 2 TinyMce
+ * @author     Frank Bueltge <frank@bueltge.de>
  */
 
 if ( ! function_exists( 'add_action' ) ) {

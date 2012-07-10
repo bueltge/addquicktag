@@ -97,6 +97,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.1.1 =
+* Add checkboxes for different post type, use also filter for custom post type
+* Change script on HTML editor, only include buttons, there have an active checkbox on options for his post type
+* Add more data in JSON
+
 = 2.1.0 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
 * See Quicktag button in visual editor, onbly if an button is actove for visual

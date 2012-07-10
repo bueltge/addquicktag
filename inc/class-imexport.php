@@ -1,9 +1,11 @@
 <?php
 /**
  * AddQuicktag - Settings
- * @license GPLv3
- * @package AddQuicktag
+ * 
+ * @license    GPLv3
+ * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
+ * @author     Frank Bueltge <frank@bueltge.de>
  */
 
 if ( ! function_exists( 'add_action' ) ) {
