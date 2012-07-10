@@ -15,17 +15,10 @@ jQuery( document ).ready( function( $ ) {
 	if ( typeof addquicktag_pt_for_js == 'undefined' )
 		return;
 	
-	var pt_for_js = Array('test', 'test2');
-	$.each( addquicktag_pt_for_js, function( i, obj ) {
-		pt_for_js.push(
-			obj
-		);
-	});
-	
 	var tags = addquicktag_tags['buttons'];
-	
 	if ( typeof tags  == 'undefined' )
 		return;
+	
 	// check post type
 	if ( $.inArray( "addquicktag_post_type", addquicktag_pt_for_js ) ) {
 		
