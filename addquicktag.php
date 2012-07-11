@@ -73,18 +73,17 @@ class Add_Quicktag {
 		
 		// load translation files
 		add_action( 'admin_init', array( $this, 'localize_plugin' ) );
+		
 		// Include settings
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 		// Include solution for TinyMCE
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-tinymce.php';
 		
-		// filter for custom post types
-		self::$post_types_for_js  = apply_filters( 'addquicktag_post_types', self::$post_types_for_js );
-		$admin_pages_for_js       = apply_filters( 'addquicktag_pages', self::$admin_pages_for_js );
-		foreach ( $admin_pages_for_js as $page ) {
+		foreach ( $this->get_admin_pages_for_js() as $page ) {
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'print_scripts' ) );
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_enqueue_scripts') );
 		}
+		
 	}
 	
 	/**
@@ -255,7 +254,19 @@ class Add_Quicktag {
 	 */
 	public function get_post_types_for_js() {
 		
-		return self::$post_types_for_js;
+		return apply_filters( 'addquicktag_post_types', self::$post_types_for_js );
+	}
+	
+	/**
+	 * Retrun allowed post types for include scripts
+	 * 
+	 * @since   2.1.1
+	 * @access  public
+	 * @return  Array
+	 */
+	public function get_admin_pages_for_js() {
+		
+		return apply_filters( 'addquicktag_pages', self::$admin_pages_for_js );
 	}
 	
 	/**
