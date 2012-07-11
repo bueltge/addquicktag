@@ -13,7 +13,7 @@ This plugin make it easy, Quicktags add to the html - and visual-editor.. It is 
 
 WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
 
-The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example, an example plugin in the [Gist 1595155](https://gist.github.com/1595155) or use an example plugin iside this repo, the files end with `.example`.
 
 	// add custom function to filter hook 'addquicktag_post_types'
 	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
@@ -30,7 +30,7 @@ The plugin add the quicktag on default to post types/ID `post`, `page` and `comm
 		return $post_types;
 	}
 
-Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `comment.php`. The follow example change this for an another page.
+Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `post-new.php` and `comment.php`. The follow example change this for an another page.
 
 	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
 	/**
