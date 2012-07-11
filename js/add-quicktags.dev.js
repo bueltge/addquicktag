@@ -1,12 +1,15 @@
 /**
  * AddQuicktag Script to add buttons to html-editor
- * @since    2.0.0
+ * 
  * @package  AddQuicktag Plugin
+ * @author   Frank Bueltge <frank@bueltge.de>
+ * @version  07/11/2012
+ * @since    2.0.0
  */
 
 jQuery( document ).ready( function( $ ) {
 	
-	if ( typeof addquicktag_tags  == 'undefined' )
+	if ( typeof addquicktag_tags == 'undefined' )
 		return;
 	
 	if ( typeof addquicktag_post_type == 'undefined' )
@@ -16,7 +19,7 @@ jQuery( document ).ready( function( $ ) {
 		return;
 	
 	var tags = addquicktag_tags['buttons'];
-	if ( typeof tags  == 'undefined' )
+	if ( typeof tags == 'undefined' )
 		return;
 	
 	// check post type
@@ -24,7 +27,7 @@ jQuery( document ).ready( function( $ ) {
 		
 		for ( var i = 0; i < tags.length; i++ ) {
 			// check for active on this post type
-			if ( 1 == tags[i][addquicktag_post_type] ) {
+			if ( 1 === parseInt( tags[i][addquicktag_post_type] ) ) {
 				
 				if ( typeof tags[i].title  == 'undefined' ) tags[i].title = ' ';
 				if ( typeof tags[i].end    == 'undefined' ) tags[i].end = '';

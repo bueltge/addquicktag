@@ -87,7 +87,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-imexport.php';
 	}
 	
-	
 	/**
 	 * Return Textdomain string
 	 * 
@@ -214,7 +213,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				// loop about the post types, create html an values for title in table
 				$pt_title      = '';
 				foreach ( $this->post_types_for_js as $post_type ) {
-						
+					
 					$pt_title .= '<th class="row-title" style="width:5%;">' . $post_type . '</th>' . "\n";
 				}
 				?>

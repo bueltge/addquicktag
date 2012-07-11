@@ -1,23 +1,43 @@
 /**
  * AddQuicktag Script to add listbox to visual-editor
- * @since    2.0.0
+ * 
  * @package  AddQuicktag Plugin
+ * @author   Frank Bueltge <frank@bueltge.de>
+ * @version  07/11/2012
+ * @since    2.0.0
  */
 
-(function() {
+jQuery( document ).ready( function( $ ) {
 	
 	if ( typeof addquicktag_tags  == 'undefined' )
 		return;
 	
-	// if not visual button
-	var visual = 0;
-	for ( i=0; i < addquicktag_tags.buttons.length; i++ ) {
-		if ( 0 != addquicktag_tags.buttons[i]['visual'] )
-			visual = addquicktag_tags.buttons[i]['visual'];
-	}
-	if ( 0 == visual )
+	if ( typeof addquicktag_post_type == 'undefined' )
 		return;
 		
+	if ( typeof addquicktag_pt_for_js == 'undefined' )
+		return;
+	
+	// wrong post type
+	if ( -1 == $.inArray( addquicktag_post_type, addquicktag_pt_for_js ) )
+		return;
+	
+	// break, if not an button for visual and post type
+	var visual    = 0;
+	var post_type = 0;
+	for ( i = 0; i < addquicktag_tags.buttons.length; i++ ) {
+		// if not visual button in the list, return
+		if ( 1 === parseInt( addquicktag_tags.buttons[i]['visual'] ) )
+			visual = addquicktag_tags.buttons[i]['visual'];
+		// check for active on this post type on each buttons
+		if ( 1 === parseInt( addquicktag_tags.buttons[i][addquicktag_post_type] ) )
+			post_type = addquicktag_tags.buttons[i][addquicktag_post_type];
+	}
+	if ( 1 !== parseInt( visual ) )
+		return;
+	if ( 1 !== parseInt( post_type ) )
+		return;
+	
 	// Load plugin specific language pack
 	tinymce.PluginManager.requireLangPack( 'rmnlQuicktagSettings_tmce' );
 	
@@ -28,25 +48,28 @@
 		createControl: function(n, cm) {
 			switch (n) {
 				case 'rmnlQuicktagSettings_tmce':
-					var tiny_tags = addquicktag_tags['buttons'];
-					var i = 0;
-					var rmnlQuicktagSettings_tmce_options = '';
-					var mlb = cm.createListBox('rmnlQuicktagSettings_tmce', {
+					var tiny_tags = addquicktag_tags['buttons'],
+						i = 0,
+						rmnlQuicktagSettings_tmce_options = '',
+						mlb = cm.createListBox('rmnlQuicktagSettings_tmce', {
 						title : 'Quicktags',
 						onselect : function(v) {
-							var selection = tinyMCE.activeEditor.selection.getContent();
-							var marked = true;
+							var selection = tinyMCE.activeEditor.selection.getContent(),
+								marked = true;
 							
 							switch (v) {
 								case 'null' :
-									var marked = false;
+									marked = false;
 									break;
 								default :
 									break;
 							}
-							
+							console.log(marked);
 							if ( marked == true ) {
-								if ( typeof tiny_tags[v].end == 'undefined' ) tiny_tags[v].end = '';
+								console.log(tiny_tags[v].end);
+								if ( typeof tiny_tags[v].end == 'undefined' )
+									tiny_tags[v].end = '';
+								
 								tinyMCE.activeEditor.selection.setContent(
 									tiny_tags[v].start + selection + tiny_tags[v].end
 								);
@@ -57,8 +80,13 @@
 					// add values to the listbox
 					if ( typeof tiny_tags !== 'undefined' ) {
 						for ( i = 0; i < tiny_tags.length; i++ ) {
-							if ( 1 == tiny_tags[i].visual )
-								mlb.add( tiny_tags[i].text, String(i) );
+							
+							// check for active on this post type
+							if ( 1 === parseInt( tiny_tags[i][addquicktag_post_type] ) ) {
+							
+								if ( 1 == tiny_tags[i].visual )
+									mlb.add( tiny_tags[i].text, String(i) );
+							}
 						}
 					} else {
 						mlb.add('rmnlQuicktagSettings_tmce.addquicktag_select_error', 'null');
@@ -84,4 +112,4 @@
 	
 	// Register plugin
 	tinymce.PluginManager.add( 'rmnlQuicktagSettings_tmce', tinymce.plugins.AddQuicktag );
-})();
+});
