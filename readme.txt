@@ -102,6 +102,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Change script on HTML editor, only include buttons, there have an active checkbox on options for his post type
 * Add more data in JSON
 * Fix for custom post types; works now also on settings page
+* Change function to add button in html editor --> `QTags.addButton()`
 
 = 2.1.0 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)

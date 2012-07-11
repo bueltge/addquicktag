@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Example: AddQuicktag for CPT
+ * Plugin Name: AddQuicktag Example for CPT
  * Plugin URI:  http://bueltge.de/
  * Description: Add custom post type 'my_custom_post_type' to AddQuicktag plugin
  * Author:      Frank Bültge

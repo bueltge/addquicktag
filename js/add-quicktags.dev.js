@@ -33,6 +33,25 @@ jQuery( document ).ready( function( $ ) {
 				if ( typeof tags[i].end    == 'undefined' ) tags[i].end = '';
 				if ( typeof tags[i].access == 'undefined' ) tags[i].access = '';
 				
+				 /**
+				 * @param id string required Button HTML ID
+				 * @param display string required Button's value="..."
+				 * @param arg1 string || function required Either a starting tag to be inserted like "<span>" or a callback that is executed when the button is clicked.
+				 * @param arg2 string optional Ending tag like "</span>"
+				 * @param access_key string optional Access key for the button.
+				 * @param title string optional Button's title="..."
+				 * @param priority int optional Number representing the desired position of the button in the toolbar. 1 - 9 = first, 11 - 19 = second, 21 - 29 = third, etc.
+				 * @param instance string optional Limit the button to a specifric instance of Quicktags, add to all instances if not present.
+				 */
+				QTags.addButton(
+					tags[i].text.toLowerCase(),
+					tags[i].text,
+					tags[i].start,
+					tags[i].end,
+					tags[i].access,
+					tags[i].title
+				);
+				/* old function
 				edButtons[edButtons.length] = new edButton(
 					// id, display, tagStart, tagEnd, access_key, title
 					tags[i].text.toLowerCase(),
@@ -42,6 +61,7 @@ jQuery( document ).ready( function( $ ) {
 					tags[i].access,
 					tags[i].title
 				);
+				*/
 			}
 		}
 		

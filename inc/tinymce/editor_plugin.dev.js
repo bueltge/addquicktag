@@ -64,9 +64,9 @@ jQuery( document ).ready( function( $ ) {
 								default :
 									break;
 							}
-							console.log(marked);
+							
 							if ( marked == true ) {
-								console.log(tiny_tags[v].end);
+								
 								if ( typeof tiny_tags[v].end == 'undefined' )
 									tiny_tags[v].end = '';
 								
