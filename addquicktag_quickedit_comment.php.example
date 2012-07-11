@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Use AddQuicktag on Quickedit of comments
- * Plugin URI: http://bueltge.de/
- * Description: Add the quicktags fomr AddQuicktag plugin to the editor of Quickedit  on comments
- * Author: Frank Bültge
- * Version: 0.0.1
- * Licence: GPLv3
- * Author URI: http://bueltge.de
+ * Plugin URI:  http://bueltge.de/
+ * Description: Add the quicktags fomr AddQuicktag plugin to the editor of Quickedit on comments
+ * Author:      Frank Bültge
+ * Version:     0.0.1
+ * Licence:     GPLv3
+ * Author URI:  http://bueltge.de
  */
 
  // This file is not called from WordPress. We don't like that.
@@ -19,7 +19,7 @@ if ( ! function_exists( 'my_addquicktag_post_types' ) ) {
 
 	// add custom function to filter hook 'addquicktag_post_types'
 	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
-
+	
 	/**
 	 * Return array $post_types with custom post types strings
 	 * 
@@ -27,9 +27,9 @@ if ( ! function_exists( 'my_addquicktag_post_types' ) ) {
 	 * @return  $post_type Array
 	 */
 	function my_addquicktag_post_types( $post_types ) {
-
+		
 		$post_types[] = 'edit-comments';
-
+		
 		return $post_types;
 	}
 
