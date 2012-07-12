@@ -110,8 +110,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function plugin_action_links( $links, $file ) {
 		
-		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="options-general.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
+		if ( parent :: get_plugin_string() == $file )
+			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
@@ -128,7 +128,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function network_admin_plugin_action_links( $links, $file ) {
 		
 		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="settings.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
+			$links[] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
