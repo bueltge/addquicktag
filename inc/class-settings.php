@@ -173,6 +173,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @return void
 	 */
 	public function get_settings_page() {
+		$this->post_types_for_js = apply_filters( 'addquicktag_post_types', $this->post_types_for_js );
 		
 		?>
 		<div class="wrap">
