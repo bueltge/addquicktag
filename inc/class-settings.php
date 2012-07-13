@@ -60,7 +60,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		self::$textdomain        = parent::get_textdomain();
 		$this->option_string     = parent::get_option_string();
 		$this->plugin            = parent::get_plugin_string();
-		$this->post_types_for_js = parent::get_post_types_for_js();
+//		$this->post_types_for_js = parent::get_post_types_for_js();
 		$this->nonce_string      = 'addquicktag_nonce';
 		
 		register_uninstall_hook( __FILE__,       array( 'Add_Quicktag_Settings', 'unregister_settings' ) );
@@ -212,6 +212,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				
 				// loop about the post types, create html an values for title in table
 				$pt_title      = '';
+				$this->post_types_for_js = parent::get_post_types_for_js();
 				foreach ( $this->post_types_for_js as $post_type ) {
 					
 					$pt_title .= '<th class="row-title" style="width:5%;">' . $post_type . '</th>' . "\n";
