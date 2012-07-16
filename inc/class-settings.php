@@ -228,19 +228,19 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				$pt_title      = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
-					$pt_title .= '<th class="row-title" style="width:5%;">' . $post_type . '</th>' . "\n";
+					$pt_title .= '<th class="row-title" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
 				}
 				?>
 				
 				<table class="widefat">
 					<tr>
-						<th class="row-title"><?php _e('Button Label*', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('Title Attribute', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('Start Tag(s)*', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('End Tag(s)', $this->get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Access Key', $this->get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Order', $this->get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Visual', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Button Label*', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Access Key', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Order', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
 						<?php echo $pt_title ?>
 					</tr>
 					<?php
@@ -283,10 +283,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$pt_checkboxes .= '<td><input type="checkbox" name="' . 
 								self::$option_string . '[buttons][' . 
 								$i . '][' . $post_type . ']" value="1"' . 
-								$pt_checked . ' style="width: 95%;" /></td>' . "\n";
+								$pt_checked . '/></td>' . "\n";
 						}
 						
-						$nr          = $i + 1;
+						$nr = $i + 1;
 					echo '
 					<tr>
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
@@ -302,7 +302,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
 						. '][order]" value="' . $b['order'] . '" style="width: 95%;" /></td>
 						<td><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i 
-						. '][visual]" value="1"' . $checked . ' style="width: 95%;" /></td>' . 
+						. '][visual]" value="1"' . $checked . '/></td>' . 
 						$pt_checkboxes . '
 					</tr>
 					';
@@ -323,7 +323,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						
 						$pt_new_boxes .= '<td><input type="checkbox" name="' . 
 							self::$option_string . '[buttons][' . 
-							$i . '][' . $post_type . ']" value="1" style="width: 95%;" /></td>' . "\n";
+							$i . '][' . $post_type . ']" value="1" /></td>' . "\n";
 					}
 					?>
 					<tr>
@@ -333,7 +333,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" style="width: 95%;"></textarea></td>
 						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" class="code" style="width: 95%;" /></td>
 						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" style="width: 95%;" /></td>
-						<td><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" style="width: 95%;" /></td>
+						<td><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" /></td>
 						<?php echo $pt_new_boxes; ?>
 					</tr>
 				</table>
