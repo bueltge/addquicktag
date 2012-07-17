@@ -125,7 +125,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function plugin_action_links( $links, $file ) {
 		
 		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="options-general.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
+			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
@@ -142,7 +142,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function network_admin_plugin_action_links( $links, $file ) {
 		
 		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="settings.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
+			$links[] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
@@ -225,7 +225,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				}
 				
 				// loop about the post types, create html an values for title in table
-				$pt_title      = '';
+				$pt_title = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
 					$pt_title .= '<th class="row-title" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
@@ -412,6 +412,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					<?php echo parent :: get_plugin_data( 'Description' ); ?>
 				</p>
 			</div>
+			
 		</div>
 		<?php
 	}
@@ -425,6 +426,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @return void
 	 */
 	public function save_network_settings_page() {
+		
 		// validate options
 		$value = $this->validate_settings( $_POST[self::$option_string] );
 		// update options
@@ -432,7 +434,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		// redirect to settings page in network
 		wp_redirect(
 			add_query_arg( 
-				array('page' => 'addquicktag/inc/class-settings.php', 'updated' => 'true'),
+				array( 'page' => plugin_basename( __FILE__ ), 'updated' => 'true' ),
 				network_admin_url( 'settings.php' )
 			)
 		);
