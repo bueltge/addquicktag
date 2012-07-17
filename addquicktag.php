@@ -9,9 +9,9 @@
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv3
- */
-
-/**
+ * 
+ * 
+ * 
 License:
 ==============================================================================
 Copyright 2011 Frank Bültge  (email : frank@bueltge.de)
@@ -33,9 +33,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 Requirements:
 ==============================================================================
 This plugin requires WordPress >= 3.3 and tested with PHP Interpreter >= 5.3
-*/
-
-/**
+ * 
+ * 
+ *
  * Add Quicktag Plugin class
  * 
  * @since   2.0.0
@@ -77,6 +77,22 @@ class Add_Quicktag {
 		
 		// load translation files
 		add_action( 'admin_init', array( $this, 'localize_plugin' ) );
+		// on init register post type for addquicktag and print js
+		add_action( 'init', array( $this, 'on_admin_init' ) );
+		
+	}
+	
+	
+	/**
+	 * Include other files and print JS
+	 * 
+	 * @since   07/16/2012
+	 * @return  void
+	 */
+	public function on_admin_init() {
+		
+		if ( ! is_admin() )
+			return NULL;
 		
 		// Include settings
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
@@ -87,7 +103,6 @@ class Add_Quicktag {
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'print_scripts' ) );
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_enqueue_scripts') );
 		}
-		
 	}
 	
 	/**

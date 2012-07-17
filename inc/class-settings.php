@@ -124,8 +124,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function plugin_action_links( $links, $file ) {
 		
-		if ( parent :: get_plugin_string() == $file )
-			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
+		if ( parent :: get_plugin_string() == $file  )
+			$links[] = '<a href="options-general.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
@@ -142,7 +142,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function network_admin_plugin_action_links( $links, $file ) {
 		
 		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
+			$links[] = '<a href="settings.php?page=addquicktag/inc/class-settings.php">' . __('Settings') . '</a>';
 		
 		return $links;
 	}
@@ -160,7 +160,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			add_submenu_page(
 				'settings.php',
-				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this -> get_textdomain() ),
+				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
 				parent :: get_plugin_data( 'Name' ),
 				'manage_options',
 				plugin_basename(__FILE__),
@@ -168,7 +168,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			);
 		} else {
 			add_options_page(
-				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this -> get_textdomain() ),
+				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
 				parent :: get_plugin_data( 'Name' ),
 				'manage_options',
 				plugin_basename(__FILE__),
@@ -193,7 +193,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			<?php screen_icon('options-general'); ?>
 			<h2><?php echo parent :: get_plugin_data( 'Name' ); ?></h2>
 			
-			<h3><?php _e('Add or delete Quicktag buttons', $this -> get_textdomain() ); ?></h3>
+			<h3><?php _e('Add or delete Quicktag buttons', $this->get_textdomain() ); ?></h3>
 			<?php
 			if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) )
 				$action = 'edit.php?action=' . self::$option_string;
@@ -228,19 +228,19 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				$pt_title      = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
-					$pt_title .= '<th class="row-title" style="width:5%;">' . $post_type . '</th>' . "\n";
+					$pt_title .= '<th class="row-title" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
 				}
 				?>
 				
 				<table class="widefat">
 					<tr>
-						<th class="row-title"><?php _e('Button Label*', $this -> get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('Title Attribute', $this -> get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('Start Tag(s)*', $this -> get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e('End Tag(s)', $this -> get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Access Key', $this -> get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Order', $this -> get_textdomain() ); ?></th>
-						<th class="row-title" style="width:5%;"><?php _e('Visual', $this -> get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Button Label*', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Access Key', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Order', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
 						<?php echo $pt_title ?>
 					</tr>
 					<?php
@@ -283,10 +283,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$pt_checkboxes .= '<td><input type="checkbox" name="' . 
 								self::$option_string . '[buttons][' . 
 								$i . '][' . $post_type . ']" value="1"' . 
-								$pt_checked . ' style="width: 95%;" /></td>' . "\n";
+								$pt_checked . '/></td>' . "\n";
 						}
 						
-						$nr          = $i + 1;
+						$nr = $i + 1;
 					echo '
 					<tr>
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
@@ -302,7 +302,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
 						. '][order]" value="' . $b['order'] . '" style="width: 95%;" /></td>
 						<td><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i 
-						. '][visual]" value="1"' . $checked . ' style="width: 95%;" /></td>' . 
+						. '][visual]" value="1"' . $checked . '/></td>' . 
 						$pt_checkboxes . '
 					</tr>
 					';
@@ -323,7 +323,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						
 						$pt_new_boxes .= '<td><input type="checkbox" name="' . 
 							self::$option_string . '[buttons][' . 
-							$i . '][' . $post_type . ']" value="1" style="width: 95%;" /></td>' . "\n";
+							$i . '][' . $post_type . ']" value="1" /></td>' . "\n";
 					}
 					?>
 					<tr>
@@ -333,12 +333,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" style="width: 95%;"></textarea></td>
 						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" class="code" style="width: 95%;" /></td>
 						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" style="width: 95%;" /></td>
-						<td><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" style="width: 95%;" /></td>
+						<td><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" /></td>
 						<?php echo $pt_new_boxes; ?>
 					</tr>
 				</table>
 				
-				<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this -> get_textdomain() ); ?></p>
+				<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 				</p>
@@ -375,13 +375,14 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		?>
 		<div class="postbox">
 			
-			<h3><span><?php _e( 'Like this plugin?', $this -> get_textdomain() ); ?></span></h3>
+			<h3><span><?php _e( 'Like this plugin?', $this->get_textdomain() ); ?></span></h3>
 			<div class="inside">
-				<p><?php _e( 'Here\'s how you can give back:', $this -> get_textdomain() ); ?></p>
+				<p><?php _e( 'Here\'s how you can give back:', $this->get_textdomain() ); ?></p>
 				<ul>
-					<li><a href="http://wordpress.org/extend/plugins/addquicktag/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', $this -> get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', $this -> get_textdomain() ); ?></a></li>
-					<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', $this -> get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', $this -> get_textdomain() ); ?></a></li>
-					<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', $this -> get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', $this -> get_textdomain() ); ?></a></li>
+					<li><a href="http://wordpress.org/extend/plugins/addquicktag/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', $this->get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', $this->get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', $this->get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="https://github.com/bueltge/AddQuicktag" title="<?php _e( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.', $this->get_textdomain() ); ?>"><?php _e( 'Github Repo for Contribute, Issues & Bugs', $this->get_textdomain() ); ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -400,14 +401,14 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		?>
 		<div class="postbox">
 			
-			<h3><span><?php _e( 'About this plugin', $this -> get_textdomain() ); ?></span></h3>
+			<h3><span><?php _e( 'About this plugin', $this->get_textdomain() ); ?></span></h3>
 			<div class="inside">
 				<p>
-					<strong><?php _e( 'Version:', $this -> get_textdomain() ); ?></strong>
+					<strong><?php _e( 'Version:', $this->get_textdomain() ); ?></strong>
 					<?php echo parent :: get_plugin_data( 'Version' ); ?>
 				</p>
 				<p>
-					<strong><?php _e( 'Description:', $this -> get_textdomain() ); ?></strong>
+					<strong><?php _e( 'Description:', $this->get_textdomain() ); ?></strong>
 					<?php echo parent :: get_plugin_data( 'Description' ); ?>
 				</p>
 			</div>
@@ -425,7 +426,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function save_network_settings_page() {
 		// validate options
-		$value = $this -> validate_settings( $_POST[self::$option_string] );
+		$value = $this->validate_settings( $_POST[self::$option_string] );
 		// update options
 		update_site_option( self::$option_string, $value );
 		// redirect to settings page in network
@@ -452,7 +453,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( isset( $_GET['updated'] ) && 
 			 'settings_page_addquicktag/inc/class-settings-network' === $GLOBALS['current_screen'] -> id
 			) {
-			$message = __( 'Options saved.', $this -> get_textdomain() );
+			$message = __( 'Options saved.', $this->get_textdomain() );
 			$notice  = '<div id="message" class="updated"><p>' .$message . '</p></div>';
 			echo $notice;
 		}
