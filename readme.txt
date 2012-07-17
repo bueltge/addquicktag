@@ -103,7 +103,8 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Add more data in JSON
 * Fix for custom post types; works now also on settings page
 * Change function to add button in html editor --> `QTags.addButton()`
-* Update im/export function for use with custmo post type	
+* Update im/export function for use with custmo post type
+* Fix settings page on network for WP 3.5
 
 = 2.1.0 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
