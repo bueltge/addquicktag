@@ -202,12 +202,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			?>
 			<form method="post" action="<?php echo $action; ?>">
 				<?php
-				settings_fields( self::$option_string . '_group' );
-				
-				if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) )
+				if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+					wp_nonce_field( self::$nonce_string );
 					$options = get_site_option( self::$option_string );
-				else
+				} else {
+					settings_fields( self::$option_string . '_group' );
 					$options = get_option( self::$option_string );
+				}
 				
 				if ( ! $options )
 					$options['buttons'] = array();
@@ -427,13 +428,17 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function save_network_settings_page() {
 		
+		if ( ! wp_verify_nonce( $_REQUEST[ '_wpnonce' ], self::$nonce_string ) )
+			wp_die( 'Sorry, you failed the nonce test.' );
+		
 		// validate options
 		$value = $this->validate_settings( $_POST[self::$option_string] );
+		
 		// update options
 		update_site_option( self::$option_string, $value );
 		// redirect to settings page in network
 		wp_redirect(
-			add_query_arg( 
+			add_query_arg(
 				array( 'page' => plugin_basename( __FILE__ ), 'updated' => 'true' ),
 				network_admin_url( 'settings.php' )
 			)
