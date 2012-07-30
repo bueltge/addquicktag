@@ -48,10 +48,12 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		$this->post_types_for_js = parent::get_post_types_for_js();
 		
 		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) )
-			add_action( 'init', array( $this, 'get_export_file' ) );
+			$this->get_export_file();
+			//add_action( 'init', array( $this, 'get_export_file' ) );
 		
 		if ( isset( $_POST['addquicktag_import'] ) && check_admin_referer( parent :: $nonce_string ) )
-			add_action( 'init', array( $this, 'import_file' ) );
+			$this->import_file();
+			//add_action( 'init', array( $this, 'import_file' ) );
 		
 		add_action( 'addquicktag_settings_page', array( $this, 'get_im_export_part' ) );
 	}
