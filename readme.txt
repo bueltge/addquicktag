@@ -97,6 +97,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.2.1 =
+* Fix for im/export
+* Add toggle checkboxes for each type
+
 = 2.2.0 =
 * Add checkboxes for different post type, use also filter for custom post type
 * Change script on HTML editor, only include buttons, there have an active checkbox on options for his post type

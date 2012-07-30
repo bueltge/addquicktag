@@ -243,6 +243,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<th class="row-title"><?php _e( 'Order', $this->get_textdomain() ); ?></th>
 						<th class="row-title"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
 						<?php echo $pt_title ?>
+						<th class="row-title">&#x2714;</th>
 					</tr>
 					<?php
 					if ( empty($options['buttons']) )
@@ -271,6 +272,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						// loop about the post types, create html an values
 						$pt_checkboxes = '';
 						foreach ( $this->get_post_types_for_js() as $post_type ) {
+							
 							if ( ! isset( $b[$post_type] ) )
 								$b[$post_type] = 0;
 							
@@ -288,8 +290,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						}
 						
 						$nr = $i + 1;
+					
 					echo '
-					<tr>
+					<tr id="rmqtb' . $i . '">
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
 						. '][text]" value="' . $b['text'] . '" style="width: 95%;" /></td>
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="' 
@@ -305,8 +308,28 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i 
 						. '][visual]" value="1"' . $checked . '/></td>' . 
 						$pt_checkboxes . '
+						<td><input type="checkbox" id="select_all_' . $i . '" /></td>' . '
 					</tr>
 					';
+					
+					// small script for toggle all checkboxes
+					echo '<script type="text/javascript">
+						jQuery( document ).ready( function( $ ) {
+							$(\'#select_all_'.$i.'\').click(function(event) {   
+								if ( this.checked ) {
+									// Iterate each checkbox
+									$(\'#rmqtb' . $i . ' input:checkbox\').each(function() {
+										this.checked = true;
+									});
+								} else {
+									// Iterate each checkbox
+									$(\'#rmqtb' . $i . ' input:checkbox\').each(function() {
+										this.checked = false;
+									});
+								}
+							});
+						});
+					</script>';
 					}
 					
 					// loop about the post types, create html an values for empty new checkboxes
