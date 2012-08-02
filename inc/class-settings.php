@@ -29,6 +29,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	// string for nonce fields
 	static public  $nonce_string;
 	
+	protected $page_hook;
+	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 * 
@@ -76,9 +78,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			// return message for update settings
 			add_action( 'network_admin_notices', array( $this, 'get_network_admin_notices' ) );
 			// add script on settings page
-			add_action( 'admin_print_scripts-settings_page_AddQuicktag/inc/class-settings', 
-				array( $this, 'print_scripts' )
-			);
 		} else {
 			add_action( 'admin_menu',            array( $this, 'add_settings_page' ) );
 			// add settings link
@@ -86,6 +85,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			// use settings API
 			add_action( 'admin_init',            array( $this, 'register_settings' ) );
 		}
+		// include js 
+		add_action( 'admin_print_scripts-settings_page_' . str_replace( '.php', '', plugin_basename( __FILE__ ) ), 
+			array( $this, 'print_scripts' )
+		);
+			
 		// add meta boxes on settings pages
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_about_plugin' ) );
