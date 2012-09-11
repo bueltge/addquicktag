@@ -239,10 +239,16 @@ class Add_Quicktag {
 	 * @since  2.0.0
 	 * @access public
 	 * @param  $value string, default = 'TextDomain'
-	 *		 Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
+	 *         Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
 	 * @return string
 	 */
 	public function get_plugin_data( $value = 'TextDomain' ) {
+		
+		static $plugin_data = array ();
+		
+		// fetch the data just once.
+		if ( isset( $plugin_data[ $value ] ) )
+			return $plugin_data[ $value ];
 		
 		if ( ! function_exists( 'get_plugin_data' ) )
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -250,7 +256,7 @@ class Add_Quicktag {
 		$plugin_data  = get_plugin_data( __FILE__ );
 		$plugin_value = $plugin_data[$value];
 		
-		return $plugin_value;
+		return empty ( $plugin_data[ $value ] ) ? '' : $plugin_data[ $value ];
 	}
 	
 	/**
