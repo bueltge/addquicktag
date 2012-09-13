@@ -41,7 +41,7 @@ jQuery( document ).ready( function( $ ) {
 				 * @param access_key string optional Access key for the button.
 				 * @param title string optional Button's title="..."
 				 * @param priority int optional Number representing the desired position of the button in the toolbar. 1 - 9 = first, 11 - 19 = second, 21 - 29 = third, etc.
-				 * @param instance string optional Limit the button to a specifric instance of Quicktags, add to all instances if not present.
+				 * @param instance string optional Limit the button to a specific instance of Quicktags, add to all instances if not present.
 				 */
 				QTags.addButton(
 					tags[i].text.toLowerCase(),
