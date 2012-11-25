@@ -139,6 +139,11 @@ class Add_Quicktag {
 		else
 			$options = get_option( self :: $option_string );
 		
+		// allow change or enhance buttons array
+		$options['buttons'] = apply_filters( 'addquicktag_buttons', $options['buttons'] );
+		// hook for filter options
+		$options = apply_filters( 'addquicktag_options', $options );
+		
 		if ( ! $options )
 			return NULL;
 		
@@ -153,6 +158,7 @@ class Add_Quicktag {
 			}
 			array_multisort( $tmp, SORT_ASC, $options['buttons'] );
 		}
+		
 		?>
 		<script type="text/javascript">
 			var addquicktag_tags = <?php echo json_encode( $options ); ?>,
