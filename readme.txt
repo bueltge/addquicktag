@@ -97,7 +97,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.2.1 =
+= 2.2.2 () =
+* Add Filter for custom button, see [issue #9](https://github.com/bueltge/AddQuicktag/issues/9)
+
+
+= 2.2.1 (13/11/2012) =
 * Fix for im/export
 * Add toggle checkboxes for each type
 
