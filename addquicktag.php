@@ -42,7 +42,7 @@ This plugin requires WordPress >= 3.3 and tested with PHP Interpreter >= 5.3
  */
 class Add_Quicktag {
 	
-	static private $classobj;
+	protected static $classobj;
 	
 	static private $option_string      = 'rmnlQuicktagSettings';
 	// use filter 'addquicktag_pages' for add custom pages
@@ -100,7 +100,7 @@ class Add_Quicktag {
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-tinymce.php';
 		
 		foreach ( $this->get_admin_pages_for_js() as $page ) {
-			add_action( 'admin_print_scripts-' . $page, array( $this, 'print_scripts' ) );
+			add_action( 'admin_print_scripts-' . $page, array( $this, 'get_json' ) );
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_enqueue_scripts') );
 		}
 	}
@@ -123,7 +123,7 @@ class Add_Quicktag {
 	 * @since   2.0.0
 	 * @return  void
 	 */
-	public function print_scripts() {
+	public function get_json() {
 		global $current_screen;
 		
 		if ( isset( $current_screen->id ) && 
@@ -217,7 +217,7 @@ class Add_Quicktag {
 	 * @access  public
 	 * @return  $classobj
 	 */
-	public function get_object() {
+	public static function get_object() {
 		
 		if ( NULL === self :: $classobj ) {
 			self :: $classobj = new self;

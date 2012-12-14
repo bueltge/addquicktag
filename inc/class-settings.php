@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_action' ) ) {
 
 class Add_Quicktag_Settings extends Add_Quicktag {
 	
-	static private $classobj = NULL;
+	protected static $classobj = NULL;
 	// string for translation
 	static public  $textdomain;
 	// string for options in table options
@@ -38,7 +38,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @since   2.0.0
 	 * @return  $classobj
 	 */
-	public function get_object() {
+	public static function get_object() {
 		
 		if ( NULL === self :: $classobj ) {
 			self :: $classobj = new self;

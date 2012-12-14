@@ -15,9 +15,9 @@ if ( ! function_exists( 'add_action' ) ) {
 
 class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	
-	static private $classobj = NULL;
+	protected static $classobj = NULL;
 	// post types for the settings
-	static private $post_types_for_js;
+	private static $post_types_for_js;
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -26,7 +26,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @since   2.0.0
 	 * @return  $classobj
 	 */
-	public function get_object() {
+	public static function get_object() {
 		
 		if ( NULL === self :: $classobj ) {
 			self :: $classobj = new self;
@@ -45,7 +45,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 */
 	public function __construct() {
 		
-		$this->post_types_for_js = parent::get_post_types_for_js();
+		self::$post_types_for_js = parent::get_post_types_for_js();
 		
 		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) )
 			$this->get_export_file();
