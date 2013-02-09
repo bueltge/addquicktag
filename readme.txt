@@ -100,14 +100,14 @@ If you need the functionality, that the Quicktags of this plugin works on the Qu
 
 = Hook for custom buttons =
 It is possible to add custom buttons to the editor, if the plugin is active. 
-Is usefull to easyier add buttons about the solution of this plugin.
+Is usefull to easier add buttons about the solution of this plugin.
 
 See the follow example to add buttons. The params inside the array is the same as in the settings of the plugin.
 
 	if ( class_exists( 'Add_Quicktag' ) ) :
-	add_filter( 'addquicktag_buttons', 'fb_test' );
+	add_filter( 'addquicktag_buttons', 'my_addquicktag_buttons' );
 	
-	function fb_test( $buttons ) {
+	function my_addquicktag_buttons( $buttons ) {
 	
 	    $buttons[] = array(
 	        'text'          => 'Permalink', 
