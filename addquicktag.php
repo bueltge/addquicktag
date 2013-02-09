@@ -14,7 +14,7 @@
  * 
 License:
 ==============================================================================
-Copyright 2012 Frank Bültge  (email : frank@bueltge.de)
+Copyright 2011 - 2013 Frank Bültge  (email : frank@bueltge.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

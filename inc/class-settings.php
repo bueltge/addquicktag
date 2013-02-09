@@ -6,7 +6,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    07/10/2012
+ * @version    02/09/2013
  * @since      2.0.0
  */
 
@@ -19,17 +19,17 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	
 	protected static $classobj = NULL;
 	// string for translation
-	static public  $textdomain;
+	static public    $textdomain;
 	// string for options in table options
-	static private $option_string;
+	static private   $option_string;
 	// string for plugin file
-	static private $plugin;
+	static private   $plugin;
 	// post types for the settings
-	static private $post_types_for_js;
+	static private   $post_types_for_js;
 	// string for nonce fields
-	static public  $nonce_string;
+	static public    $nonce_string;
 	
-	protected $page_hook;
+	protected        $page_hook;
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -261,9 +261,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 						$b           = $options['buttons'][$i];
 						$b['text']   = htmlentities( stripslashes($b['text']), ENT_COMPAT, get_option('blog_charset') );
-						$b['title']  = htmlentities( stripslashes($b['title']), ENT_COMPAT, get_option('blog_charset') );
+						if ( isset( $b['title'] ) )
+							$b['title'] = htmlentities( stripslashes($b['title']), ENT_COMPAT, get_option('blog_charset') );
 						$b['start']  = htmlentities( $b['start'], ENT_COMPAT, get_option('blog_charset') );
-						$b['end']    = htmlentities( $b['end'], ENT_COMPAT, get_option('blog_charset') );
+						if ( isset( $b['end'] ) )
+							$b['end'] = htmlentities( $b['end'], ENT_COMPAT, get_option('blog_charset') );
 						if ( ! isset( $b['access'] ) )
 							$b['access'] = '';
 						$b['access'] = htmlentities( $b['access'], ENT_COMPAT, get_option('blog_charset') );

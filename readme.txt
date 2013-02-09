@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
 Tested up to: 3.6-Alpha
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 
 This plugin make it easy, Quicktags add to the html - and visual-editor.
 
@@ -13,41 +13,9 @@ This plugin make it easy, Quicktags add to the html - and visual-editor.. It is 
 
 WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
 
-The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
-
-	// add custom function to filter hook 'addquicktag_post_types'
-	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
-	/**
-	 * Return array $post_types with custom post types
-	 * 
-	 * @param   $post_type Array
-	 * @return  $post_type Array
-	 */
-	function my_addquicktag_post_types( $post_types ) {
-		
-		$post_types[] = 'edit-comments';
-		
-		return $post_types;
-	}
-
-Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `comment.php`. The follow example change this for an another page.
-
-	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
-	/**
-	 * Return array $page with custom page strings
-	 * 
-	 * @param   $page Array
-	 * @return  $page Array
-	 */
-	function my_addquicktag_pages( $page ) {
-		
-		$page[] = 'edit-comments.php';
-		
-		return $page;
-	}
-
-See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
-If you need the functionality, that the Quicktags of this plugin works on the Quickedit of comments as well, remove the `.example`-part of `addquicktag_quickedit_comment.php.example` filename. The file is a stand alone helper plugin for Add Quicktag and you'll need to activate this file (plugin) separately in 'Manage Plugins'.
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. 
+If you will also the plugin for other post types you can use a filter hook, also for custom buttons and custom pages, there have a editor.
+See the examples and hint inside the tab "[Other Notes](http://wordpress.org/extend/plugins/addquicktag/other_notes/)".
 
 = Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
@@ -90,7 +58,90 @@ If you will use this plugin with an older version of WordPress, please use an ol
 * Japanese translation by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
 * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
 
-= Licence =
+= Hook for custom post types =
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
+
+	// add custom function to filter hook 'addquicktag_post_types'
+	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
+	/**
+	 * Return array $post_types with custom post types
+	 * 
+	 * @param   $post_type Array
+	 * @return  $post_type Array
+	 */
+	function my_addquicktag_post_types( $post_types ) {
+		
+		$post_types[] = 'edit-comments';
+		
+		return $post_types;
+	}
+
+
+= Hook for custom pages =
+Also it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `comment.php`. The follow example change this for an another page.
+
+	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
+	/**
+	 * Return array $page with custom page strings
+	 * 
+	 * @param   $page Array
+	 * @return  $page Array
+	 */
+	function my_addquicktag_pages( $page ) {
+		
+		$page[] = 'edit-comments.php';
+		
+		return $page;
+	}
+
+See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
+If you need the functionality, that the Quicktags of this plugin works on the Quickedit of comments as well, remove the `.example`-part of `addquicktag_quickedit_comment.php.example` filename. The file is a stand alone helper plugin for Add Quicktag and you'll need to activate this file (plugin) separately in 'Manage Plugins'.
+
+
+= Hook for custom buttons =
+It is possible to add custom buttons to the editor, if the plugin is active. 
+Is usefull to easyier add buttons about the solution of this plugin.
+
+See the follow example to add buttons. The params inside the array is the same as in the settings of the plugin.
+
+	if ( class_exists( 'Add_Quicktag' ) ) :
+	add_filter( 'addquicktag_buttons', 'fb_test' );
+	
+	function fb_test( $buttons ) {
+	
+	    $buttons[] = array(
+	        'text'          => 'Permalink', 
+	        'title'         => '',
+	        'start'         => '[permalink]',
+	        'end'           => '[/permalink]',
+	        'access'        => '',
+	        'order'         => 1,
+	        'visual'        => 1,
+	        'post'          => 0,
+	        'page'          => 1,
+	        'comment'       => 0,
+	        'edit-comments' => 0
+	    );
+	    $buttons[] = array(
+	        'text'          => 'Button', 
+	        'title'         => '',
+	        'start'         => '<span class="border blue">',
+	        'end'           => '</span>',
+	        'access'        => '',
+	        'order'         => 2,
+	        'visual'        => 1,
+	        'post'          => 0,
+	        'page'          => 1,
+	        'comment'       => 0,
+	        'edit-comments' => 0
+	    );
+	
+	    return $buttons;
+	}
+	endif;
+
+
+= License =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Translations =
@@ -98,9 +149,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.2.2 () =
-* Add Filter for custom button, see [issue #9](https://github.com/bueltge/AddQuicktag/issues/9)
-
+= 2.2.2 (02/09/2013) =
+* Add Filter Hook for custom button, see [issue #9](https://github.com/bueltge/AddQuicktag/issues/9)
+* Small check for undefined var on settings page
 
 = 2.2.1 (13/11/2012) =
 * Fix for im/export
