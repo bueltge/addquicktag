@@ -3,7 +3,7 @@ Contributors: Bueltge
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 3.6-Alpha
+Tested up to: 3.6-alpha
 Stable tag: 2.2.2
 
 This plugin make it easy, Quicktags add to the html - and visual-editor.
