@@ -20,16 +20,13 @@ See the examples and hint inside the tab "[Other Notes](http://wordpress.org/ext
 = Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
 
-= More Plugins =
-Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
+**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
 
-= Interested in WordPress tips and tricks =
-You may also be interested in WordPress tips and tricks at [WP Engineer](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
-
+Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Installation ==
 = Requirements =
-* WordPress version 3.0 and later (tested at 3.5-Alpha (nightly build))
+* WordPress version 3.0 and later (tested at 3.6-alpha (nightly build))
 
 = Installation =
 1. Unpack the download-package
