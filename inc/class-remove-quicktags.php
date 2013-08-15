@@ -99,7 +99,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 					echo '<tr><td><input type="checkbox" name="' . parent :: get_option_string() 
 						. '[core_buttons][' . $value . ']" value="1" ' 
 						. $checked . ' /></td><td>';
-					echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> ' . $value . '</td></tr>';
+					echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td></tr>';
 				}
 				
 				// Convert new buttons array back into a comma-separated string
