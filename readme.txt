@@ -151,6 +151,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Use on default all post types with active UI, incl. Custom and Defaul Post types
 * Add Widget area, now it is possible to use Quicktags on widgets with WP editor
 * Add brazilian translation
+* Add possibility to remove default quicktags
 
 = 2.2.2 (02/09/2013) =
 * Add Filter Hook for custom button, see [issue #9](https://github.com/bueltge/AddQuicktag/issues/9)
