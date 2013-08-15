@@ -5,7 +5,7 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.2.2
+ * Version:     2.2.3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv3
@@ -47,12 +47,10 @@ class Add_Quicktag {
 	static private $option_string      = 'rmnlQuicktagSettings';
 	// use filter 'addquicktag_pages' for add custom pages
 	static private $admin_pages_for_js = array(
-		'post.php', 'post-new.php', 'comment.php', 'edit-comments.php'
+		'post.php', 'post-new.php', 'comment.php', 'edit-comments.php', 'widgets.php'
 	);
 	// use filter 'addquicktag_post_types' for add custom post_types
-	static private $post_types_for_js  = array(
-		'post', 'page', 'comment', 'edit-comments'
-	);
+	static private $post_types_for_js  = array( 'widgets' );
 	
 	static private $plugin;
 	
@@ -277,6 +275,25 @@ class Add_Quicktag {
 	}
 	
 	/**
+	 * Get Post types with UI to use optional the quicktags
+	 * 
+	 * @since   08/1/2013
+	 * @return  Array
+	 */
+	private function get_post_types() {
+		
+		// list only post types, there was used in UI
+		$args = array( 'show_ui' => TRUE );
+		$post_types = get_post_types( $args, 'names' );
+		// simplify the array
+		$post_types = array_values( $post_types );
+		// merge with strings from var
+		$post_types = array_merge( $post_types, self::$post_types_for_js );
+		
+		return $post_types;
+	}
+	
+	/**
 	 * Retrun allowed post types for include scripts
 	 * 
 	 * @since   2.1.1
@@ -285,7 +302,7 @@ class Add_Quicktag {
 	 */
 	public function get_post_types_for_js() {
 		
-		return apply_filters( 'addquicktag_post_types', self::$post_types_for_js );
+		return apply_filters( 'addquicktag_post_types', $this->get_post_types() );
 	}
 	
 	/**
