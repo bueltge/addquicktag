@@ -89,10 +89,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		add_action( 'admin_print_scripts-settings_page_' . str_replace( '.php', '', plugin_basename( __FILE__ ) ), 
 			array( $this, 'print_scripts' )
 		);
-			
+		
 		// add meta boxes on settings pages
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_about_plugin' ) );
+		
+		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-remove-quicktags.php';
 		// include class for im/export
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-imexport.php';
 	}
@@ -218,7 +220,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					$options = get_option( self::$option_string );
 				}
 				
-				if ( ! $options )
+				if ( ! isset( $options['buttons'] ) )
 					$options['buttons'] = array();
 				
 				if ( 1 < count($options['buttons']) ) {
@@ -353,6 +355,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></td>
 					</tr>
 				</table>
+				
+				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 				
 				<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
 				<p class="submit">
@@ -492,11 +496,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function validate_settings( $value ) {
 		
+		// Save core buttons changes
+		if ( isset( $value['core_buttons'] ) )
+			$core_buttons = $value['core_buttons'];
+		
 		// set allowd values for import, only the defaults of plugin and custom post types
 		$allowed_settings = (array) array_merge(
 			$this->get_post_types_for_js(),
 			array( 'text', 'title', 'start', 'end', 'access', 'order', 'visual' )
 		);
+		
 		// filter for allowed values
 		foreach ( $value['buttons'] as $key => $button ) {
 			
@@ -505,8 +514,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				if ( ! in_array( $key, $allowed_settings) )
 					unset( $button[$key] );
 			}
+			
 			$buttons[] = $button;
 		}
+		
 		// return filtered array
 		$filtered_values['buttons'] = $buttons;
 		$value = $filtered_values;
@@ -542,6 +553,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				
 		}
 		$value['buttons'] = $buttons;
+		
+		// add core buttons to array of options
+		if ( ! empty( $core_buttons ) )
+			$value['core_buttons'] = $core_buttons;
 		
 		return $value;
 	}

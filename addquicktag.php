@@ -78,6 +78,7 @@ class Add_Quicktag {
 		// on init register post type for addquicktag and print js
 		add_action( 'init', array( $this, 'on_admin_init' ) );
 		
+		add_filter( 'quicktags_settings', array( $this, 'remove_quicktags' ), 10, 1 );
 	}
 	
 	
@@ -101,6 +102,46 @@ class Add_Quicktag {
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'get_json' ) );
 			add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_enqueue_scripts') );
 		}
+	}
+	
+	/**
+	 * Remove quicktags
+	 * 
+	 * @since   08/15/2013
+	 * @param   Array    The Buttons
+	 *     @type  String  id
+	 *     @type  Array   buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
+	 * @return  Array    The Buttons
+	 */
+	public function remove_quicktags( $qtInit ) {
+		
+		if ( empty( $qtInit['buttons'] ) )
+			$qtInit['buttons'] = '';
+		
+		if ( is_multisite() && is_plugin_active_for_network( $this -> get_plugin_string() ) )
+			$options = get_site_option( self :: $option_string );
+		else
+			$options = get_option( self :: $option_string );
+		
+		if ( empty( $options['core_buttons'] ) )
+			$options['core_buttons'] = array();
+		
+		// get only the keys
+		$remove_these = array_keys( $options['core_buttons'] );
+		
+		// Convert string to array
+		$buttons = explode( ',', $qtInit['buttons'] );
+		// Loop over items to remove and unset them from the buttons
+		for ( $i = 0; $i < count( $remove_these ); $i++ ) {
+			if ( FALSE !== ( $key = array_search( $remove_these[$i], $buttons ) ) )
+				unset( $buttons[$key] );
+		}
+		
+		// Convert new buttons array back into a comma-separated string
+		$qtInit['buttons'] = implode( ',', $buttons );
+		$qtInit['buttons'] = apply_filters( 'addquicktag_remove_buttons', $qtInit['buttons'] );
+		
+		return $qtInit;
 	}
 	
 	/**
@@ -136,6 +177,9 @@ class Add_Quicktag {
 			$options = get_site_option( self :: $option_string );
 		else
 			$options = get_option( self :: $option_string );
+		
+		if ( empty( $options['buttons'] ) )
+			$options['buttons'] = '';
 		
 		// allow change or enhance buttons array
 		$options['buttons'] = apply_filters( 'addquicktag_buttons', $options['buttons'] );
