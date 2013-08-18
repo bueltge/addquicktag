@@ -51,17 +51,6 @@ jQuery( document ).ready( function( $ ) {
 					tags[i].access,
 					tags[i].title
 				);
-				/* old function
-				edButtons[edButtons.length] = new edButton(
-					// id, display, tagStart, tagEnd, access_key, title
-					tags[i].text.toLowerCase(),
-					tags[i].text,
-					tags[i].start,
-					tags[i].end,
-					tags[i].access,
-					tags[i].title
-				);
-				*/
 			}
 		}
 		
