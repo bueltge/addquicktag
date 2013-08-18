@@ -35,7 +35,7 @@ jQuery( document ).ready( function( $ ) {
 			wpaqBut._idx    = wpaqNr; //store our current index at element itself
 			wpaqBut.value   = tags[i].text;
 			wpaqBut.title   = tags[i].title;
-			wpaqBut.onclick = function() { edInsertTag( edCanvas, this._idx ); return false; }
+			wpaqBut.onclick = function() { edInsertTag( edCanvas, this._idx ); return false; };
 			wpaqToolbar.appendChild( wpaqBut );
 		}
 		
