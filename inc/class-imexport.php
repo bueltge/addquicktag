@@ -111,10 +111,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 */
 	public function get_export_file() {
 		
-		if ( is_multisite() && is_plugin_active_for_network( parent :: get_plugin_string() ) )
-			$options = get_site_option( parent :: get_option_string() );
-		else
-			$options = get_option( parent :: get_option_string() );
+		$options = get_site_option( parent :: get_option_string() );
 		
 		if ( $options['buttons'] ) {
 			
@@ -206,10 +203,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		$options = parent :: validate_settings($options);
 		
 		// update settings in database
-		if ( is_multisite() && is_plugin_active_for_network( parent :: get_plugin_string() ) )
-			update_site_option( parent :: get_option_string(), $options );
-		else
-			update_option( parent :: get_option_string(), $options );
+		update_site_option( parent :: get_option_string(), $options );
 	}
 	
 } // end class
