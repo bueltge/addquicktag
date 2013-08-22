@@ -22,6 +22,21 @@ jQuery( document ).ready( function( $ ) {
 	if ( typeof tags == 'undefined' )
 		return;
 	
+	// window for input
+	function qt_callback_input_window( e, c, ed ) {
+		
+		var prmt = prompt( 'Enter Tag Name' );
+		
+		if ( prmt === null )
+			return;
+		
+		var rtrn = '[tag]' + prmt + '[/tag]';
+		
+		this.tagStart = rtrn;
+		
+		QTags.TagButton.prototype.callback.call( this, e, c, ed );
+	}
+	
 	// check post type
 	if ( $.inArray( "addquicktag_post_type", addquicktag_pt_for_js ) ) {
 		
@@ -51,6 +66,17 @@ jQuery( document ).ready( function( $ ) {
 					tags[i].access,
 					tags[i].title
 				);
+				/*
+				// for edit window
+				QTags.addButton(
+					tags[i].text.toLowerCase(),
+					tags[i].text,
+					qt_callback_input_window,
+					tags[i].end,
+					tags[i].access,
+					tags[i].title
+				);
+				*/
 			}
 		}
 		
