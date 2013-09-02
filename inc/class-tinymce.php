@@ -15,8 +15,6 @@ if ( ! function_exists( 'add_action' ) ) {
 
 class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	
-	protected static $classobj = NULL;
-	
 	static private $option_string = 'rmnlQuicktagSettings_tmce';
 	
 	/**
@@ -24,15 +22,16 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	 * 
 	 * @access  public
 	 * @since   2.0.0
-	 * @return  $classobj
+	 * @return  $instance
 	 */
 	public static function get_object() {
 		
-		if ( NULL === self :: $classobj ) {
-			self :: $classobj = new self;
-		}
+		static $instance;
 		
-		return self :: $classobj;
+		if ( NULL === $instance )
+			$instance = new self();
+		
+		return $instance;
 	}
 	
 	/**
@@ -43,7 +42,7 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	 * @uses    add_action
 	 * @return  void
 	 */
-	public function __construct() {
+	private function __construct() {
 		
 		add_filter( 'mce_external_plugins', array( $this, 'add_externel_buttons' ) );
 		add_filter( 'mce_buttons_2',        array( $this, 'extend_editor_buttons' ), 10, 2 );

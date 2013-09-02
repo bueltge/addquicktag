@@ -17,7 +17,6 @@ if ( ! function_exists( 'add_action' ) ) {
 
 class Add_Quicktag_Settings extends Add_Quicktag {
 	
-	protected static $classobj = NULL;
 	// string for translation
 	static public    $textdomain;
 	// string for options in table options
@@ -36,15 +35,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * 
 	 * @access  public
 	 * @since   2.0.0
-	 * @return  $classobj
+	 * @return  $instance
 	 */
 	public static function get_object() {
 		
-		if ( NULL === self :: $classobj ) {
-			self :: $classobj = new self;
-		}
+		static $instance;
 		
-		return self :: $classobj;
+		if ( NULL === $instance )
+			$instance = new self();
+		
+		return $instance;
 	}
 	
 	/**
@@ -55,7 +55,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
 	 * @return  void
 	 */
-	public function __construct() {
+	private function __construct() {
 		
 		if ( ! is_admin() )
 			return NULL;

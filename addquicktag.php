@@ -42,8 +42,6 @@ This plugin requires WordPress >= 3.3 and tested with PHP Interpreter >= 5.3
  */
 class Add_Quicktag {
 	
-	protected static $classobj;
-	
 	static private $option_string      = 'rmnlQuicktagSettings';
 	// use filter 'addquicktag_pages' for add custom pages
 	static private $admin_pages_for_js = array(
@@ -55,12 +53,29 @@ class Add_Quicktag {
 	static private $plugin;
 	
 	/**
+	 * Handler for the action 'init'. Instantiates this class.
+	 *
+	 * @since   2.0.0
+	 * @access  public
+	 * @return  $instance
+	 */
+	public static function get_object() {
+		
+		static $instance;
+		
+		if ( NULL === $instance )
+			$instance = new self();
+		
+		return $instance;
+	}
+	
+	/**
 	 * Constructor, init the functions inside WP
 	 *
 	 * @since   2.0.0
 	 * @return  void
 	 */
-	function __construct() {
+	private function __construct() {
 		
 		if ( ! is_admin() )
 			return;
@@ -246,22 +261,6 @@ class Add_Quicktag {
 		}
 		// Alternative to JSON function
 		// wp_localize_script( self :: get_textdomain() . '_script', 'addquicktag_tags', get_option( self :: $option_string ) );
-	}
-	
-	/**
-	 * Handler for the action 'init'. Instantiates this class.
-	 *
-	 * @since   2.0.0
-	 * @access  public
-	 * @return  $classobj
-	 */
-	public static function get_object() {
-		
-		if ( NULL === self :: $classobj ) {
-			self :: $classobj = new self;
-		}
-	
-		return self :: $classobj;
 	}
 	
 	/**
