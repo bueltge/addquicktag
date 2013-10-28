@@ -55,6 +55,7 @@ If you will use this plugin with an older version of WordPress, please use an ol
 * Japanese translation by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
 * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
 * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
+* Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005)
 
 = Hook for custom post types =
 The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
@@ -151,6 +152,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Use on default all post types with active UI, incl. Custom and Defaul Post types
 * Add Widget area, now it is possible to use Quicktags on widgets with WP editor
 * Add brazilian translation
+* Add turkish translation
 * Add possibility to remove default quicktags
 
 = 2.2.2 (02/09/2013) =
