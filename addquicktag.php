@@ -5,10 +5,10 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.2.3
+ * Version:     2.2.3-RC1
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
- * License:     GPLv3
+ * License:     GPLv2
  * 
  * 
  * 
@@ -51,13 +51,13 @@ class Add_Quicktag {
 	static private $post_types_for_js  = array( 'widgets' );
 	
 	static private $plugin;
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 *
 	 * @since   2.0.0
 	 * @access  public
-	 * @return  $instance
+	 * @return  \Add_Quicktag $instance
 	 */
 	public static function get_object() {
 		
@@ -68,12 +68,12 @@ class Add_Quicktag {
 		
 		return $instance;
 	}
-	
+
 	/**
 	 * Constructor, init the functions inside WP
 	 *
 	 * @since   2.0.0
-	 * @return  void
+	 * @return  \Add_Quicktag
 	 */
 	private function __construct() {
 		
@@ -266,7 +266,7 @@ class Add_Quicktag {
 	/**
 	 * Localize_plugin function.
 	 *
-	 * @uses	load_plugin_textdomain, plugin_basename
+	 * @uses    load_plugin_textdomain, plugin_basename
 	 * @access  public
 	 * @since   2.0.0
 	 * @return  void
@@ -333,7 +333,7 @@ class Add_Quicktag {
 	}
 	
 	/**
-	 * Retrun allowed post types for include scripts
+	 * Return allowed post types for include scripts
 	 * 
 	 * @since   2.1.1
 	 * @access  public
@@ -345,7 +345,7 @@ class Add_Quicktag {
 	}
 	
 	/**
-	 * Retrun allowed post types for include scripts
+	 * Return allowed post types for include scripts
 	 * 
 	 * @since   2.1.1
 	 * @access  public
@@ -357,7 +357,7 @@ class Add_Quicktag {
 	}
 	
 	/**
-	 * Retrun textdomain string
+	 * Return textdomain string
 	 * 
 	 * @since   2.0.0
 	 * @access  public
@@ -372,7 +372,7 @@ class Add_Quicktag {
 	 * Return string for options
 	 *
 	 * @since   2.0.0
-	 * @retrun  string
+	 * @return  string
 	 */
 	public function get_option_string() {
 		

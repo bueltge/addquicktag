@@ -29,13 +29,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	static public    $nonce_string;
 	
 	protected        $page_hook;
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
-	 * @return  $instance
+	 * @return  \Add_Quicktag|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
 		
@@ -46,14 +46,14 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		
 		return $instance;
 	}
-	
+
 	/**
 	 * Constructor, init on defined hooks of WP and include second class
-	 * 
+	 *
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return  void
+	 * @return  \Add_Quicktag_Settings
 	 */
 	private function __construct() {
 		
@@ -122,15 +122,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		
 		return self :: $textdomain;
 	}
-	
+
 	/**
 	 * Add settings link on plugins.php in backend
-	 * 
-	 * @uses   
+	 *
+	 * @uses
 	 * @access public
-	 * @param  array $links, string $file
-	 * @since  2.0.0
-	 * @return string $links
+	 * @param  array $links , string $file
+	 * @param  string $file
+	 * @since   2.0.0
+	 * @return  string $links
 	 */
 	public function plugin_action_links( $links, $file ) {
 		
@@ -139,14 +140,15 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		
 		return $links;
 	}
-	
+
 	/**
 	 * Add settings link on plugins.php on network admin in backend
-	 * 
-	 * @uses   
+	 *
+	 * @uses
 	 * @access public
-	 * @param  array $links, string $file
 	 * @since  2.0.0
+	 * @param  array $links , string $file
+	 * @param        $file
 	 * @return string $links
 	 */
 	public function network_admin_plugin_action_links( $links, $file ) {
@@ -192,7 +194,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * Return form and markup on settings page
 	 * 
 	 * @uses settings_fields, normalize_whitespace, is_plugin_active_for_network, get_site_option, get_option
-	 * @access public	
+	 * @access public
 	 * @since 0.0.2
 	 * @return void
 	 */
@@ -239,7 +241,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				$pt_title = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
-					$pt_title .= '<th class="row-title" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
+					$pt_title .= '<th class="row-title rotate" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
 				}
 				?>
 				
@@ -251,7 +253,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<th class="row-title"><?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
 						<th class="row-title"><?php _e( 'Access Key', $this->get_textdomain() ); ?></th>
 						<th class="row-title"><?php _e( 'Order', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
+						<th class="row-title rotate"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
 						<?php echo $pt_title ?>
 						<th class="row-title">&#x2714;</th>
 					</tr>
@@ -306,17 +308,17 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					echo '
 					<tr id="rmqtb' . $i . '">
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
-						. '][text]" value="' . $b['text'] . '" style="width: 95%;" /></td>
+						. '][text]" value="' . $b['text'] . '" /></td>
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="' 
-						. $b['title'] . '" style="width: 95%;" /></td>
+						. $b['title'] . '" /></td>
 						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i 
-						. '][start]" rows="2" cols="25" style="width: 95%;">' . $b['start'] . '</textarea></td>
+						. '][start]" rows="2" cols="25" >' . $b['start'] . '</textarea></td>
 						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i 
-						. '][end]" rows="2" cols="25" style="width: 95%;">' . $b['end'] . '</textarea></td>
-						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
-						. '][access]" value="' . $b['access'] . '" style="width: 95%;" /></td>
-						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
-						. '][order]" value="' . $b['order'] . '" style="width: 95%;" /></td>
+						. '][end]" rows="2" cols="25" >' . $b['end'] . '</textarea></td>
+						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						. '][access]" value="' . $b['access'] . '" /></td>
+						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						. '][order]" value="' . $b['order'] . '" /></td>
 						<td><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i 
 						. '][visual]" value="1"' . $checked . '/></td>' . 
 						$pt_checkboxes . '
@@ -344,12 +346,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					}
 					?>
 					<tr id="rmqtb<?php echo $i ?>">
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" style="width: 95%;" /></td>
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" style="width: 95%;" /></td>
-						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" style="width: 95%;"></textarea></td>
-						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" style="width: 95%;"></textarea></td>
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" class="code" style="width: 95%;" /></td>
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" style="width: 95%;" /></td>
+						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /></td>
+						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" /></td>
+						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" ></textarea></td>
+						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" ></textarea></td>
+						<td><input class="small-text" type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /></td>
+						<td><input class="small-text" type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" /></td>
 						<td><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" /></td>
 						<?php echo $pt_new_boxes; ?>
 						<td><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></td>
@@ -594,12 +596,21 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		
 		wp_register_script(
 			self::$option_string . '_admin_script', 
-			plugins_url( '/js/settings' . $suffix. '.js', parent::get_plugin_string() ), 	
+			plugins_url( '/js/settings' . $suffix. '.js', parent::get_plugin_string() ),
 			array( 'jquery', 'quicktags' ),
 			'',
 			TRUE
 		);
 		wp_enqueue_script( self::$option_string . '_admin_script' );
+
+		wp_register_style(
+			self::$option_string . '_admin_style',
+			plugins_url( '/css/settings' . $suffix . '.css', parent::get_plugin_string() ),
+			array(),
+			FALSE,
+			'screen'
+		);
+		wp_enqueue_style( self::$option_string . '_admin_style' );
 	}
 	
 	/**
