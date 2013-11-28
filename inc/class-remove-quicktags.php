@@ -60,7 +60,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 		<h3><?php _e('Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
 		<table class="widefat">
 			<tr>
-				<th class="row-title" style="width:3%;">&#x2714;</th>
+				<th class="row-title num" style="width:3%;">&#x2714;</th>
 				<th class="row-title"><?php _e( 'Button', parent::get_textdomain() ); ?></th>
 			</tr>
 			
@@ -96,7 +96,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 						$style = '';
 					}
 					
-					echo '<tr><td><input type="checkbox" name="' . parent :: get_option_string() 
+					echo '<tr><td class="num"><input type="checkbox" name="' . parent :: get_option_string()
 						. '[core_buttons][' . $value . ']" value="1" ' 
 						. $checked . ' /></td><td>';
 					echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td></tr>';
