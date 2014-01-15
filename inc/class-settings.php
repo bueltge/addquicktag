@@ -311,9 +311,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						. '][text]" value="' . $b['text'] . '" /></td>
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="' 
 						. $b['title'] . '" /></td>
-						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i 
+						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
 						. '][start]" rows="2" cols="25" >' . $b['start'] . '</textarea></td>
-						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i 
+						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
 						. '][end]" rows="2" cols="25" >' . $b['end'] . '</textarea></td>
 						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
 						. '][access]" value="' . $b['access'] . '" /></td>
@@ -360,7 +360,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				
 				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 				
-				<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
+				<p><?php _e( 'Fill in the fields above to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 				</p>

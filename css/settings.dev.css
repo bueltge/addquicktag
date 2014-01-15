@@ -7,8 +7,17 @@
  * @since    2.02.3
  */
 
-.settings_page_AddQuicktag-inc-class-settings {
+.settings_page_AddQuicktag-inc-class-settings textarea {
+
+	width: 1em;
 }
+
+.settings_page_AddQuicktag-inc-class-settings textarea:active,
+.settings_page_AddQuicktag-inc-class-settings textarea:hover{
+
+	width: 250px;
+}
+
 
 .rotate {
 	padding: 0 !important;
