@@ -7,20 +7,29 @@
  * @since    2.02.3
  */
 
+.settings_page_AddQuicktag-inc-class-settings textarea {
+
+	width: 1em;
+}
+
+.settings_page_AddQuicktag-inc-class-settings textarea:active,
+.settings_page_AddQuicktag-inc-class-settings textarea:hover{
+
+	width: 250px;
+}
+
+
 .rotate {
+	padding: 0 !important;
+	width: 1.2em;
+	writing-mode: tb-rl;
 	-webkit-transform: rotate(-90deg);
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	-o-transform: rotate(-90deg);
 	transform: rotate(-90deg);
 
-	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
-	-webkit-transform-origin: 50% 50%;
-	-moz-transform-origin: 50% 50%;
-	-ms-transform-origin: 50% 50%;
-	-o-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
-
 	/* Should be unset in IE9+ I think. */
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE6,IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */
 }
