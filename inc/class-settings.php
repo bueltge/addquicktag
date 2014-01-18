@@ -401,10 +401,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			<div class="inside">
 				<p><?php _e( 'Here\'s how you can give back:', $this->get_textdomain() ); ?></p>
 				<ul>
-					<li><a href="http://wordpress.org/extend/plugins/addquicktag/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', $this->get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', $this->get_textdomain() ); ?></a></li>
-					<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', $this->get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', $this->get_textdomain() ); ?></a></li>
-					<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', $this->get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', $this->get_textdomain() ); ?></a></li>
-					<li><a href="https://github.com/bueltge/AddQuicktag" title="<?php _e( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.', $this->get_textdomain() ); ?>"><?php _e( 'Github Repo for Contribute, Issues & Bugs', $this->get_textdomain() ); ?></a></li>
+					<li><a href="http://wordpress.org/support/view/plugin-reviews/addquicktag" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', $this->get_textdomain() ); ?>"><?php esc_attr_e( 'Give the plugin a good rating.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="http://wordpress.org/support/plugin/addquicktag" title="<?php esc_attr_e( 'Help inside the community other useres and write answer to this plugin questions.', $this->get_textdomain() ); ?>"><?php esc_attr_e( 'Help other users in the Support Forum.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', $this->get_textdomain() ); ?>"><?php esc_attr_e( 'Donate a few euros.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', $this->get_textdomain() ); ?>"><?php esc_attr_e( 'Get me something from my wish list.', $this->get_textdomain() ); ?></a></li>
+					<li><a href="https://github.com/bueltge/AddQuicktag" title="<?php esc_attr_e( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.', $this->get_textdomain() ); ?>"><?php esc_attr_e( 'Github Repo for Contribute, Issues & Bugs', $this->get_textdomain() ); ?></a></li>
 				</ul>
 			</div>
 		</div>
