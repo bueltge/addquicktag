@@ -23,7 +23,7 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
-	$("table.rmnlQuicktagSettings").delegate( 'td','mouseover mouseout', function(e) {
+	$( 'table.rmnlQuicktagSettings' ).delegate( 'td','mouseover mouseout', function(e) {
 		var hover = 'hover';
 		
 		if ( e.type == 'mouseover' ) {
