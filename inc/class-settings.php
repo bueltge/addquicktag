@@ -239,21 +239,30 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				
 				// loop about the post types, create html an values for title in table
 				$pt_title = '';
+				$pt_colgroup = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
-					$pt_title .= '<th class="row-title" title="Post Type"><code>' . $post_type . '</code></th>' . "\n";
+					$pt_title .= '<th class="row-title rotate" title="Post Type"><span><code>' . $post_type . '</code></span></th>' . "\n";
+					$pt_colgroup .= '<colgroup></colgroup>' . "\n";
 				}
 				?>
 				
-				<table class="widefat">
-					<tr>
-						<th class="row-title"><?php _e( 'Button Label*', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Access Key', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Order', $this->get_textdomain() ); ?></th>
-						<th class="row-title"><?php _e( 'Visual', $this->get_textdomain() ); ?></th>
+				<table class="widefat rmnlQuicktagSettings">
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<?php echo $pt_colgroup; ?>
+					
+					<tr class="rmnlqsheader">
+						<th class="row-title"><?php _e( 'Button Label* and', $this->get_textdomain() ); ?><br />
+						<?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Start Tag(s)* and', $this->get_textdomain() ); ?><br />
+						<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Access Key and', $this->get_textdomain() ); ?><br />
+						<?php _e( 'Order', $this->get_textdomain() ); ?></th>
+						<th class="row-title rotate"><span><?php _e( 'Visual', $this->get_textdomain() ); ?></span></th>
 						<?php echo $pt_title ?>
 						<th class="row-title num">&#x2714;</th>
 					</tr>
@@ -308,16 +317,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					echo '
 					<tr id="rmqtb' . $i . '">
 						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i 
-						. '][text]" value="' . $b['text'] . '" /></td>
-						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="' 
+						. '][text]" value="' . $b['text'] . '" /><br />
+						<input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="' 
 						. $b['title'] . '" /></td>
 						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
-						. '][start]" rows="2" cols="25" >' . $b['start'] . '</textarea></td>
-						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
+						. '][start]" rows="2" cols="25" >' . $b['start'] . '</textarea><br />
+						<textarea class="code" name="' . self::$option_string . '[buttons][' . $i
 						. '][end]" rows="2" cols="25" >' . $b['end'] . '</textarea></td>
 						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
-						. '][access]" value="' . $b['access'] . '" /></td>
-						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						. '][access]" value="' . $b['access'] . '" /><br />
+						<input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
 						. '][order]" value="' . $b['order'] . '" /></td>
 						<td class="num"><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i
 						. '][visual]" value="1"' . $checked . '/></td>' . 
@@ -346,21 +355,23 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					}
 					?>
 					<tr id="rmqtb<?php echo $i ?>">
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /></td>
-						<td><input type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" /></td>
-						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" ></textarea></td>
-						<td><textarea class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" ></textarea></td>
-						<td><input class="small-text" type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /></td>
-						<td><input class="small-text" type="text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" /></td>
+						<td><input type="text" placeholder="<?php _e( 'Button Label', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
+						<input type="text" placeholder="<?php _e( 'Title Attribute', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" /></td>
+						<td><textarea  placeholder="<?php _e( 'Start Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" ></textarea><br />
+						<textarea placeholder="<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" ></textarea></td>
+						<td><input type="text" placeholder="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" title="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /><br />
+						<input type="text" placeholder="<?php _e( 'Order', $this->get_textdomain() ); ?>" title="<?php _e( 'Order', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" /></td>
 						<td class="num"><input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" /></td>
 						<?php echo $pt_new_boxes; ?>
 						<td class="num"><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></td>
 					</tr>
 				</table>
 				
+				<p><?php _e( 'Fill in the fields above to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
+				
+				
 				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 				
-				<p><?php _e( 'Fill in the fields above to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 				</p>

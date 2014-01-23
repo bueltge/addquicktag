@@ -7,21 +7,22 @@
  * @since    2.02.3
  */
 
-.settings_page_AddQuicktag-inc-class-settings textarea {
-
-	width: 1em;
+.rmnlQuicktagSettings .rmnlqsheader {
+	height: 10em;
+	vertical-align: bottom;
 }
 
-.settings_page_AddQuicktag-inc-class-settings textarea:active,
-.settings_page_AddQuicktag-inc-class-settings textarea:hover{
-
-	width: 250px;
+.hover, table tr:hover {
+	background-color: #ccc;
 }
 
-
-.rotate {
+.rotate span {
+	display: block;
 	padding: 0 !important;
 	width: 1.2em;
+	vertical-align: middle !important;
+	white-space: nowrap;
+	filter: flipv fliph;
 	writing-mode: tb-rl;
 	-webkit-transform: rotate(-90deg);
 	-moz-transform: rotate(-90deg);
@@ -32,4 +33,14 @@
 	/* Should be unset in IE9+ I think. */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE6,IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */
+}
+
+.rmnlQuicktagSettings input[type='text'] {
+	height: 3.5em;
+	margin: 0 0 .5em 0;
+}
+
+.rmnlQuicktagSettings textarea {
+	height: 3.5em;
+	margin: 0 0 .2em 0;
 }
