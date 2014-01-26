@@ -80,7 +80,7 @@ jQuery( document ).ready( function( $ ) {
 				/**
 				 * ideas for code buttons and optional window with input possibility
 				 *
-				
+				*/
 				// @see http://bililite.com/blog/2012/08/20/custom-buttons-in-the-wordpress-html-editor/
 				QTags.addButton('toHTML', 'HTML Entities', function(el, canvas){
 					QTags.insertContent(get_selected_text(canvas).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
@@ -89,22 +89,27 @@ jQuery( document ).ready( function( $ ) {
 					QTags.insertContent(get_selected_text(canvas).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 				}, 'Decode HTML Entities');
 				
-				var languages = ['html', 'javascript', 'css', 'bash', 'php', 'vb'];
-				// insert right before the code button
+				var code_languages = ['html', 'javascript', 'css', 'bash', 'php', 'vb'];
+				// Insert before the code button
 				edButtons[109] = {
 					html: function( id_prefix ) {
 						return '<select id="' + id_prefix + 'code_language" class="language-select">' + 
 							'<option>blank</option>' + // include a blank option
-							'<option>' + languages.join( '</option><option>' ) + '</option>' + 
+							'<option>' + code_languages.join( '</option><option>' ) + '</option>' + 
 							'</select>';
 					}
 				};
-				$('body').on('change', 'select.language-select', function(){
+				$('body').on('change', 'select.language-select', function() {
 					var lang = $(this).val();
 					// 110 is the code qt-tag from core, wp-includes/js/quicktags.js
-					edButtons[110].tagStart = lang ? '<code class="language-' + lang + '" >' : '<code>';
+					edButtons[110].tagStart = lang ? '<code class="language-' + lang + '">' : '<code>';
+					
 				});
 				
+				// Add pre button for preformatted text
+				QTags.addButton( 'qt_pre', 'pre', '<pre>', '</pre>', '', 'Preformatted text', '108' );
+				
+				/*
 				// for edit window
 				QTags.addButton(
 					tags[i].text.toLowerCase(),

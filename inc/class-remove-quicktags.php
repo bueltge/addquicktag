@@ -1,6 +1,6 @@
 <?php
 /**
- * AddQuicktag - Settings
+ * AddQuicktag - Settings to remove core quicktags
  * 
  * @license    GPLv3
  * @package    AddQuicktag
