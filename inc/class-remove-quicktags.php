@@ -58,6 +58,8 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			$options['core_buttons'] = array();
 		?>
 		<h3><?php _e('Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
+		<p><?php _e( 'Select the checkbox below to remove a core quicktags in all editors.', $this->get_textdomain() ); ?></p>
+
 		<table class="widefat">
 			<tr>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>

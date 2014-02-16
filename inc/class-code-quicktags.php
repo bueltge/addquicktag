@@ -65,6 +65,8 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			$checked_ende_coding = ' checked="checked"';
 		?>
 		<h3><?php _e('Enhanced Code Quicktag buttons', self::$textdomain ); ?></h3>
+		<p><?php _e( 'Select the checkbox below to add enhanced code buttons.', $this->get_textdomain() ); ?></p>
+		
 		<table class="widefat">
 			<tr>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
@@ -73,9 +75,10 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			
 			<tr>
 				<td class="num">
-					<input type="checkbox" name="' . parent::get_option_string()
-						. '[code_buttons]['enhanced_code']" value="1" ' 
-						. $checked_enhanced_code . ' />
+					<?php echo '<input type="checkbox" name="' . parent::get_option_string()
+						. '[code_buttons][enhanced_code]" value="1" ' 
+						. $checked_enhanced_code . ' />';
+					?>
 				</td>
 				<td>
 					<?php _e( 'Enhanced Code buttons.<br />Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text.', self::$textdomain ); ?>
@@ -88,7 +91,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 						. $checked_ende_coding . ' />';
 					?>
 				</td>
-				<td><?php _e( 'Add buttons to do the inconvient HTML encoding/decoding.', self::$textdomain ); ?></td>
+				<td><?php _e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', self::$textdomain ); ?></td>
 			</tr>
 		</table>
 		<?php

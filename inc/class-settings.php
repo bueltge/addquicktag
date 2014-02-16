@@ -209,6 +209,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			<h2><?php echo parent :: get_plugin_data( 'Name' ); ?></h2>
 			
 			<h3><?php _e('Add or delete Quicktag buttons', $this->get_textdomain() ); ?></h3>
+			<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
+
 			<?php
 			if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) )
 				$action = 'edit.php?action=' . self::$option_string;
@@ -358,9 +360,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					}
 					?>
 					<tr id="rmqtb<?php echo $i ?>">
-						<td><input type="text" placeholder="<?php _e( 'Button Label', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
+						<td><input type="text" placeholder="<?php _e( 'Button Label*', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
 						<input type="text" placeholder="<?php _e( 'Title Attribute', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" /></td>
-						<td><textarea  placeholder="<?php _e( 'Start Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" ></textarea><br />
+						<td><textarea  placeholder="<?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25" ></textarea><br />
 						<textarea placeholder="<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25" ></textarea></td>
 						<td><input type="text" placeholder="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" title="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /><br />
 						<input type="text" placeholder="<?php _e( 'Order', $this->get_textdomain() ); ?>" title="<?php _e( 'Order', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" /></td>
@@ -369,9 +371,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td class="num"><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></td>
 					</tr>
 				</table>
-				
-				<p><?php _e( 'Fill in the fields above to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
-				
 				
 				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 				
@@ -517,6 +516,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( isset( $value['core_buttons'] ) )
 			$core_buttons = $value['core_buttons'];
 		
+		// Save Code buttons
+		if ( isset( $value['code_buttons'] ) )
+			$code_buttons = $value['code_buttons'];
+		
 		// set allowd values for import, only the defaults of plugin and custom post types
 		$allowed_settings = (array) array_merge(
 			$this->get_post_types_for_js(),
@@ -528,7 +531,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			
 			foreach ($button as $key => $val) {
 				
-				if ( ! in_array( $key, $allowed_settings) )
+				if ( ! in_array( $key, $allowed_settings ) )
 					unset( $button[$key] );
 			}
 			
@@ -540,40 +543,70 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		$value = $filtered_values;
 		
 		$buttons = array();
-		for ( $i = 0; $i < count( $value['buttons']); $i++ ) {
+		for ( $i = 0; $i < count( $value['buttons'] ); $i++ ) {
+			
+			$b = $value['buttons'][$i];
+			if ( ! empty( $b['text'] ) && ! empty( $b['start'] ) ) {
 				
-				$b = $value['buttons'][$i];
-				if ($b['text']  != '' && $b['start'] != '') {
-					$b['text']   = esc_html( $b['text'] );
-					$b['title']  = esc_html( $b['title'] );
-					$b['start']  = stripslashes( $b['start'] );
-					$b['end']    = stripslashes( $b['end'] );
-					if ( isset( $b['access'] ) )
-						$b['access'] = esc_html( $b['access'] );
-					if ( isset( $b['order'] ) )
-						$b['order']  = intval( $b['order'] );
-					// visual settings
-					if ( isset( $b['visual'] ) )
-						$b['visual'] = intval( $b['visual'] );
-					else
-						$b['visual'] = 0;
-					// post types
-					foreach ( $this->get_post_types_for_js() as $post_type ) {
-						if ( isset( $b[$post_type] ) )
-							$b[$post_type] = intval( $b[$post_type] );
-						else
-							$b[$post_type] = 0;
-					}
+				$b['text']   = esc_html( $b['text'] );
+				$b['title']  = esc_html( $b['title'] );
+				$b['start']  = stripslashes( $b['start'] );
+				$b['end']    = stripslashes( $b['end'] );
+				
+				if ( isset( $b['access'] ) )
+					$b['access'] = esc_html( $b['access'] );
+				
+				if ( isset( $b['order'] ) )
+					$b['order']  = intval( $b['order'] );
+				
+				// visual settings
+				if ( isset( $b['visual'] ) )
+					$b['visual'] = intval( $b['visual'] );
+				else
+					$b['visual'] = 0;
+				
+				// post types
+				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					
-					$buttons[]   = $b;
+					if ( isset( $b[$post_type] ) )
+						$b[$post_type] = intval( $b[$post_type] );
+					else
+						$b[$post_type] = 0;
+					
 				}
 				
+				$buttons[] = $b;
+			}
+				
 		}
-		$value['buttons'] = $buttons;
 		
-		// add core buttons to array of options
-		if ( ! empty( $core_buttons ) )
-			$value['core_buttons'] = $core_buttons;
+		// Check for wrong empty values and kill
+		foreach ( $value[ 'buttons' ] as $key => $b ) {
+			
+			if ( empty( $b['text'] ) && empty( $b['start'] ) ) {
+				unset( $value[ 'buttons' ][ $key ] );
+			}
+		}
+		// reorder the array
+		$value[ 'buttons' ] = array_values( $value[ 'buttons' ] );
+		
+		// Add core buttons to array of options
+		if ( ! empty( $core_buttons ) ) {
+			
+			foreach ( $core_buttons as $key => $var )
+				$core_buttons[ $key ] = (int) $var;
+			
+			$value[ 'core_buttons' ] = $core_buttons;
+		}
+		
+		// Add code buttons to array of options
+		if ( ! empty( $code_buttons ) ) {
+			
+			foreach ( $code_buttons as $key => $var )
+				$code_buttons[ $key ] = (int) $var;
+			
+			$value['code_buttons'] = $code_buttons;
+		}
 		
 		return $value;
 	}
