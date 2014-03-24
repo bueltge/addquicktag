@@ -14,7 +14,7 @@ jQuery( document ).ready( function( $ ) {
 	
 	if ( typeof tags !== 'undefined' && wpaqToolbar ) {
 		
-		var wpaqBut;
+		var wpaqBut, wpaqNr;
 		
 		for ( var i = 0; i < tags.length; i++ ) {
 			if ( typeof tags[i].title  == 'undefined' ) tags[i].title = ' ';

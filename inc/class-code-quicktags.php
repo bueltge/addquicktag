@@ -20,13 +20,13 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	private static $post_types_for_js;
 	// static var for textdomain
 	public static $textdomain = '';
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
-	 * @return  $instance
+	 * @return \Add_Quicktag|\Add_Quicktag_Code_Quicktags|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
 		
@@ -37,14 +37,14 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 		
 		return $instance;
 	}
-	
+
 	/**
 	 * Constructor, init on defined hooks of WP and include second class
-	 * 
+	 *
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return  void
+	 * @return \Add_Quicktag_Code_Quicktags
 	 */
 	private function __construct() {
 		

@@ -17,13 +17,13 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	
 	// post types for the settings
 	private static $post_types_for_js;
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
-	 * @return  $instance
+	 * @return \Add_Quicktag|\Add_Quicktag_Im_Export|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
 		
@@ -34,14 +34,14 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		
 		return $instance;
 	}
-	
+
 	/**
 	 * Constructor, init on defined hooks of WP and include second class
-	 * 
+	 *
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return  void
+	 * @return \Add_Quicktag_Im_Export
 	 */
 	private function __construct() {
 		
@@ -167,20 +167,22 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		header( 'Content-type: ' . $filetype . '; charset=' . get_option('blog_charset'), TRUE );
 		flush();
 	}
-	
+
 	/**
 	 * Import XML and update settings
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
-	 * @param   string $filename
+	 *
+	 * @param bool|string $filename
+	 *
 	 * @uses    current_user_can, wp_die, is_plugin_active_for_network, update_site_option, update_option
 	 * @return  void
 	 */
 	public function import_file( $filename = FALSE ) {
 		
 		if ( ! current_user_can( 'manage_options' ) )
-			wp_die( __('Options not update - you don&lsquo;t have the privilidges to do this!', parent :: get_textdomain() ) );
+			wp_die( __('Options not update - you don&lsquo;t have the privilidges to do this!', parent::get_textdomain() ) );
 		
 		// use tmp file
 		if ( ! $filename )
@@ -189,23 +191,31 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		$filename = preg_replace( "/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]' . base64_encode('$1') . '[/CDATA]'", $filename );
 		$filename = utf8_encode( $filename );
 		$matches  = simplexml_load_file( $filename );
-		
+
+		$buttons = '';
 		// create array from xml
 		$button = array();
-		foreach ( $matches -> quicktag as $key ) {
-			foreach ($key as $value) {
-				$buttons[$value -> getName()] = $value;
+		/**
+		 * @var $matches stdClass
+		 */
+		foreach ( $matches->quicktag as $key ) {
+
+			foreach ( $key as $value ) {
+				/* @var $value stdClass */
+				$buttons[ $value->getName() ] = $value;
 			}
+
 			$button[] = $buttons;
 		}
 		$options['buttons'] = $button;
+
 		// validate the values from xml
-		$options = parent :: validate_settings($options);
+		$options = parent::validate_settings( $options );
 		
 		// update settings in database
-		update_site_option( parent :: get_option_string(), $options );
+		update_site_option( parent::get_option_string(), $options );
 	}
 	
 } // end class
 
-$add_quicktag_im_export = Add_Quicktag_Im_Export :: get_object();
+$add_quicktag_im_export = Add_Quicktag_Im_Export::get_object();

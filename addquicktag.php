@@ -14,7 +14,7 @@
  * 
 License:
 ==============================================================================
-Copyright 2011 - 2013 Frank Bültge  (email : frank@bueltge.de)
+Copyright 2011 - 2014 Frank Bültge  (email : frank@bueltge.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ class Add_Quicktag {
 			return;
 		
 		// get string of plugin
-		self :: $plugin = plugin_basename( __FILE__ );
+		self::$plugin = plugin_basename( __FILE__ );
 		
 		// on uninstall remove capability from roles
 		register_uninstall_hook( __FILE__, array('Add_Quicktag', 'uninstall' ) );
@@ -123,17 +123,17 @@ class Add_Quicktag {
 	 * Remove quicktags
 	 * 
 	 * @since   08/15/2013
-	 * @param   Array    The Buttons
-	 *     @type  String  id
-	 *     @type  Array   buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
-	 * @return  Array    The Buttons
+	 * @param   array  $qtInit  the Buttons
+	 * @type    string   id
+	 * @type    array    buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
+	 * @return  array  $qtInit  the Buttons
 	 */
 	public function remove_quicktags( $qtInit ) {
 		
 		if ( empty( $qtInit['buttons'] ) )
 			$qtInit['buttons'] = '';
 		
-		$options = get_site_option( self :: $option_string );
+		$options = get_site_option( self::$option_string );
 		
 		if ( empty( $options['core_buttons'] ) )
 			$options['core_buttons'] = array();
@@ -164,7 +164,7 @@ class Add_Quicktag {
 	 */
 	public function uninstall() {
 		
-		delete_site_option( self :: $option_string );
+		delete_site_option( self::$option_string );
 	}
 	
 	/**
@@ -185,9 +185,9 @@ class Add_Quicktag {
 			return NULL;
 			
 		if ( is_multisite() && is_plugin_active_for_network( $this -> get_plugin_string() ) )
-			$options = get_site_option( self :: $option_string );
+			$options = get_site_option( self::$option_string );
 		else
-			$options = get_option( self :: $option_string );
+			$options = get_option( self::$option_string );
 		
 		if ( empty( $options['buttons'] ) )
 			$options['buttons'] = '';
@@ -244,7 +244,7 @@ class Add_Quicktag {
 		
 		if ( version_compare( $GLOBALS['wp_version'], '3.3alpha', '>=' ) ) {
 			wp_enqueue_script(
-				self :: get_textdomain() . '_script', 
+				self::get_textdomain() . '_script',
 				plugins_url( '/js/add-quicktags' . $suffix. '.js', __FILE__ ), 	
 				array( 'jquery', 'quicktags' ),
 				'',
@@ -252,7 +252,7 @@ class Add_Quicktag {
 			);
 		} else {
 			wp_enqueue_script(
-				self :: get_textdomain() . '_script', 
+				self::get_textdomain() . '_script',
 				plugins_url( '/js/add-quicktags_32' . $suffix. '.js', __FILE__ ), 	
 				array( 'jquery', 'quicktags' ),
 				'',
@@ -273,7 +273,7 @@ class Add_Quicktag {
 	 */
 	public function localize_plugin() {
 		
-		load_plugin_textdomain( $this -> get_textdomain(), FALSE, dirname( plugin_basename(__FILE__) ) . '/languages' );
+		load_plugin_textdomain( $this->get_textdomain(), FALSE, dirname( plugin_basename(__FILE__) ) . '/languages' );
 	}
 	
 	/**
@@ -297,9 +297,8 @@ class Add_Quicktag {
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		
 		$plugin_data  = get_plugin_data( __FILE__ );
-		$plugin_value = $plugin_data[$value];
 		
-		return empty ( $plugin_data[ $value ] ) ? '' : $plugin_data[ $value ];
+		return empty( $plugin_data[ $value ] ) ? '' : $plugin_data[ $value ];
 	}
 	
 	/**
@@ -376,7 +375,7 @@ class Add_Quicktag {
 	 */
 	public function get_option_string() {
 		
-		return self :: $option_string;
+		return self::$option_string;
 	}
 	
 	

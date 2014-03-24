@@ -16,9 +16,22 @@
 	background-color: #ccc;
 }
 
-.rotate span {
+.rmnlQuicktagSettings th {
+    vertical-align: bottom !important;
+    text-align: center;
+}
+
+.rmnlQuicktagSettings .rotate {
+    padding: 0 !important;
+    margin: 0 auto;
+    width: 1.2em;
+    vertical-align: bottom !important;
+}
+
+.rmnlQuicktagSettings .rotate span {
 	display: block;
 	padding: 0 !important;
+    margin: 0 auto;
 	width: 1.2em;
 	vertical-align: middle !important;
 	white-space: nowrap;
@@ -37,10 +50,12 @@
 
 .rmnlQuicktagSettings input[type='text'] {
 	height: 3.5em;
+    width: 99%;
 	margin: 0 0 .5em 0;
 }
 
 .rmnlQuicktagSettings textarea {
 	height: 3.5em;
+    width: 99%;
 	margin: 0 0 .2em 0;
 }

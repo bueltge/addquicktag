@@ -29,10 +29,8 @@ jQuery( document ).ready( function( $ ) {
 		
 		if ( prmt === null )
 			return;
-		
-		var rtrn = '[tag]' + prmt + '[/tag]';
-		
-		this.tagStart = rtrn;
+
+		this.tagStart = '[tag]' + prmt + '[/tag]';
 		
 		QTags.TagButton.prototype.callback.call( this, e, c, ed );
 	}

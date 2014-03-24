@@ -3,7 +3,7 @@
  * 
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  07/11/2012
+ * @version  03/13/2014
  * @since    2.0.0
  */
 
@@ -23,8 +23,10 @@ jQuery( document ).ready( function( $ ) {
 		return;
 	
 	// break, if not an button for visual and post type
-	var visual    = 0;
-	var post_type = 0;
+	var visual    = 0,
+	    post_type = 0,
+        i = 0;
+	
 	for ( i = 0; i < addquicktag_tags.buttons.length; i++ ) {
 		// if not visual button in the list, return
 		if ( 1 === parseInt( addquicktag_tags.buttons[i]['visual'] ) )
@@ -33,18 +35,19 @@ jQuery( document ).ready( function( $ ) {
 		if ( 1 === parseInt( addquicktag_tags.buttons[i][addquicktag_post_type] ) )
 			post_type = addquicktag_tags.buttons[i][addquicktag_post_type];
 	}
+	
 	if ( 1 !== parseInt( visual ) )
 		return;
+	
 	if ( 1 !== parseInt( post_type ) )
 		return;
 	
-	// Load plugin specific language pack
-	tinymce.PluginManager.requireLangPack( 'rmnlQuicktagSettings_tmce' );
-	
 	/*
+	 * Add Listbox to TinyMCE
+	 * 
 	 * @see  http://www.tinymce.com/wiki.php/API3:class.tinymce.ui.ListBox
 	 */
-	tinymce.create('tinymce.plugins.AddQuicktag', {
+	tinymce.create( 'tinymce.plugins.AddQuicktag', {
 		createControl: function(n, cm) {
 			switch (n) {
 				case 'rmnlQuicktagSettings_tmce':

@@ -16,18 +16,45 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 class Add_Quicktag_Settings extends Add_Quicktag {
-	
-	// string for translation
+
+	/**
+	 * string for translation
+	 *
+	 * @var string
+	 */
 	static public    $textdomain;
-	// string for options in table options
+
+	/**
+	 * string for options in table options
+	 *
+	 * @var string
+	 */
 	static private   $option_string;
-	// string for plugin file
+
+	/**
+	 * string for plugin file
+	 *
+	 * @var string
+	 */
 	static private   $plugin;
-	// post types for the settings
+
+	/**
+	 * post types for the settings
+	 *
+	 * @var Array
+	 */
 	static private   $post_types_for_js;
-	// string for nonce fields
+
+	/**
+	 * string for nonce fields
+	 *
+	 * @var string
+	 */
 	static public    $nonce_string;
-	
+
+	/**
+	 * @var
+	 */
 	protected        $page_hook;
 
 	/**
@@ -103,7 +130,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 	
 	/**
-	 * Retrun allowed post types for include scripts
+	 * Return allowed post types for include scripts
 	 * 
 	 * @since   2.1.1
 	 * @access  public
@@ -123,7 +150,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function get_textdomain() {
 		
-		return self :: $textdomain;
+		return self::$textdomain;
 	}
 
 	/**
@@ -139,7 +166,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function plugin_action_links( $links, $file ) {
 		
 		if ( parent :: get_plugin_string() == $file  )
-			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
+			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __( 'Settings' ) . '</a>';
 		
 		return $links;
 	}
@@ -205,7 +232,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		
 		?>
 		<div class="wrap">
-			<?php screen_icon('options-general'); ?>
 			<h2><?php echo parent :: get_plugin_data( 'Name' ); ?></h2>
 			
 			<h3><?php _e('Add or delete Quicktag buttons', $this->get_textdomain() ); ?></h3>
@@ -252,14 +278,15 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				}
 				?>
 				
-				<table class="widefat rmnlQuicktagSettings">
+				<table class="widefat form-table rmnlQuicktagSettings">
 					<colgroup></colgroup>
 					<colgroup></colgroup>
 					<colgroup></colgroup>
 					<colgroup></colgroup>
 					<colgroup></colgroup>
 					<?php echo $pt_colgroup; ?>
-					
+					<colgroup></colgroup>
+
 					<tr class="rmnlqsheader">
 						<th class="row-title"><?php _e( 'Button Label* and', $this->get_textdomain() ); ?><br />
 						<?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
@@ -269,7 +296,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<?php _e( 'Order', $this->get_textdomain() ); ?></th>
 						<th class="row-title rotate"><span><?php _e( 'Visual', $this->get_textdomain() ); ?></span></th>
 						<?php echo $pt_title ?>
-						<th class="row-title num">&#x2714;</th>
+						<th class="row-title rotate">&#x2714;</th>
 					</tr>
 					<?php
 					if ( empty($options['buttons']) )
@@ -336,7 +363,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<td class="num"><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i
 						. '][visual]" value="1"' . $checked . '/></td>' . 
 						$pt_checkboxes . '
-						<td><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="'. $i . '" /></td>' . '
+						<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="'. $i . '" /></td>' . '
 					</tr>
 					';
 					}
@@ -399,7 +426,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 	
 	/*
-	 * Return informations to donate
+	 * Return information to donate
 	 * 
 	 * @uses   _e,esc_attr_e
 	 * @access public
@@ -520,19 +547,20 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( isset( $value['code_buttons'] ) )
 			$code_buttons = $value['code_buttons'];
 		
-		// set allowd values for import, only the defaults of plugin and custom post types
+		// set allowed values for import, only the defaults of plugin and custom post types
 		$allowed_settings = (array) array_merge(
 			$this->get_post_types_for_js(),
 			array( 'text', 'title', 'start', 'end', 'access', 'order', 'visual' )
 		);
-		
+
+		$buttons = '';
 		// filter for allowed values
 		foreach ( $value['buttons'] as $key => $button ) {
 			
-			foreach ($button as $key => $val) {
-				
-				if ( ! in_array( $key, $allowed_settings ) )
-					unset( $button[$key] );
+			foreach ( $button as $label => $val ) {
+
+				if ( ! in_array( $label, $allowed_settings ) )
+					unset( $button[ $label ] );
 			}
 			
 			$buttons[] = $button;
@@ -637,7 +665,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		unregister_setting( self::$option_string . '_group', self::$option_string );
 		delete_option( self::$option_string );
 	}
-	
+
+	/**
+	 * Enqueue scripts and stylesheets
+	 *
+	 * @since 0.0.2
+	 * @param $where
+	 */
 	public function print_scripts( $where ) {
 		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
