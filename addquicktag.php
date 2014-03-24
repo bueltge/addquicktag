@@ -241,15 +241,16 @@ class Add_Quicktag {
 			return NULL;
 		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
-		
+
 		if ( version_compare( $GLOBALS['wp_version'], '3.3alpha', '>=' ) ) {
 			wp_enqueue_script(
 				self::get_textdomain() . '_script',
-				plugins_url( '/js/add-quicktags' . $suffix. '.js', __FILE__ ), 	
+				plugins_url( '/js/add-quicktags' . $suffix . '.js', __FILE__ ),
 				array( 'jquery', 'quicktags' ),
 				'',
-				TRUE
+				true
 			);
+			// Load only for WPs, there version is smaller then 3.2
 		} else {
 			wp_enqueue_script(
 				self::get_textdomain() . '_script',

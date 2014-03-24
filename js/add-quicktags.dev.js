@@ -3,7 +3,7 @@
  * 
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  07/11/2012
+ * @version  07/24/2014
  * @since    2.0.0
  */
 
