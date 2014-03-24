@@ -41,7 +41,40 @@ jQuery( document ).ready( function( $ ) {
 	
 	if ( 1 !== parseInt( post_type ) )
 		return;
-	
+/*
+    tinymce.PluginManager.add('tinymce.plugins.AddQuicktag', function(editor) {
+        var self = this;
+
+        editor.on('init', function() {
+
+        });
+
+        editor.addButton( 'rmnlQuicktagSettings_tmce', {
+            icon: false,
+            text: 'Testbutton',
+            title: 'Increase indent',
+            menu: [
+                {text:'Additional Data', menu:[{text:" list box" , onclick: function() {editor.windowManager.open({
+                    title: 'Category',
+                    width : 270,
+                    height : 70,
+                    body: [
+                        {type: 'listbox',
+                            //name: 'align',
+                            label: 'Select :',
+                            onselect: function(e) {},
+                            'values': [
+                                {text: 'val1', value: 'val1'},
+                                {text: 'val2', value: 'val2'}
+                            ]
+                        }
+                    ]
+                });
+                }},]},
+            ]
+        });
+    });
+*/
 	/*
 	 * Add Listbox to TinyMCE
 	 * 
