@@ -3,8 +3,8 @@
  * 
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  03/13/2014
- * @since    2.0.0
+ * @version  04/24/2014
+ * @since    2.3.0
  */
 
 jQuery( document ).ready( function( $ ) {

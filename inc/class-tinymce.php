@@ -71,7 +71,7 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 
 		$url     = plugins_url( '/tinymce/editor_plugin' . $suffix . '.js', __FILE__ );
 		$plugins = array_merge( $plugins, array( self::$option_string => $url ) );
-var_dump($plugins);
+
 		return $plugins;
 	}
 
@@ -87,7 +87,7 @@ var_dump($plugins);
 	public function extend_editor_buttons( $buttons, $editor_id = FALSE ) {
 
 		$buttons = array_merge( array( self::$option_string ), $buttons );
-var_dump($buttons);
+
 		return $buttons;
 	}
 
