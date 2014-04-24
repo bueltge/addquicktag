@@ -1,7 +1,7 @@
 <?php
 /**
  * AddQuicktag - Settings
- * 
+ *
  * @license    GPLv3
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
@@ -13,9 +13,16 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
+/**
+ * Class Add_Quicktag_Im_Export
+ */
 class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
-	
-	// post types for the settings
+
+	/**
+	 * Post types for the settings
+	 *
+	 * @var Array
+	 */
 	private static $post_types_for_js;
 
 	/**
@@ -26,12 +33,13 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return \Add_Quicktag|\Add_Quicktag_Im_Export|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
-		
+
 		static $instance;
-		
-		if ( NULL === $instance )
+
+		if ( NULL === $instance ) {
 			$instance = new self();
-		
+		}
+
 		return $instance;
 	}
 
@@ -44,36 +52,43 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return \Add_Quicktag_Im_Export
 	 */
 	private function __construct() {
-		
+
 		self::$post_types_for_js = parent::get_post_types_for_js();
-		
-		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) )
+
+		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) ) {
 			$this->get_export_file();
-			//add_action( 'init', array( $this, 'get_export_file' ) );
-		
-		if ( isset( $_POST['addquicktag_import'] ) && check_admin_referer( parent :: $nonce_string ) )
+		}
+		//add_action( 'init', array( $this, 'get_export_file' ) );
+
+		if ( isset( $_POST['addquicktag_import'] ) && check_admin_referer( parent :: $nonce_string ) ) {
 			$this->import_file();
-			//add_action( 'init', array( $this, 'import_file' ) );
-		
+		}
+		//add_action( 'init', array( $this, 'import_file' ) );
+
 		add_action( 'addquicktag_settings_page', array( $this, 'get_im_export_part' ) );
 	}
-	
+
 	/**
 	 * get markup for ex- and import on settings page
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
 	 * @uses    wp_nonce_field
 	 * @return  string
 	 */
 	public function get_im_export_part() {
+
 		?>
 		<div class="postbox">
 			<h3><span><?php _e( 'Export', parent :: get_textdomain() ); ?></span></h3>
+
 			<div class="inside">
 				<p><?php _e( 'When you click the button below the plugin will create an XML file for you to save to your computer.', parent :: get_textdomain() ); ?></p>
+
 				<p><?php _e( 'This format, a custom XML, will contain your options from quicktags.', parent :: get_textdomain() ); ?></p>
+
 				<p><?php _e( 'Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site.', parent :: get_textdomain() ); ?></p>
+
 				<form method="get" action="">
 					<?php wp_nonce_field( parent :: $nonce_string ); ?>
 					<p class="submit">
@@ -83,11 +98,13 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				</form>
 			</div>
 		</div>
-		
+
 		<div class="postbox">
 			<h3><span><?php _e( 'Import', parent :: get_textdomain() ); ?></span></h3>
+
 			<div class="inside">
 				<p><?php _e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import.', parent :: get_textdomain() ); ?></p>
+
 				<form method="post" action="" enctype="multipart/form-data">
 					<?php wp_nonce_field( parent :: $nonce_string ); ?>
 					<p class="submit">
@@ -98,9 +115,9 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				</form>
 			</div>
 		</div>
-		<?php
+	<?php
 	}
-	
+
 	/*
 	 * Build export file, xml
 	 * 
@@ -110,20 +127,20 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return  string $xml
 	 */
 	public function get_export_file() {
-		
+
 		$options = get_site_option( parent :: get_option_string() );
-		
+
 		if ( $options['buttons'] ) {
-			
-			$xml  = '<?xml version="1.0" encoding="UTF-8"?>';
+
+			$xml = '<?xml version="1.0" encoding="UTF-8"?>';
 			$xml .= "\n" . '<buttons>' . "\n";
-			
-			for ( $i = 0; $i < count( $options['buttons'] ); $i++ ) {
+
+			for( $i = 0; $i < count( $options['buttons'] ); $i ++ ) {
 				$xml .= "\t" . '<quicktag>' . "\n";
-				foreach( $options['buttons'][$i] as $name => $value ) {
-					
+				foreach( $options['buttons'][ $i ] as $name => $value ) {
+
 					$value = stripslashes( $value );
-					
+
 					if ( empty( $value ) ) {
 						$xml .= "\t\t" . '<' . $name . '/>' . "\n";
 					} elseif ( preg_match( '/^[0-9]*$/', $value ) ) {
@@ -135,36 +152,38 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				$xml .= "\t" . '</quicktag>' . "\n";
 			}
 			$xml .= '</buttons>';
-			
+
 		} else {
 			$xml = 'We dont find settings in database';
 		}
-		
-		$filename = urlencode( 'addquicktag.' . date('Y-m-d') . '.xml' );
+
+		$filename = urlencode( 'addquicktag.' . date( 'Y-m-d' ) . '.xml' );
 		$filesize = strlen( $xml );
-		
-		$this -> export_xml( $filename, $filesize, $filetype = 'text/xml' );
+
+		$this ->export_xml( $filename, $filesize, $filetype = 'text/xml' );
 		echo $xml;
 		exit;
 	}
-	
+
 	/**
 	 * Create download file
-	 * 
+	 *
 	 * @access  public
 	 * @since   2.0.0
+	 *
 	 * @param   string $filename
 	 * @param   string $filesize
 	 * @param   string $filetype
+	 *
 	 * @uses    get_option
 	 * @return  void
 	 */
 	public function export_xml( $filename, $filesize, $filetype ) {
-		
+
 		header( 'Content-Description: File Transfer' );
 		header( 'Content-Disposition: attachment; filename=' . $filename );
 		header( 'Content-Length: ' . $filesize );
-		header( 'Content-type: ' . $filetype . '; charset=' . get_option('blog_charset'), TRUE );
+		header( 'Content-type: ' . $filetype . '; charset=' . get_option( 'blog_charset' ), TRUE );
 		flush();
 	}
 
@@ -180,14 +199,16 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return  void
 	 */
 	public function import_file( $filename = FALSE ) {
-		
-		if ( ! current_user_can( 'manage_options' ) )
-			wp_die( __('Options not update - you don&lsquo;t have the privilidges to do this!', parent::get_textdomain() ) );
-		
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( __( 'Options not update - you don&lsquo;t have the privilidges to do this!', parent::get_textdomain() ) );
+		}
+
 		// use tmp file
-		if ( ! $filename )
+		if ( ! $filename ) {
 			$filename = $_FILES['xml']['tmp_name'];
-		
+		}
+
 		$filename = preg_replace( "/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]' . base64_encode('$1') . '[/CDATA]'", $filename );
 		$filename = utf8_encode( $filename );
 		$matches  = simplexml_load_file( $filename );
@@ -198,9 +219,9 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		/**
 		 * @var $matches stdClass
 		 */
-		foreach ( $matches->quicktag as $key ) {
+		foreach( $matches->quicktag as $key ) {
 
-			foreach ( $key as $value ) {
+			foreach( $key as $value ) {
 				/* @var $value stdClass */
 				$buttons[ $value->getName() ] = $value;
 			}
@@ -211,11 +232,11 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 		// validate the values from xml
 		$options = parent::validate_settings( $options );
-		
+
 		// update settings in database
 		update_site_option( parent::get_option_string(), $options );
 	}
-	
+
 } // end class
 
 $add_quicktag_im_export = Add_Quicktag_Im_Export::get_object();

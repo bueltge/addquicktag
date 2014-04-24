@@ -1,8 +1,7 @@
 <?php
 /**
  * AddQuicktag - Settings to remove core quicktags
- * 
- * @license    GPLv3
+ * @license    GPLv2
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
@@ -14,11 +13,13 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
-	
+
 	// post types for the settings
 	private static $post_types_for_js;
+
 	// default buttons from WP Core
 	private static $core_quicktags = 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen';
+
 	// Transient string
 	private static $addquicktag_core_quicktags = 'addquicktag_core_quicktags';
 
@@ -30,12 +31,13 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	 * @return \Add_Quicktag|\Add_Quicktag_Remove_Quicktags|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
-		
+
 		static $instance;
-		
-		if ( NULL === $instance )
+
+		if ( NULL === $instance ) {
 			$instance = new self();
-		
+		}
+
 		return $instance;
 	}
 
@@ -48,16 +50,22 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	 * @return \Add_Quicktag_Remove_Quicktags
 	 */
 	private function __construct() {
-		
+
 		add_action( 'addquicktag_settings_form_page', array( $this, 'get_remove_quicktag_area' ) );
 	}
-	
+
+	/**
+	 * Add settings area
+	 *
+	 * @param $options
+	 */
 	public function get_remove_quicktag_area( $options ) {
-		
-		if ( ! isset( $options['core_buttons'] ) )
+
+		if ( ! isset( $options['core_buttons'] ) ) {
 			$options['core_buttons'] = array();
+		}
 		?>
-		<h3><?php _e('Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
+		<h3><?php _e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
 		<p><?php _e( 'Select the checkbox below to remove a core quicktags in all editors.', $this->get_textdomain() ); ?></p>
 
 		<table class="widefat">
@@ -65,52 +73,53 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 				<th class="row-title"><?php _e( 'Button', parent::get_textdomain() ); ?></th>
 			</tr>
-			
+
 			<?php
-				// Convert string to array
-				$core_buttons = explode( ',', self::$core_quicktags );
-				// Loop over items to remove and unset them from the buttons
-				foreach( $core_buttons as $key => $value ) {
-					
-					if ( array_key_exists( $value, $options['core_buttons'] ) )
-						$checked = ' checked="checked"';
-					else
-						$checked = '';
-					
-					// same style as in editor
-					if ( 'strong' === $value ) {
-						$text = 'b';
-						$style = ' style="font-weight: bold;"';
-					} else if ( 'em' === $value ) {
-						$text  = 'i';
-						$style = ' style="font-style: italic;"';
-					} else if ( 'link' === $value ) {
-						$text  = $value;
-						$style = ' style="text-decoration: underline;"';
-					} else if ( 'del' === $value ) {
-						$text  = $value;
-						$style = ' style="text-decoration: line-through;"';
-					} else if ( 'block' === $value ) {
-						$text  = 'b-quote';
-						$style = '';
-					} else {
-						$text  = $value;
-						$style = '';
-					}
-					
-					echo '<tr><td class="num"><input type="checkbox" name="' . parent :: get_option_string()
-						. '[core_buttons][' . $value . ']" value="1" ' 
-						. $checked . ' /></td><td>';
-					echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td></tr>';
+			// Convert string to array
+			$core_buttons = explode( ',', self::$core_quicktags );
+			// Loop over items to remove and unset them from the buttons
+			foreach( $core_buttons as $key => $value ) {
+
+				if ( array_key_exists( $value, $options['core_buttons'] ) ) {
+					$checked = ' checked="checked"';
+				} else {
+					$checked = '';
 				}
-				
-				// Convert new buttons array back into a comma-separated string
-				$core_qt = implode( ',', $core_buttons );
+
+				// same style as in editor
+				if ( 'strong' === $value ) {
+					$text  = 'b';
+					$style = ' style="font-weight: bold;"';
+				} else if ( 'em' === $value ) {
+					$text  = 'i';
+					$style = ' style="font-style: italic;"';
+				} else if ( 'link' === $value ) {
+					$text  = $value;
+					$style = ' style="text-decoration: underline;"';
+				} else if ( 'del' === $value ) {
+					$text  = $value;
+					$style = ' style="text-decoration: line-through;"';
+				} else if ( 'block' === $value ) {
+					$text  = 'b-quote';
+					$style = '';
+				} else {
+					$text  = $value;
+					$style = '';
+				}
+
+				echo '<tr><td class="num"><input type="checkbox" name="' . parent :: get_option_string()
+				     . '[core_buttons][' . $value . ']" value="1" '
+				     . $checked . ' /></td><td>';
+				echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td></tr>';
+			}
+
+			// Convert new buttons array back into a comma-separated string
+			$core_qt = implode( ',', $core_buttons );
 			?>
 		</table>
-		<?php
+	<?php
 	}
-	
+
 } // end class
 
 $add_quicktag_remove_quicktags = Add_Quicktag_Remove_Quicktags::get_object();
