@@ -72,7 +72,7 @@ jQuery( document ).ready( function( $ ) {
 					var selection = tinymce.activeEditor.selection.getContent(),
 						marked = true,
 						// Set short var for the value identifier
-						var v = v.control._value;
+						v = v.control._value;
 
 					// Check for marked content
 					switch (v) {
