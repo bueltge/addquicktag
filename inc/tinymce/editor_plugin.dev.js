@@ -3,7 +3,7 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  04/24/2014
+ * @version  05/22/2014
  * @since    2.3.0
  */
 
@@ -48,8 +48,8 @@ jQuery(document).ready(function ($) {
 		editor.addButton('rmnlQuicktagSettings_tmce', function () {
 
 			var tiny_tags = addquicktag_tags['buttons'],
-				values = []
-			i = 0;
+				values = [],
+				i = 0;
 
 			for (i = 0; i < tiny_tags.length; i++) {
 
@@ -57,7 +57,7 @@ jQuery(document).ready(function ($) {
 				if (1 === parseInt(tiny_tags[i][addquicktag_post_type])) {
 
 					if (1 == tiny_tags[i].visual) {
-						values.push({text: tiny_tags[i].text, value: String(i) });
+						values.push({text: tiny_tags[i].text, value: String(i)});
 					}
 				}
 			}
@@ -69,59 +69,70 @@ jQuery(document).ready(function ($) {
 				label     : 'Select :',
 				fixedWidth: true,
 				onselect  : function (v) {
-console.log(v);
+
 					var // Set short var for the value identifier
 						v = v.control._value,
-						marked = true;
+						marked = false;
 
-					// Check for marked content
-					switch (v) {
-						case 'null' :
-							marked = false;
-							break;
-						default :
-							break;
-					}
+					if (typeof( tinymce.activeEditor.selection.getContent() ) != 'undefined')
+						marked = true;
 
 					if (marked == true) {
 
 						var content = tinymce.activeEditor.selection.getContent(),
-							start_content = tinymce.activeEditor.selection.getStart(),
+							start_content = tinymce.activeEditor.selection.getStart().nodeName,
 							all = tinymce.activeEditor.selection.getNode(),
 							start = tiny_tags[v].start,
+							start_tag = start.match(/[a-z]+/),
 							end = tiny_tags[v].end;
 
 						if (typeof end == 'undefined')
 							end = '';
 
-						console.log(tiny_tags[v]);
-						console.log(start);
-						console.log(start_content);
-						console.log(content);
-						console.log(all);
-						console.log(start_content.indexOf( start ));
-						console.log(start_content.search( start ));
 
-						if ( start_content.search( start ) != -1 ) {
+						/*
+						// For debugging purpose
+						console.log(v);
+						console.log('TinyTags: ' + tiny_tags[v]);
+						console.log('start_content: ' + start_content);
+						console.log('start_content.nodeName: ' + tinymce.activeEditor.selection.getStart().nodeName);
+						console.log('start_content.outerHMTL: ' + tinymce.activeEditor.selection.getStart().outerHMTL);
+						console.log('Content: ' + content);
+						console.log(all);
+						console.log('Start tag: ' + start);
+						console.log('Start tag, only: ' + start.match(/[a-z]+/));
+						console.log('End tag: ' + end);
+						//console.log(start_content.indexOf( start ));
+						console.log('Search nodeName: ' + start_content.search(start));
+						/**/
+
+
+						// Add tag to content
+						if (start.match(/[a-z]+/i) != start_content.toLowerCase()) {
 							tinymce.activeEditor.selection.setContent(
 								tiny_tags[v].start + content + tiny_tags[v].end
 							);
 						}
 
-						/*
-						if ( content.search( start ) ) {
-							console.log('ist drin');
-							// @see: http://www.tinymce.com/forum/viewtopic.php?id=19973
+						// Remove existing tag
+						if (start.match(/[a-z]+/i) == start_content.toLowerCase()) {
+
+							// Remove content with tag
 							tinyMCE.activeEditor.dom.remove(
-								tinyMCE.activeEditor.dom.select(
-									'strong', tinyMCE.activeEditor.selection.getNode()
+								tinymce.activeEditor.selection.getNode(
+									'strong'
 								)
 							);
-						}*/
+							// Add content, without tag
+							tinymce.activeEditor.selection.setContent(
+								content
+							);
+
+						}
 
 					}
 				},
-				values    : values,
+				values : values,
 			};
 		});
 
