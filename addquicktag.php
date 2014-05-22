@@ -154,7 +154,7 @@ class Add_Quicktag {
 	 *
 	 * @type    string   id
 	 * @type    array    buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
-	 * @return  array  $qtInit  the Buttons
+	 * @return  array    $qtInit  the Buttons
 	 */
 	public function remove_quicktags( $qtInit ) {
 
@@ -162,7 +162,13 @@ class Add_Quicktag {
 			$qtInit['buttons'] = '';
 		}
 
-		$options = get_site_option( self::$option_string );
+		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+			wp_nonce_field( self::$nonce_string );
+			$options = get_site_option( self::$option_string );
+		} else {
+			settings_fields( self::$option_string . '_group' );
+			$options = get_option( self::$option_string );
+		}
 
 		if ( empty( $options['core_buttons'] ) ) {
 			$options['core_buttons'] = array();

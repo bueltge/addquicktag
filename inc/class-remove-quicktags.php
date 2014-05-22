@@ -5,6 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
+ * @version    05/22/2014
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -67,6 +68,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 		?>
 		<h3><?php _e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
 		<p><?php _e( 'Select the checkbox below to remove a core quicktags in all editors.', $this->get_textdomain() ); ?></p>
+		<p><?php _e( '<strong>Currently a Beta option</strong>, to validate and only usable global on each post type. Please give me hints, feedback via the support possibilities, like <a href="https://github.com/bueltge/AddQuicktag/issues">Github Issues</a> or <a href="http://wordpress.org/support/plugin/addquicktag">WP Support Forum</a>.', $this->get_textdomain() ); ?></p>
 
 		<table class="widefat">
 			<tr>
