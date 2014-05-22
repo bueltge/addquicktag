@@ -120,7 +120,7 @@ jQuery(document).ready(function ($) {
 							// Remove content with tag
 							tinyMCE.activeEditor.dom.remove(
 								tinymce.activeEditor.selection.getNode(
-									'strong'
+ 									start_content.toLowerCase()
 								)
 							);
 							// Add content, without tag
