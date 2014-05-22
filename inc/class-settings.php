@@ -5,7 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    02/09/2013
+ * @version    05/22/2014
  * @since      2.0.0
  */
 
