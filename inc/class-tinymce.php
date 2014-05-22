@@ -87,7 +87,6 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	public function extend_editor_buttons( $buttons, $editor_id = FALSE ) {
 
 		$buttons = array_merge( array( self::$option_string ), $buttons );
-		array_unshift( $buttons, 'styleselect' );
 
 		return $buttons;
 	}
