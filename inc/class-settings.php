@@ -124,7 +124,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		// include class for remove core quicktags
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-remove-quicktags.php';
 		// include class for add enhanced code quicktags
-		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-code-quicktags.php';
+		// @TODO Solution for special code tags in quicktags
+		//require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-code-quicktags.php';
 		// include class for im/export
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-imexport.php';
 	}
