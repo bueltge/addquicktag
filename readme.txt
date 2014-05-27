@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 3.8-beta-1
-Stable tag: 2.2.2
+Tested up to: 4.0-alpha
+Stable tag: trunk
 
 This plugin make it easy, Quicktags add to the html - and visual-editor.
 
@@ -26,7 +26,7 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Installation ==
 = Requirements =
-* WordPress version 3.0 and later (tested at 3.6-alpha (nightly build))
+* WordPress version 3.0 and later (see _Compatible up to_)
 
 = Installation =
 1. Unpack the download-package
@@ -56,6 +56,7 @@ If you will use this plugin with an older version of WordPress, please use an ol
 * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
 * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
 * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005)
+* Ukranian translation by [Michael Yunat](http://getvoip.com/blog)
 
 = Hook for custom post types =
 The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
@@ -148,13 +149,17 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.2.3 () =
+= 2.3.0-RC1 (05/22/2014) =
 * Use on default all post types with active UI, incl. Custom and Defaul Post types
+* New settings UI to easier add quicktags to each post type
 * Add Widget area, now it is possible to use Quicktags on widgets with WP editor
 * Add brazilian translation
 * Add turkish translation
 * Add possibility to remove default quicktags
 * Changes on settings style, check in MP6 design, WP 3.8
+* Add ukranian translation
+* Add solution to remove core quicktag, Beta Status
+* Fix TinyMCE Select Box in WordPress 3.9*
 
 = 2.2.2 (02/09/2013) =
 * Add Filter Hook for custom button, see [issue #9](https://github.com/bueltge/AddQuicktag/issues/9)

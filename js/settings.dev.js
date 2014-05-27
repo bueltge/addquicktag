@@ -1,6 +1,6 @@
 /**
  * AddQuicktag Script settings page of the plugin
- * @since    08/02/2012
+ * @since    05/22/2014
  * @package  AddQuicktag Plugin
  */
 

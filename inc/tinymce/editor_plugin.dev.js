@@ -1,151 +1,140 @@
 /**
  * AddQuicktag Script to add listbox to visual-editor
- * 
+ *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  03/13/2014
- * @since    2.0.0
+ * @version  05/22/2014
+ * @since    2.3.0
  */
 
-jQuery( document ).ready( function( $ ) {
-	
-	if ( typeof addquicktag_tags  == 'undefined' )
+jQuery(document).ready(function ($) {
+
+	if (typeof addquicktag_tags == 'undefined')
 		return;
-	
-	if ( typeof addquicktag_post_type == 'undefined' )
+
+	if (typeof addquicktag_post_type == 'undefined')
 		return;
-		
-	if ( typeof addquicktag_pt_for_js == 'undefined' )
+
+	if (typeof addquicktag_pt_for_js == 'undefined')
 		return;
-	
+
 	// wrong post type
-	if ( -1 == $.inArray( addquicktag_post_type, addquicktag_pt_for_js ) )
+	if (-1 == $.inArray(addquicktag_post_type, addquicktag_pt_for_js))
 		return;
-	
+
 	// break, if not an button for visual and post type
-	var visual    = 0,
-	    post_type = 0,
-        i = 0;
-	
-	for ( i = 0; i < addquicktag_tags.buttons.length; i++ ) {
+	var visual = 0,
+		post_type = 0,
+		i = 0;
+
+	for (i = 0; i < addquicktag_tags.buttons.length; i++) {
 		// if not visual button in the list, return
-		if ( 1 === parseInt( addquicktag_tags.buttons[i]['visual'] ) )
+		if (1 === parseInt(addquicktag_tags.buttons[i]['visual']))
 			visual = addquicktag_tags.buttons[i]['visual'];
 		// check for active on this post type on each buttons
-		if ( 1 === parseInt( addquicktag_tags.buttons[i][addquicktag_post_type] ) )
+		if (1 === parseInt(addquicktag_tags.buttons[i][addquicktag_post_type]))
 			post_type = addquicktag_tags.buttons[i][addquicktag_post_type];
 	}
-	
-	if ( 1 !== parseInt( visual ) )
+
+	if (1 !== parseInt(visual))
 		return;
-	
-	if ( 1 !== parseInt( post_type ) )
+
+	if (1 !== parseInt(post_type))
 		return;
-/*
-    tinymce.PluginManager.add('tinymce.plugins.AddQuicktag', function(editor) {
-        var self = this;
 
-        editor.on('init', function() {
+	// Add listbox plugin to TinyMCE editor
+	tinymce.PluginManager.add('rmnlQuicktagSettings_tmce', function (editor) {
 
-        });
+		editor.addButton('rmnlQuicktagSettings_tmce', function () {
 
-        editor.addButton( 'rmnlQuicktagSettings_tmce', {
-            icon: false,
-            text: 'Testbutton',
-            title: 'Increase indent',
-            menu: [
-                {text:'Additional Data', menu:[{text:" list box" , onclick: function() {editor.windowManager.open({
-                    title: 'Category',
-                    width : 270,
-                    height : 70,
-                    body: [
-                        {type: 'listbox',
-                            //name: 'align',
-                            label: 'Select :',
-                            onselect: function(e) {},
-                            'values': [
-                                {text: 'val1', value: 'val1'},
-                                {text: 'val2', value: 'val2'}
-                            ]
-                        }
-                    ]
-                });
-                }},]},
-            ]
-        });
-    });
-*/
-	/*
-	 * Add Listbox to TinyMCE
-	 * 
-	 * @see  http://www.tinymce.com/wiki.php/API3:class.tinymce.ui.ListBox
-	 */
-	tinymce.create( 'tinymce.plugins.AddQuicktag', {
-		createControl: function(n, cm) {
-			switch (n) {
-				case 'rmnlQuicktagSettings_tmce':
-					var tiny_tags = addquicktag_tags['buttons'],
-						i = 0,
-						rmnlQuicktagSettings_tmce_options = '',
-						mlb = cm.createListBox('rmnlQuicktagSettings_tmce', {
-						title : 'Quicktags',
-						onselect : function(v) {
-							var selection = tinyMCE.activeEditor.selection.getContent(),
-								marked = true;
-							
-							switch (v) {
-								case 'null' :
-									marked = false;
-									break;
-								default :
-									break;
-							}
-							
-							if ( marked == true ) {
-								
-								if ( typeof tiny_tags[v].end == 'undefined' )
-									tiny_tags[v].end = '';
-								
-								tinyMCE.activeEditor.selection.setContent(
-									tiny_tags[v].start + selection + tiny_tags[v].end
-								);
-							}
-						}
-					});
-					
-					// add values to the listbox
-					if ( typeof tiny_tags !== 'undefined' ) {
-						for ( i = 0; i < tiny_tags.length; i++ ) {
-							
-							// check for active on this post type
-							if ( 1 === parseInt( tiny_tags[i][addquicktag_post_type] ) ) {
-							
-								if ( 1 == tiny_tags[i].visual )
-									mlb.add( tiny_tags[i].text, String(i) );
-							}
-						}
-					} else {
-						mlb.add('rmnlQuicktagSettings_tmce.addquicktag_select_error', 'null');
+			var tiny_tags = addquicktag_tags['buttons'],
+				values = [],
+				i = 0;
+
+			for (i = 0; i < tiny_tags.length; i++) {
+
+				// check for active on this post type
+				if (1 === parseInt(tiny_tags[i][addquicktag_post_type])) {
+
+					if (1 == tiny_tags[i].visual) {
+						values.push({text: tiny_tags[i].text, value: String(i)});
 					}
-					
-					// Return the new listbox instance
-					return mlb;
-				break;
+				}
 			}
-			return null;
-		},
-		
-		getInfo : function() {
+
 			return {
-				longname :  'AddQuicktag Plugin for TinyMCE in WordPress',
-				author :    'Frank Bueltge',
-				authorurl : 'http://bueltge.de/',
-				infourl :   'http://wordpress.org/extend/plugins/addquicktag/',
-				version :   tinymce.majorVersion + "." + tinymce.minorVersion
+				type      : 'listbox',
+				//name: 'align',
+				text      : 'Quicktags',
+				label     : 'Select :',
+				fixedWidth: true,
+				onselect  : function (v) {
+
+					var // Set short var for the value identifier
+						v = v.control._value,
+						marked = false;
+
+					if (typeof( tinymce.activeEditor.selection.getContent() ) != 'undefined')
+						marked = true;
+
+					if (marked == true) {
+
+						var content = tinymce.activeEditor.selection.getContent(),
+							start_content = tinymce.activeEditor.selection.getStart().nodeName,
+							all = tinymce.activeEditor.selection.getNode(),
+							start = tiny_tags[v].start,
+							start_tag = start.match(/[a-z]+/),
+							end = tiny_tags[v].end;
+
+						if (typeof end == 'undefined')
+							end = '';
+
+
+						/*
+						// For debugging purpose
+						console.log(v);
+						console.log('TinyTags: ' + tiny_tags[v]);
+						console.log('start_content: ' + start_content);
+						console.log('start_content.nodeName: ' + tinymce.activeEditor.selection.getStart().nodeName);
+						console.log('start_content.outerHMTL: ' + tinymce.activeEditor.selection.getStart().outerHMTL);
+						console.log('Content: ' + content);
+						console.log(all);
+						console.log('Start tag: ' + start);
+						console.log('Start tag, only: ' + start.match(/[a-z]+/));
+						console.log('End tag: ' + end);
+						//console.log(start_content.indexOf( start ));
+						console.log('Search nodeName: ' + start_content.search(start));
+						/**/
+
+
+						// Add tag to content
+						if (start.match(/[a-z]+/i) != start_content.toLowerCase()) {
+							tinymce.activeEditor.selection.setContent(
+								tiny_tags[v].start + content + tiny_tags[v].end
+							);
+						}
+
+						// Remove existing tag
+						if (start.match(/[a-z]+/i) == start_content.toLowerCase()) {
+
+							// Remove content with tag
+							tinyMCE.activeEditor.dom.remove(
+								tinymce.activeEditor.selection.getNode(
+ 									start_content.toLowerCase()
+								)
+							);
+							// Add content, without tag
+							tinymce.activeEditor.selection.setContent(
+								content
+							);
+
+						}
+
+					}
+				},
+				values : values,
 			};
-		} 		
+		});
+
 	});
-	
-	// Register plugin
-	tinymce.PluginManager.add( 'rmnlQuicktagSettings_tmce', tinymce.plugins.AddQuicktag );
 });

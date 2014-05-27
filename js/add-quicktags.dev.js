@@ -1,62 +1,62 @@
 /**
  * AddQuicktag Script to add buttons to html-editor
- * 
+ *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  07/24/2014
+ * @version  05/22/2014
  * @since    2.0.0
  */
 
-jQuery( document ).ready( function( $ ) {
-	
-	if ( typeof addquicktag_tags == 'undefined' )
+jQuery(document).ready(function ($) {
+
+	if (typeof addquicktag_tags == 'undefined')
 		return;
-	
-	if ( typeof addquicktag_post_type == 'undefined' )
+
+	if (typeof addquicktag_post_type == 'undefined')
 		return;
-		
-	if ( typeof addquicktag_pt_for_js == 'undefined' )
+
+	if (typeof addquicktag_pt_for_js == 'undefined')
 		return;
-	
+
 	var tags = addquicktag_tags['buttons'];
-	if ( typeof tags == 'undefined' )
+	if (typeof tags == 'undefined')
 		return;
-	
+
 	// window for input
-	function qt_callback_input_window( e, c, ed ) {
-		
-		var prmt = prompt( 'Enter Tag Name' );
-		
-		if ( prmt === null )
+	function qt_callback_input_window(e, c, ed) {
+
+		var prmt = prompt('Enter Tag Name');
+
+		if (prmt === null)
 			return;
 
 		this.tagStart = '[tag]' + prmt + '[/tag]';
-		
-		QTags.TagButton.prototype.callback.call( this, e, c, ed );
+
+		QTags.TagButton.prototype.callback.call(this, e, c, ed);
 	}
-	
-	function get_selected_text( canvas ) { // "canvas" is what they call the textarea of the editor
+
+	function get_selected_text(canvas) { // "canvas" is what they call the textarea of the editor
 		canvas.focus();
-		
+
 		if (document.selection) { // IE
 			return document.selection.createRange().text;
 		} else { // standards
 			return canvas.value.substring(canvas.selectionStart, canvas.selectionEnd);
 		}
 	}
-	
+
 	// check post type
-	if ( $.inArray( "addquicktag_post_type", addquicktag_pt_for_js ) ) {
-		
-		for ( var i = 0; i < tags.length; i++ ) {
+	if ($.inArray("addquicktag_post_type", addquicktag_pt_for_js)) {
+
+		for (var i = 0; i < tags.length; i++) {
 			// check for active on this post type
-			if ( 1 === parseInt( tags[i][addquicktag_post_type] ) ) {
-				
-				if ( typeof tags[i].title  == 'undefined' ) tags[i].title = ' ';
-				if ( typeof tags[i].end    == 'undefined' ) tags[i].end = '';
-				if ( typeof tags[i].access == 'undefined' ) tags[i].access = '';
-				
-				 /**
+			if (1 === parseInt(tags[i][addquicktag_post_type])) {
+
+				if (typeof tags[i].title == 'undefined') tags[i].title = ' ';
+				if (typeof tags[i].end == 'undefined') tags[i].end = '';
+				if (typeof tags[i].access == 'undefined') tags[i].access = '';
+
+				/**
 				 * @param id string required Button HTML ID
 				 * @param display string required Button's value="..."
 				 * @param arg1 string || function required Either a starting tag to be inserted like "<span>" or a callback that is executed when the button is clicked.
@@ -74,22 +74,23 @@ jQuery( document ).ready( function( $ ) {
 					tags[i].access,
 					tags[i].title
 				);
-				
+
+				// @TODO Solution for special code tags in quicktags
 				/**
 				 * ideas for code buttons and optional window with input possibility
 				 *
-				*/
-				// @see http://bililite.com/blog/2012/08/20/custom-buttons-in-the-wordpress-html-editor/
-				QTags.addButton('toHTML', 'HTML Entities', function(el, canvas){
+				 *
+				 // @see http://bililite.com/blog/2012/08/20/custom-buttons-in-the-wordpress-html-editor/
+				 QTags.addButton('toHTML', 'HTML Entities', function(el, canvas){
 					QTags.insertContent(get_selected_text(canvas).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
 				}, 'Encode HTML Entities');
-				QTags.addButton('fromHTML', 'Decode HTML', function(el, canvas){
+				 QTags.addButton('fromHTML', 'Decode HTML', function(el, canvas){
 					QTags.insertContent(get_selected_text(canvas).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 				}, 'Decode HTML Entities');
-				
-				var code_languages = ['html', 'javascript', 'css', 'bash', 'php', 'vb'];
-				// Insert before the code button
-				edButtons[109] = {
+
+				 var code_languages = ['html', 'javascript', 'css', 'bash', 'php', 'vb'];
+				 // Insert before the code button
+				 edButtons[109] = {
 					html: function( id_prefix ) {
 						return '<select id="' + id_prefix + 'code_language" class="language-select">' + 
 							'<option>blank</option>' + // include a blank option
@@ -97,30 +98,33 @@ jQuery( document ).ready( function( $ ) {
 							'</select>';
 					}
 				};
-				$('body').on('change', 'select.language-select', function() {
+				 $('body').on('change', 'select.language-select', function() {
 					var lang = $(this).val();
 					// 110 is the code qt-tag from core, wp-includes/js/quicktags.js
 					edButtons[110].tagStart = lang ? '<code class="language-' + lang + '">' : '<code>';
 					
 				});
-				
-				// Add pre button for preformatted text
-				QTags.addButton( 'qt_pre', 'pre', '<pre>', '</pre>', '', 'Preformatted text', '108' );
-				
-				/*
-				// for edit window
-				QTags.addButton(
-					tags[i].text.toLowerCase(),
-					tags[i].text,
-					qt_callback_input_window,
-					tags[i].end,
-					tags[i].access,
-					tags[i].title
-				);
+
+
+				 // Add pre button for preformatted text
+				 QTags.addButton( 'qt_pre', 'pre', '<pre>', '</pre>', '', 'Preformatted text', '108' );
 				*/
+
+				/**
+				 * @TODO New idea for multible edit windows
+				 // for edit window
+				 QTags.addButton(
+				 tags[i].text.toLowerCase(),
+				 tags[i].text,
+				 qt_callback_input_window,
+				 tags[i].end,
+				 tags[i].access,
+				 tags[i].title
+				 );
+				 */
 			}
 		}
-		
+
 	} // end check post type
-	
+
 });
