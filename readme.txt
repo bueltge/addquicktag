@@ -13,7 +13,7 @@ This plugin make it easy, Quicktags add to the html - and visual-editor.. It is 
 
 WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
 
-The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. 
+The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`.
 If you will also the plugin for other post types you can use a filter hook, also for custom buttons and custom pages, there have a editor.
 See the examples and hint inside the tab "[Other Notes](http://wordpress.org/extend/plugins/addquicktag/other_notes/)".
 
@@ -65,14 +65,14 @@ The plugin add the quicktag on default to post types/ID `post`, `page` and `comm
 	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
 	/**
 	 * Return array $post_types with custom post types
-	 * 
+	 *
 	 * @param   $post_type Array
 	 * @return  $post_type Array
 	 */
 	function my_addquicktag_post_types( $post_types ) {
-		
+
 		$post_types[] = 'edit-comments';
-		
+
 		return $post_types;
 	}
 
@@ -83,14 +83,14 @@ Also it is possible to filter the pages inside the backend. On default was the s
 	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
 	/**
 	 * Return array $page with custom page strings
-	 * 
+	 *
 	 * @param   $page Array
 	 * @return  $page Array
 	 */
 	function my_addquicktag_pages( $page ) {
-		
+
 		$page[] = 'edit-comments.php';
-		
+
 		return $page;
 	}
 
@@ -99,18 +99,18 @@ If you need the functionality, that the Quicktags of this plugin works on the Qu
 
 
 = Hook for custom buttons =
-It is possible to add custom buttons to the editor, if the plugin is active. 
+It is possible to add custom buttons to the editor, if the plugin is active.
 Is usefull to easier add buttons about the solution of this plugin.
 
 See the follow example to add buttons. The params inside the array is the same as in the settings of the plugin.
 
 	if ( class_exists( 'Add_Quicktag' ) ) :
 	add_filter( 'addquicktag_buttons', 'my_addquicktag_buttons' );
-	
+
 	function my_addquicktag_buttons( $buttons ) {
-	
+
 	    $buttons[] = array(
-	        'text'          => 'Permalink', 
+	        'text'          => 'Permalink',
 	        'title'         => '',
 	        'start'         => '[permalink]',
 	        'end'           => '[/permalink]',
@@ -123,7 +123,7 @@ See the follow example to add buttons. The params inside the array is the same a
 	        'edit-comments' => 0
 	    );
 	    $buttons[] = array(
-	        'text'          => 'Button', 
+	        'text'          => 'Button',
 	        'title'         => '',
 	        'start'         => '<span class="border blue">',
 	        'end'           => '</span>',
@@ -135,7 +135,7 @@ See the follow example to add buttons. The params inside the array is the same a
 	        'comment'       => 0,
 	        'edit-comments' => 0
 	    );
-	
+
 	    return $buttons;
 	}
 	endif;
@@ -149,6 +149,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.3.0-RC2 (06/16/2014) =
+* Allow Quicktags on edit-comment screen on default
+
 = 2.3.0-RC1 (05/22/2014) =
 * Use on default all post types with active UI, incl. Custom and Defaul Post types
 * New settings UI to easier add quicktags to each post type
