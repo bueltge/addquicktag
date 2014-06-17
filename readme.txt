@@ -150,7 +150,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 == Changelog ==
 = 2.3.0-RC2 (06/16/2014) =
-* Allow Quicktags on edit-comment screen on default
+* Allow Quicktags on edit-comment and quick-edit screen on default
 
 = 2.3.0-RC1 (05/22/2014) =
 * Use on default all post types with active UI, incl. Custom and Defaul Post types

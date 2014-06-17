@@ -68,7 +68,7 @@ class Add_Quicktag {
 	 *
 	 * @var array
 	 */
-	static private $post_types_for_js = array( 'edit-comments', 'widgets' );
+	static private $post_types_for_js = array( 'comment', 'edit-comments', 'widgets' );
 
 	/**
 	 * @var string
