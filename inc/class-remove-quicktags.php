@@ -70,16 +70,32 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 		<p><?php _e( 'Select the checkbox below to remove a core quicktags in all editors.', $this->get_textdomain() ); ?></p>
 		<p><?php _e( '<strong>Currently a Beta option</strong>, to validate and only usable global on each post type. Please give me hints, feedback via the support possibilities, like <a href="https://github.com/bueltge/AddQuicktag/issues">Github Issues</a> or <a href="http://wordpress.org/support/plugin/addquicktag">WP Support Forum</a>.', $this->get_textdomain() ); ?></p>
 
-		<table class="widefat">
+		<?php
+		// loop about the post types, create html an values for title in table
+		$pt_title    = '';
+		$pt_colgroup = '';
+		foreach ( $this->get_post_types_for_js() as $post_type ) {
+			$pt_title .= '<th class="row-title rotate" title="Post Type"><span><code>' . $post_type . '</code></span></th>' . "\n";
+			$pt_colgroup .= '<colgroup></colgroup>' . "\n";
+		}
+		?>
+
+		<table class="widefat form-table rmnlCoreQuicktagSettings">
+			<colgroup></colgroup>
+			<?php echo $pt_colgroup; ?>
+			<colgroup></colgroup>
+
 			<tr>
-				<th class="row-title num" style="width:3%;">&#x2714;</th>
 				<th class="row-title"><?php _e( 'Button', parent::get_textdomain() ); ?></th>
+				<?php echo $pt_title; ?>
+				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
 
 			<?php
 			// Convert string to array
 			$core_buttons = explode( ',', self::$core_quicktags );
 			// Loop over items to remove and unset them from the buttons
+			$i = 999999;
 			foreach( $core_buttons as $key => $value ) {
 
 				if ( array_key_exists( $value, $options['core_buttons'] ) ) {
@@ -109,10 +125,30 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 					$style = '';
 				}
 
-				echo '<tr><td class="num"><input type="checkbox" name="' . parent :: get_option_string()
-				     . '[core_buttons][' . $value . ']" value="1" '
-				     . $checked . ' /></td><td>';
-				echo '<input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td></tr>';
+				echo '<tr id="rmqtb' . $i . '">' . "\n";
+				echo '<td><input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td>';
+
+				// loop about the post types, create html an values
+				$pt_checkboxes = '';
+				foreach ( $this->get_post_types_for_js() as $post_type ) {
+
+					if ( isset( $options['core_buttons'][$value][$post_type] ) && 1 == $options['core_buttons'][$value][$post_type] ) {
+						$pt_checked = ' checked="checked"';
+					} else {
+						$pt_checked = '';
+					}
+
+					$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
+									  parent :: get_option_string() . '[core_buttons][' .
+									  $value . '][' . $post_type . ']" value="1"' .
+									  $pt_checked . '/></td>' . "\n";
+				}
+				echo $pt_checkboxes;
+
+				echo '<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="' . $i . '" /></td>' . "\n";
+
+				echo '</tr>' . "\n";
+				$i ++;
 			}
 
 			// Convert new buttons array back into a comma-separated string

@@ -3,7 +3,7 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  03/27/2014
+ * @version  06/18/2014
  * @since    2.02.3
  */
 
@@ -16,22 +16,23 @@
 	background-color: #ccc;
 }
 
-.rmnlQuicktagSettings th {
-    vertical-align: bottom !important;
-    text-align: center;
+.rmnlQuicktagSettings th,
+.rmnlCoreQuicktagSettings th {
+	vertical-align: bottom !important;
+	text-align: center;
 }
 
 .rmnlQuicktagSettings .rotate {
-    padding: 0 !important;
-    margin: 0 auto;
-    width: 1.2em;
-    vertical-align: bottom !important;
+	padding: 0 !important;
+	margin: 0 auto;
+	width: 1.2em;
+	vertical-align: bottom !important;
 }
 
 .rmnlQuicktagSettings .rotate span {
 	display: block;
 	padding: 0 !important;
-    margin: 0 auto;
+	margin: 0 auto;
 	width: 1.2em;
 	vertical-align: middle !important;
 	white-space: nowrap;
@@ -50,12 +51,12 @@
 
 .rmnlQuicktagSettings input[type='text'] {
 	height: 3.5em;
-    width: 99%;
+	width: 99%;
 	margin: 0 0 .5em 0;
 }
 
 .rmnlQuicktagSettings textarea {
 	height: 3.5em;
-    width: 99%;
+	width: 99%;
 	margin: 0 0 .2em 0;
 }

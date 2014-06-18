@@ -670,21 +670,39 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		// reorder the array
 		$value[ 'buttons' ] = array_values( $value[ 'buttons' ] );
 
-		// Add core buttons to array of options
+		// Filter core button values, strings and convert to integer
 		if ( ! empty( $core_buttons ) ) {
 
+			/**
+			 * $key is core-string
+			 * 'core_buttons' =>
+					array (size=1)
+					'strong' =>
+					array (size=2)
+					'post' => string '1' (length=1)
+					'page' => string '1' (length=1)
+			*/
+			$filtered_core_buttons = array();
 			foreach ( $core_buttons as $key => $var ) {
-				$core_buttons[ $key ] = (int) $var;
+
+				$core_button = array();
+				foreach ( $var as $post_type => $val ) {
+					$core_button[ $post_type ] = intval( $val );
+				}
+
+				$filtered_core_buttons[ $key ] = $core_button;
+
 			}
 
-			$value[ 'core_buttons' ] = $core_buttons;
+			$value[ 'core_buttons' ] = $filtered_core_buttons;
+
 		}
 
 		// Add code buttons to array of options
 		if ( ! empty( $code_buttons ) ) {
 
 			foreach ( $code_buttons as $key => $var ) {
-				$code_buttons[ $key ] = (int) $var;
+				$code_buttons[ $key ] = intval( $var );
 			}
 
 			$value[ 'code_buttons' ] = $code_buttons;
