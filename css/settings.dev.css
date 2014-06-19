@@ -3,7 +3,7 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  06/18/2014
+ * @version  06/19/2014
  * @since    2.02.3
  */
 
@@ -17,7 +17,8 @@
 }
 
 .rmnlQuicktagSettings th,
-.rmnlCoreQuicktagSettings th {
+.rmnlCoreQuicktagSettings th,
+.rmnlCodeQuicktagSettings th{
 	vertical-align: bottom !important;
 	text-align: center;
 }

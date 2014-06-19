@@ -91,7 +91,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			// Convert string to array
 			$core_buttons = explode( ',', self::$core_quicktags );
 			// Loop over items to remove and unset them from the buttons
-			$i = 999999;
+			$i = 999;
 			foreach ( $core_buttons as $key => $value ) {
 
 				// same style as in editor

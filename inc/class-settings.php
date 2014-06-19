@@ -5,7 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    05/22/2014
+ * @version    06/19/2014
  * @since      2.0.0
  */
 
@@ -14,6 +14,9 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
+/**
+ * Class Add_Quicktag_Settings
+ */
 class Add_Quicktag_Settings extends Add_Quicktag {
 
 	/**
@@ -125,7 +128,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-remove-quicktags.php';
 		// include class for add enhanced code quicktags
 		// @TODO Solution for special code tags in quicktags
-		//require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-code-quicktags.php';
+		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-code-quicktags.php';
 		// include class for im/export
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-imexport.php';
 	}
@@ -440,7 +443,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 			<div id="post-body">
 				<div id="post-body-content">
-					<?php do_action( 'addquicktag_settings_page' ); ?>
+					<?php do_action( 'addquicktag_settings_page', $options ); ?>
 				</div>
 				<!-- #post-body-content -->
 			</div>
@@ -698,14 +701,23 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 		}
 
-		// Add code buttons to array of options
+		// Filter code button values, strings and convert to integer
 		if ( ! empty( $code_buttons ) ) {
 
+			$filtered_code_buttons = array();
 			foreach ( $code_buttons as $key => $var ) {
-				$code_buttons[ $key ] = intval( $var );
+
+				$code_button = array();
+				foreach ( $var as $post_type => $val ) {
+					$code_button[ $post_type ] = intval( $val );
+				}
+
+				$filtered_code_buttons[ $key ] = $code_button;
+
 			}
 
-			$value[ 'code_buttons' ] = $code_buttons;
+			$value[ 'code_buttons' ] = $filtered_code_buttons;
+
 		}
 
 		return $value;
@@ -738,11 +750,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 	/**
 	 * Enqueue scripts and stylesheets
-	 * @since 0.0.2
+	 * @since    0.0.2
 	 *
-	 * @param $where
+	 * @internal param $where
 	 */
-	public function print_scripts( $where ) {
+	public function print_scripts() {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.dev' : '';
 

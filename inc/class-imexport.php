@@ -6,6 +6,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
+ * @version    06/19/2014
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -17,6 +18,24 @@ if ( ! function_exists( 'add_action' ) ) {
  * Class Add_Quicktag_Im_Export
  */
 class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
+
+	/**
+	 * string for translation
+	 * @var string
+	 */
+	static public $textdomain;
+
+	/**
+	 * string for options in table options
+	 * @var string
+	 */
+	static private $option_string;
+
+	/**
+	 * string for plugin file
+	 * @var string
+	 */
+	static private $plugin;
 
 	/**
 	 * Post types for the settings
@@ -53,14 +72,18 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 */
 	private function __construct() {
 
+		// textdomain from parent class
+		self::$textdomain        = parent::get_textdomain();
+		self::$option_string     = parent::get_option_string();
+		self::$plugin            = parent::get_plugin_string();
 		self::$post_types_for_js = parent::get_post_types_for_js();
 
-		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent :: $nonce_string ) ) {
+		if ( isset( $_GET[ 'addquicktag_download' ] ) && check_admin_referer( parent :: $nonce_string ) ) {
 			$this->get_export_file();
 		}
 		//add_action( 'init', array( $this, 'get_export_file' ) );
 
-		if ( isset( $_POST['addquicktag_import'] ) && check_admin_referer( parent :: $nonce_string ) ) {
+		if ( isset( $_POST[ 'addquicktag_import' ] ) && check_admin_referer( parent :: $nonce_string ) ) {
 			$this->import_file();
 		}
 		//add_action( 'init', array( $this, 'import_file' ) );
@@ -103,12 +126,12 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			<h3><span><?php _e( 'Import', parent :: get_textdomain() ); ?></span></h3>
 
 			<div class="inside">
-				<p><?php _e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import.', parent :: get_textdomain() ); ?></p>
+				<p><?php _e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import. (json-Format)', parent :: get_textdomain() ); ?></p>
 
 				<form method="post" action="" enctype="multipart/form-data">
 					<?php wp_nonce_field( parent :: $nonce_string ); ?>
 					<p class="submit">
-						<input type="file" name="xml" />
+						<input type="file" name="import_file" />
 						<input type="submit" name="submit" value="<?php _e( 'Upload file and import', parent :: get_textdomain() ); ?> &raquo;" />
 						<input type="hidden" name="addquicktag_import" value="true" />
 					</p>
@@ -118,123 +141,96 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	<?php
 	}
 
-	/*
-	 * Build export file, xml
-	 * 
+	/**
+	 * Build export file, json
+	 *
 	 * @access  public
 	 * @since   2.0.0
-	 * @uses    is_plugin_active_for_network, get_site_option, get_option
-	 * @return  string $xml
 	 */
 	public function get_export_file() {
 
-		$options = get_site_option( parent :: get_option_string() );
-
-		if ( $options['buttons'] ) {
-
-			$xml = '<?xml version="1.0" encoding="UTF-8"?>';
-			$xml .= "\n" . '<buttons>' . "\n";
-
-			for( $i = 0; $i < count( $options['buttons'] ); $i ++ ) {
-				$xml .= "\t" . '<quicktag>' . "\n";
-				foreach( $options['buttons'][ $i ] as $name => $value ) {
-
-					$value = stripslashes( $value );
-
-					if ( empty( $value ) ) {
-						$xml .= "\t\t" . '<' . $name . '/>' . "\n";
-					} elseif ( preg_match( '/^[0-9]*$/', $value ) ) {
-						$xml .= "\t\t" . '<' . $name . '>' . $value . '</' . $name . '>' . "\n";
-					} else {
-						$xml .= "\t\t" . '<' . $name . '><![CDATA[' . $value . ']]></' . $name . '>' . "\n";
-					}
-				}
-				$xml .= "\t" . '</quicktag>' . "\n";
-			}
-			$xml .= '</buttons>';
-
-		} else {
-			$xml = 'We dont find settings in database';
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
 		}
 
-		$filename = urlencode( 'addquicktag.' . date( 'Y-m-d' ) . '.xml' );
-		$filesize = strlen( $xml );
+		check_admin_referer( parent :: $nonce_string );
 
-		$this ->export_xml( $filename, $filesize, $filetype = 'text/xml' );
-		echo $xml;
+		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+			$options = get_site_option( self::$option_string );
+		} else {
+			$options = get_option( self::$option_string );
+		}
+
+		ignore_user_abort( TRUE );
+
+		nocache_headers();
+		header( 'Content-Type: application/json; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename=addquicktag.-' . date( 'm-d-Y' ) . '.json' );
+		header( "Expires: 0" );
+
+		echo json_encode( $options );
 		exit;
 	}
 
 	/**
-	 * Create download file
+	 * Import json and update settings
 	 *
-	 * @access  public
-	 * @since   2.0.0
+	 * @access   public
+	 * @since    2.0.0
 	 *
-	 * @param   string $filename
-	 * @param   string $filesize
-	 * @param   string $filetype
+	 * @internal param bool|string $filename
 	 *
-	 * @uses    get_option
+	 * @uses     current_user_can, wp_die, is_plugin_active_for_network, update_site_option, update_option
 	 * @return  void
 	 */
-	public function export_xml( $filename, $filesize, $filetype ) {
-
-		header( 'Content-Description: File Transfer' );
-		header( 'Content-Disposition: attachment; filename=' . $filename );
-		header( 'Content-Length: ' . $filesize );
-		header( 'Content-type: ' . $filetype . '; charset=' . get_option( 'blog_charset' ), TRUE );
-		flush();
-	}
-
-	/**
-	 * Import XML and update settings
-	 *
-	 * @access  public
-	 * @since   2.0.0
-	 *
-	 * @param bool|string $filename
-	 *
-	 * @uses    current_user_can, wp_die, is_plugin_active_for_network, update_site_option, update_option
-	 * @return  void
-	 */
-	public function import_file( $filename = FALSE ) {
+	public function import_file() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( __( 'Options not update - you don&lsquo;t have the privilidges to do this!', parent::get_textdomain() ) );
 		}
 
-		// use tmp file
-		if ( ! $filename ) {
-			$filename = $_FILES['xml']['tmp_name'];
+		check_admin_referer( parent :: $nonce_string );
+
+		$extension = explode( '.', $_FILES[ 'import_file' ][ 'name' ] );
+		$extension = end( $extension );
+
+		if ( $extension != 'json' ) {
+			wp_die( __( 'Please upload a valid .json file', parent::get_textdomain() ) );
 		}
 
-		$filename = preg_replace( "/\<\!\[CDATA\[(.*?)\]\]\>/ies", "'[CDATA]' . base64_encode('$1') . '[/CDATA]'", $filename );
-		$filename = utf8_encode( $filename );
-		$matches  = simplexml_load_file( $filename );
+		$import_file = $_FILES[ 'import_file' ][ 'tmp_name' ];
 
-		$buttons = '';
-		// create array from xml
-		$button = array();
-		/**
-		 * @var $matches stdClass
-		 */
-		foreach( $matches->quicktag as $key ) {
-
-			foreach( $key as $value ) {
-				/* @var $value stdClass */
-				$buttons[ $value->getName() ] = $value;
-			}
-
-			$button[] = $buttons;
+		if ( empty( $import_file ) ) {
+			wp_die( __( 'Please upload a file to import.', parent::get_textdomain() ) );
 		}
-		$options['buttons'] = $button;
 
-		// validate the values from xml
-		$options = parent::validate_settings( $options );
+		// Retrieve the settings from the file and convert the json object to an array.
+		$options = (array) json_decode( file_get_contents( $import_file ), TRUE );
 
-		// update settings in database
-		update_site_option( parent::get_option_string(), $options );
+		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+			update_site_option( self::$option_string, $options );
+		} else {
+			update_option( self::$option_string, $options );
+		}
+
+		// redirect to settings page in network
+		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+			wp_redirect(
+				add_query_arg(
+					array( 'page' => self::$plugin, 'updated' => 'true' ),
+					network_admin_url( 'settings.php' )
+				)
+			);
+		} else {
+			$page = str_replace( basename( __FILE__ ), 'class-settings.php', plugin_basename( __FILE__ ) );
+			wp_redirect(
+				add_query_arg(
+					array( 'page' => $page, 'updated' => 'true' ),
+					admin_url( 'options-general.php' )
+				)
+			);
+		}
+		exit;
 	}
 
 } // end class

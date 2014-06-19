@@ -149,8 +149,12 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.3.0-RC2 (06/16/2014) =
+= 2.3.0 (06/19/2014) =
 * Allow Quicktags on edit-comment and quick-edit screen on default
+* Add possibilty to remove core quicktags from each post type
+* Add possibility to add enhanced code buttons to mask code and format
+* Rewrite the Im-Export function (now works simple with json)
+* Rewrite the german language file
 
 = 2.3.0-RC1 (05/22/2014) =
 * Use on default all post types with active UI, incl. Custom and Defaul Post types
