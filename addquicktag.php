@@ -150,17 +150,17 @@ class Add_Quicktag {
 	 *
 	 * @since   08/15/2013
 	 *
-	 * @param   array $qtInit the Buttons
+	 * @param   array $qtags_init the Buttons
 	 *
 	 * @type    string   id
 	 * @type    array    buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
-	 * @return  array    $qtInit  the Buttons
+	 * @return  array    $qtags_init  the Buttons
 	 */
-	public function remove_quicktags( $qtInit ) {
+	public function remove_quicktags( $qtags_init ) {
 
 		// No core buttons, not necessary to filter
-		if ( empty( $qtInit[ 'buttons' ] ) ) {
-			return $qtInit;
+		if ( empty( $qtags_init[ 'buttons' ] ) ) {
+			return $qtags_init;
 		}
 
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
@@ -171,14 +171,14 @@ class Add_Quicktag {
 
 		// No settings, not necessary to filter
 		if ( empty( $options[ 'core_buttons' ] ) ) {
-			return $qtInit;
+			return $qtags_init;
 		}
 
 		// get current screen, post type
 		$screen = get_current_screen();
 
 		// Convert string to array from default core buttons
-		$buttons = explode( ',', $qtInit[ 'buttons' ] );
+		$buttons = explode( ',', $qtags_init[ 'buttons' ] );
 
 		// loop about the options to check for each post type
 		foreach ( $options[ 'core_buttons' ] as $button => $post_type ) {
@@ -194,10 +194,10 @@ class Add_Quicktag {
 		}
 
 		// Convert new buttons array back into a comma-separated string
-		$qtInit[ 'buttons' ] = implode( ',', $buttons );
-		$qtInit[ 'buttons' ] = apply_filters( 'addquicktag_remove_buttons', $qtInit[ 'buttons' ] );
+		$qtags_init[ 'buttons' ] = implode( ',', $buttons );
+		$qtags_init[ 'buttons' ] = apply_filters( 'addquicktag_remove_buttons', $qtags_init[ 'buttons' ] );
 
-		return $qtInit;
+		return $qtags_init;
 	}
 
 	/**

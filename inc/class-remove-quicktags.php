@@ -5,7 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    05/22/2014
+ * @version    06/19/2014
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -13,16 +13,13 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
+/**
+ * Class Add_Quicktag_Remove_Quicktags
+ */
 class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
-
-	// post types for the settings
-	private static $post_types_for_js;
 
 	// default buttons from WP Core
 	private static $core_quicktags = 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen';
-
-	// Transient string
-	private static $addquicktag_core_quicktags = 'addquicktag_core_quicktags';
 
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -62,13 +59,12 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	 */
 	public function get_remove_quicktag_area( $options ) {
 
-		if ( ! isset( $options['core_buttons'] ) ) {
-			$options['core_buttons'] = array();
+		if ( ! isset( $options[ 'core_buttons' ] ) ) {
+			$options[ 'core_buttons' ] = array();
 		}
 		?>
 		<h3><?php _e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
-		<p><?php _e( 'Select the checkbox below to remove a core quicktags in all editors.', $this->get_textdomain() ); ?></p>
-		<p><?php _e( '<strong>Currently a Beta option</strong>, to validate and only usable global on each post type. Please give me hints, feedback via the support possibilities, like <a href="https://github.com/bueltge/AddQuicktag/issues">Github Issues</a> or <a href="http://wordpress.org/support/plugin/addquicktag">WP Support Forum</a>.', $this->get_textdomain() ); ?></p>
+		<p><?php _e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', $this->get_textdomain() ); ?></p>
 
 		<?php
 		// loop about the post types, create html an values for title in table
@@ -96,13 +92,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			$core_buttons = explode( ',', self::$core_quicktags );
 			// Loop over items to remove and unset them from the buttons
 			$i = 999999;
-			foreach( $core_buttons as $key => $value ) {
-
-				if ( array_key_exists( $value, $options['core_buttons'] ) ) {
-					$checked = ' checked="checked"';
-				} else {
-					$checked = '';
-				}
+			foreach ( $core_buttons as $key => $value ) {
 
 				// same style as in editor
 				if ( 'strong' === $value ) {
@@ -132,16 +122,15 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				$pt_checkboxes = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 
-					if ( isset( $options['core_buttons'][$value][$post_type] ) && 1 == $options['core_buttons'][$value][$post_type] ) {
+					$pt_checked = '';
+					if ( isset( $options[ 'core_buttons' ][ $value ][ $post_type ] ) && 1 == $options[ 'core_buttons' ][ $value ][ $post_type ] ) {
 						$pt_checked = ' checked="checked"';
-					} else {
-						$pt_checked = '';
 					}
 
 					$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
-									  parent :: get_option_string() . '[core_buttons][' .
-									  $value . '][' . $post_type . ']" value="1"' .
-									  $pt_checked . '/></td>' . "\n";
+					                  parent :: get_option_string() . '[core_buttons][' .
+					                  $value . '][' . $post_type . ']" value="1"' .
+					                  $pt_checked . '/></td>' . "\n";
 				}
 				echo $pt_checkboxes;
 
