@@ -55,13 +55,13 @@ class Add_Quicktag {
 	 *
 	 * @var array
 	 */
-	static private $admin_pages_for_js = [
+	static private $admin_pages_for_js = array(
 		'post.php',
 		'post-new.php',
 		'comment.php',
 		'edit-comments.php',
 		'widgets.php'
-	];
+	);
 
 	/**
 	 * Use filter 'addquicktag_post_types' for add custom post_types
