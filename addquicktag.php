@@ -55,13 +55,13 @@ class Add_Quicktag {
 	 *
 	 * @var array
 	 */
-	static private $admin_pages_for_js = array(
+	static private $admin_pages_for_js = [
 		'post.php',
 		'post-new.php',
 		'comment.php',
 		'edit-comments.php',
 		'widgets.php'
-	);
+	];
 
 	/**
 	 * Use filter 'addquicktag_post_types' for add custom post_types
@@ -173,16 +173,23 @@ class Add_Quicktag {
 		if ( empty( $options[ 'core_buttons' ] ) ) {
 			return $qtInit;
 		}
-// @TODO: change for each post type; currently global
-		// get only the keys
-		$remove_these = array_keys( $options[ 'core_buttons' ] );
 
-		// Convert string to array
+		// get current screen, post type
+		$screen = get_current_screen();
+
+		// Convert string to array from default core buttons
 		$buttons = explode( ',', $qtInit[ 'buttons' ] );
-		// Loop over items to remove and unset them from the buttons
-		for ( $i = 0; $i < count( $remove_these ); $i ++ ) {
-			if ( FALSE !== ( $key = array_search( $remove_these[ $i ], $buttons ) ) ) {
-				unset( $buttons[ $key ] );
+
+		// loop about the options to check for each post type
+		foreach ( $options[ 'core_buttons' ] as $button => $post_type ) {
+
+			// if the post type is inside the settings array active, the remove qtags
+			if ( array_key_exists( $screen->id, $post_type ) ) {
+
+				// If settings have key inside, then unset this button
+				if ( FALSE !== ( $key = array_search( $button, $buttons ) ) ) {
+					unset( $buttons[ $key ] );
+				}
 			}
 		}
 
@@ -211,14 +218,13 @@ class Add_Quicktag {
 	 * @return  void
 	 */
 	public function get_json() {
-
 		global $current_screen;
 
-		if ( isset( $current_screen->id ) &&
-		     ! in_array(
-			     $current_screen->id,
-			     $this->get_post_types_for_js()
-		     )
+		if ( ! in_array(
+				$current_screen->id,
+				$this->get_post_types_for_js()
+			) &&
+			isset( $current_screen->id )
 		) {
 			return NULL;
 		}
@@ -267,21 +273,21 @@ class Add_Quicktag {
 	/**
 	 * Enqueue Scripts for plugin
 	 *
-	 * @param   $where  string
+	 * @internal param string $where
 	 *
-	 * @since   2.0.0
-	 * @access  public
+	 * @since    2.0.0
+	 * @access   public
 	 * @return  void
 	 */
-	public function admin_enqueue_scripts( $where ) {
+	public function admin_enqueue_scripts() {
 
 		global $current_screen;
 
-		if ( isset( $current_screen->id ) &&
-		     ! in_array(
-			     $current_screen->id,
-			     $this->get_post_types_for_js()
-		     )
+		if ( ! in_array(
+				$current_screen->id,
+				$this->get_post_types_for_js()
+			) &&
+			isset( $current_screen->id )
 		) {
 			return NULL;
 		}
