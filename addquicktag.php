@@ -184,7 +184,7 @@ class Add_Quicktag {
 		foreach ( $options[ 'core_buttons' ] as $button => $post_type ) {
 
 			// if the post type is inside the settings array active, the remove qtags
-			if ( array_key_exists( $screen->id, $post_type ) ) {
+			if ( is_array( $post_type ) && array_key_exists( $screen->id, $post_type ) ) {
 
 				// If settings have key inside, then unset this button
 				if ( FALSE !== ( $key = array_search( $button, $buttons ) ) ) {
