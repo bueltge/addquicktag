@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AddQuicktag v2.3.0\n"
+"Project-Id-Version: AddQuicktag v2.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-19 09:41+0100\n"
-"PO-Revision-Date: 2014-06-19 14:28:06+0000\n"
+"PO-Revision-Date: 2014-06-22 07:54:14+0000\n"
 "Last-Translator: Aluízio Leye Larangeira <contato@aluizioll.com.br>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,16 +24,6 @@ msgstr ""
 #@ addquicktag
 msgid "Export"
 msgstr "Exportar"
-
-#: inc/class-imexport.php:109
-#@ addquicktag
-msgid "When you click the button below the plugin will create an XML file for you to save to your computer."
-msgstr "Quando você clica no botão abaixo, o plugin irá criar um arquivo XML para você salvar em seu computador."
-
-#: inc/class-imexport.php:111
-#@ addquicktag
-msgid "This format, a custom XML, will contain your options from quicktags."
-msgstr "Este formato, um XML personalizado, irá conter suas opções de QuickTags."
 
 #: inc/class-imexport.php:113
 #@ addquicktag
@@ -207,12 +197,6 @@ msgstr ""
 msgid "http://bueltge.de"
 msgstr ""
 
-#. translators: plugin header field 'Version'
-#: addquicktag.php:0
-#@ addquicktag
-msgid "2.3.0"
-msgstr ""
-
 #: inc/class-code-quicktags.php:81
 #@ addquicktag
 msgid "Enhanced Code Quicktag buttons"
@@ -312,5 +296,21 @@ msgstr ""
 #: inc/class-settings.php:487
 #@ addquicktag
 msgid "Frank Bültge's Amazon Wish List"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "2.3.2"
+msgstr ""
+
+#: inc/class-imexport.php:109
+#@ addquicktag
+msgid "When you click the button below the plugin will create an JSON file for you to save to your computer."
+msgstr ""
+
+#: inc/class-imexport.php:111
+#@ addquicktag
+msgid "This format, a custom JSON, will contain your options from quicktags."
 msgstr ""
 

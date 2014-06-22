@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AddQuicktag v2.3.0\n"
+"Project-Id-Version: AddQuicktag v2.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-16 20:31-0300\n"
-"PO-Revision-Date: 2014-06-19 14:28:09+0000\n"
+"PO-Revision-Date: 2014-06-22 07:54:17+0000\n"
 "Last-Translator: Brian Flores <baflores@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -111,12 +111,6 @@ msgstr ""
 msgid "http://bueltge.de"
 msgstr ""
 
-#. translators: plugin header field 'Version'
-#: addquicktag.php:0
-#@ addquicktag
-msgid "2.3.0"
-msgstr ""
-
 #: inc/class-code-quicktags.php:81
 #@ addquicktag
 msgid "Enhanced Code Quicktag buttons"
@@ -151,16 +145,6 @@ msgstr ""
 #: inc/class-remove-quicktags.php:85
 #@ addquicktag
 msgid "Button"
-msgstr ""
-
-#: inc/class-imexport.php:109
-#@ addquicktag
-msgid "When you click the button below the plugin will create an XML file for you to save to your computer."
-msgstr ""
-
-#: inc/class-imexport.php:111
-#@ addquicktag
-msgid "This format, a custom XML, will contain your options from quicktags."
 msgstr ""
 
 #: inc/class-imexport.php:113
@@ -312,5 +296,21 @@ msgstr ""
 #: inc/class-settings.php:520
 #@ addquicktag
 msgid "Description:"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "2.3.2"
+msgstr ""
+
+#: inc/class-imexport.php:109
+#@ addquicktag
+msgid "When you click the button below the plugin will create an JSON file for you to save to your computer."
+msgstr ""
+
+#: inc/class-imexport.php:111
+#@ addquicktag
+msgid "This format, a custom JSON, will contain your options from quicktags."
 msgstr ""
 

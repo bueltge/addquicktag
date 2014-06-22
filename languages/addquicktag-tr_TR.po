@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: AddQuicktag v2.3.0\n"
+"Project-Id-Version: AddQuicktag v2.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-06-19 14:28:13+0000\n"
+"PO-Revision-Date: 2014-06-22 07:54:19+0000\n"
 "Last-Translator: gürkan özsoy <turk3005@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -172,16 +172,6 @@ msgstr "HTML ve görsel-editöre kolayca özel Quicktags eklemenizi sağlar."
 msgid "Export"
 msgstr "Dışa Aktar"
 
-#: inc/class-imexport.php:109
-#@ addquicktag
-msgid "When you click the button below the plugin will create an XML file for you to save to your computer."
-msgstr "Bilgisayarınıza kaydetmek için aşağıdaki düğmeye tıkladığınız zaman eklenti  bir XML dosyası oluşturur."
-
-#: inc/class-imexport.php:111
-#@ addquicktag
-msgid "This format, a custom XML, will contain your options from quicktags."
-msgstr "Bu bir XML dosyası olup, bu dosya formatı sizin quicktags seçeneklerinizi içerecektir."
-
 #: inc/class-imexport.php:113
 #@ addquicktag
 msgid "Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site."
@@ -221,12 +211,6 @@ msgstr "Kullanım hataları, sorunlar gibi teknik konular ile eklentiye katkıda
 #@ addquicktag
 msgid "Github Repo for Contribute, Issues & Bugs"
 msgstr "Hata &amp; Sorunlar ile Kakıtda Bulunmak İçin Github Repo"
-
-#. translators: plugin header field 'Version'
-#: addquicktag.php:0
-#@ addquicktag
-msgid "2.3.0"
-msgstr ""
 
 #: inc/class-code-quicktags.php:81
 #@ addquicktag
@@ -312,5 +296,21 @@ msgstr ""
 #: inc/class-settings.php:481
 #@ addquicktag
 msgid "Help other users in the Support Forum."
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "2.3.2"
+msgstr ""
+
+#: inc/class-imexport.php:109
+#@ addquicktag
+msgid "When you click the button below the plugin will create an JSON file for you to save to your computer."
+msgstr ""
+
+#: inc/class-imexport.php:111
+#@ addquicktag
+msgid "This format, a custom JSON, will contain your options from quicktags."
 msgstr ""
 

@@ -106,9 +106,9 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			<h3><span><?php _e( 'Export', parent :: get_textdomain() ); ?></span></h3>
 
 			<div class="inside">
-				<p><?php _e( 'When you click the button below the plugin will create an XML file for you to save to your computer.', parent :: get_textdomain() ); ?></p>
+				<p><?php _e( 'When you click the button below the plugin will create an JSON file for you to save to your computer.', parent :: get_textdomain() ); ?></p>
 
-				<p><?php _e( 'This format, a custom XML, will contain your options from quicktags.', parent :: get_textdomain() ); ?></p>
+				<p><?php _e( 'This format, a custom JSON, will contain your options from quicktags.', parent :: get_textdomain() ); ?></p>
 
 				<p><?php _e( 'Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site.', parent :: get_textdomain() ); ?></p>
 
