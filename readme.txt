@@ -39,10 +39,9 @@ If you will use this plugin with an older version of WordPress, please use an ol
 
 
 == Screenshots ==
-1. Settings area in WordPress 3.3
-2. Settings area in WordPress Network of an Multisite install 3.3
-3. HTML Editor with new Quicktags
-4. Visual editor with new Quicktags
+1. Settings area in WordPress 4.0-alpha
+2. HTML Editor with new Quicktags
+3. Visual editor with new Quicktags
 
 
 == Other Notes ==
