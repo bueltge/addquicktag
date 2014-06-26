@@ -148,6 +148,12 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.3.3 (06/26/2014) =
+* Fix PHP notice on different installs
+* Update french and german language files
+* Update description, hint on the settings page
+* Order setting works now also on the visual drop down menu
+
 = 2.3.2 (06/20/2014) =
 * Bugfix Javascript to add quicktags
 
