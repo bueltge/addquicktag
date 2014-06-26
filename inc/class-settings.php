@@ -426,6 +426,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				</tr>
 			</table>
 
+			<p class="submit">
+				<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
+			</p>
+			
 			<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 
 			<p class="submit">
