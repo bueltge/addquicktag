@@ -48,9 +48,10 @@ If you will use this plugin with an older version of WordPress, please use an ol
 = Acknowledgements =
 **Thanks to**
 
-* German Translation by [myself](http://bueltge.de) ;)
-* French translation by [Jean-Michel MEYER](http://www.li-an.fr/blog)
-* Japanese translation by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
+* German Translation (de_DE) by [myself](http://bueltge.de) ;)
+* French translation (fr_FR) by [Jean-Michel MEYER](http://www.li-an.fr/blog)
+* Japanese translation (ja) by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
+* Traditional Chinese (zh_TW) by [Zeng pppdog](http://pppdog.me/)
 * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
 * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
 * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005), see also his [seetings tutorial video](https://yadi.sk/i/l6YwDpa_V3FaV)
@@ -147,6 +148,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.3.4 (???) =
+* Add traditional Chinese (zh_TW) langugae files
+
 = 2.3.3 (06/26/2014) =
 * Fix PHP notice on different installs
 * Update french, turkish and german language files
