@@ -1,20 +1,20 @@
 ﻿# AddQuicktag
-This plugin make it easy, Quicktags add to the html - and visual-editor.
+This plugin makes it easy to add Quicktags to the html - and visual-editor.
 
 ## Description
-This plugin for WordPress make it easy, Quicktags add to the html - and visual-editor.. It is possible to ex- and import your Quicktags.
+This plugin makes it easy to add Quicktags to the html - and visual-editor. It is possible to export your Quicktags as a JSON - file that can be imported in other installations of the plugin. 
 
-WP-AddQuicktag for WordPress is in originally by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions of the Repo to AddQuicktag are newer versions, completly rewrite with version 2.0.0 and more functionalities.
+WP-AddQuicktag for WordPress is originally created by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions in the Repo of AddQuicktag are newer versions, this is a complete rewrite of version 2.0.0 with more functionalities.
 
-The plugin can add each custom quicktag to each post type, include custom post type from other sources.
-If is will not work can you also use the hooks inside the plugin, see the description below.
+The plugin can add configurable custom quicktags to the editor of every post type, including custom post types from other sources. You may choose a post type for which a quicktag shall show up in the editor.
+If this should not work perfectly well for you, you may also use the hooks inside the plugin. See the examples and hint on the description below.
 
 ## Bugs, technical hints or contribute
 Please give me feedback, contribute and file technical bugs on this [GitHub Repo](https://github.com/bueltge/AddQuicktag), use Issues.
 
 ## Installation
 ### Requirements
- * WordPress version 3.0 and later (tested at 3.5-Alpha (nightly build))
+ * WordPress version 3.0 and later (tested at 4.1-Alpha (nightly build))
 
 ### Installation
  1. Unpack the download-package
