@@ -357,7 +357,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 						$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
 						                  self::$option_string . '[buttons][' .
-						                  $i . '][' . $post_type . ']" value="1"' .
+						                  $i . '][' . $post_type . ']" value="1" ' .
 						                  $pt_checked . '/></td>' . "\n";
 					}
 
@@ -392,10 +392,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 					$b[ $post_type ] = intval( $b[ $post_type ] );
 
+					$pt_checked = '';
 					if ( 1 == $b[ $post_type ] ) {
 						$pt_checked = ' checked="checked"';
-					} else {
-						$pt_checked = '';
 					}
 
 					$pt_new_boxes .= '<td class="num"><input type="checkbox" name="' .
@@ -631,10 +630,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			$b = $value[ 'buttons' ][ $i ];
 			if ( ! empty( $b[ 'text' ] ) && ! empty( $b[ 'start' ] ) ) {
 
-				$b[ 'text' ]  = esc_html( $b[ 'text' ] );
-				$b[ 'title' ] = esc_html( $b[ 'title' ] );
-				$b[ 'start' ] = stripslashes( $b[ 'start' ] );
-				$b[ 'end' ]   = stripslashes( $b[ 'end' ] );
+				//preg_replace( '~[^\p{L}]~u', '', $string );
+
+				$b[ 'text' ]  = tag_escape( $b[ 'text' ] );
+				$b[ 'title' ] = remove_accents( sanitize_text_field( $b[ 'title' ] ) );
+				$b[ 'start' ] = wp_kses_stripslashes( $b[ 'start' ] );
+				$b[ 'end' ]   = wp_kses_stripslashes( $b[ 'end' ] );
 
 				if ( isset( $b[ 'access' ] ) ) {
 					$b[ 'access' ] = esc_html( $b[ 'access' ] );
@@ -666,7 +667,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			}
 
 		}
-
+		$value[ 'buttons' ] = $buttons;
+		//pre_print($buttons);
+		//pre_print($value);exit;
 		// Check for wrong empty values and kill
 		foreach ( $value[ 'buttons' ] as $key => $b ) {
 

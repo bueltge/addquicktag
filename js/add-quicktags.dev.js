@@ -3,13 +3,13 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  06/20/2014
+ * @version  2014-11-27
  * @since    2.0.0
  */
 
 jQuery(document).ready(function ($) {
 
-	if (typeof addquicktag_tags == 'undefined')
+	if ( typeof addquicktag_tags == 'undefined' )
 		return;
 
 	if (typeof addquicktag_post_type == 'undefined')
@@ -21,6 +21,21 @@ jQuery(document).ready(function ($) {
 	var tags = addquicktag_tags['buttons'];
 	if (typeof tags == 'undefined')
 		return;
+
+	function html_entity_decode( str ) {
+		/*Firefox (and IE if the string contains no elements surrounded by angle brackets )*/
+		try{
+			var ta=document.createElement("textarea");
+			ta.innerHTML=str;
+			return ta.value;
+		}catch(e){};
+		/*Internet Explorer*/
+		try{
+			var d=document.createElement("div");
+			d.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+			if(typeof d.innerText!="undefined")return d.innerText;/*Sadly this strips tags as well*/
+		}catch(e){}
+	}
 
 	// window for input; currently not in use; maybe later
 	function qt_callback_input_window(e, c, ed) {
@@ -66,17 +81,18 @@ jQuery(document).ready(function ($) {
 				 * @param priority int optional Number representing the desired position of the button in the toolbar. 1 - 9 = first, 11 - 19 = second, 21 - 29 = third, etc.
 				 * @param instance string optional Limit the button to a specific instance of Quicktags, add to all instances if not present.
 				 */
+				console.log(tags[i].title);
 				QTags.addButton(
-					tags[i].text.toLowerCase(),
+					html_entity_decode( tags[i].text ).replace( /"|\\/gi, "" ).toLowerCase(),
 					tags[i].text,
 					tags[i].start,
 					tags[i].end,
 					tags[i].access,
-					tags[i].title
+					tags[i].title.replace( /"|\\/gi, "" )
 				);
 
 				/**
-				 * @TODO New idea for multible edit windows
+				 * @TODO New idea for multiple edit windows
 				 // for edit window
 				 QTags.addButton(
 				 tags[i].text.toLowerCase(),
