@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: trunk
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
@@ -147,8 +147,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 2.3.4 (???) =
+= 2.4.0 (12/18/2014) =
 * Add traditional Chinese (zh_TW) langugae files
+* Fix filter topic to use tags with attributes [issue #30](https://github.com/bueltge/AddQuicktag/issues/30)
+* Update grammer topics [Issue #29](https://github.com/bueltge/AddQuicktag/issues/29)
 
 = 2.3.3 (06/26/2014) =
 * Fix PHP notice on different installs
