@@ -3,7 +3,7 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  2014-11-27
+ * @version  12/19/2014
  * @since    2.0.0
  */
 
@@ -81,7 +81,6 @@ jQuery(document).ready(function ($) {
 				 * @param priority int optional Number representing the desired position of the button in the toolbar. 1 - 9 = first, 11 - 19 = second, 21 - 29 = third, etc.
 				 * @param instance string optional Limit the button to a specific instance of Quicktags, add to all instances if not present.
 				 */
-				console.log(tags[i].title);
 				QTags.addButton(
 					html_entity_decode( tags[i].text ).replace( /"|\\/gi, "" ).toLowerCase(),
 					tags[i].text,
