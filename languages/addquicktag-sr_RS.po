@@ -1,0 +1,316 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag v2.3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-06-16 20:31-0300\n"
+"PO-Revision-Date: 2014-06-22 07:54:17+0000\n"
+"Last-Translator: Brian Flores <baflores@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Serbo-Croatian\n"
+"X-Poedit-Country: ARGENTINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: inc/class-imexport.php:189
+#@ addquicktag
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "Опције не ажурирање - немате привилегије да то урадите! "
+
+#: inc/class-settings.php:572
+#@ addquicktag
+msgid "Options saved."
+msgstr "Опције сачуване"
+
+#: inc/class-settings.php:241
+#@ addquicktag
+msgid "Add or delete Quicktag buttons"
+msgstr "Додај или избриши Quicktag тастер"
+
+#: inc/class-settings.php:243
+#@ addquicktag
+msgid "Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields."
+msgstr "Попуни поља да би додао или изменио quicktag. Поља са * су обавезна. Да избришеш tag једноставно избриши сва поља"
+
+#: inc/class-settings.php:408
+#@ addquicktag
+msgid "Button Label*"
+msgstr "Обележје тастатуре*"
+
+#: inc/class-settings.php:300
+#: inc/class-settings.php:409
+#@ addquicktag
+msgid "Title Attribute"
+msgstr "Назив додељене функције"
+
+#: inc/class-settings.php:412
+#@ addquicktag
+msgid "Start Tag(s)*"
+msgstr "Почни сa tag(oвим)"
+
+#: inc/class-settings.php:302
+#: inc/class-settings.php:413
+#@ addquicktag
+msgid "End Tag(s)"
+msgstr "Заврши са tag(овима)"
+
+#: inc/class-imexport.php:106
+#@ addquicktag
+msgid "Export"
+msgstr "Експортуј"
+
+#: inc/class-imexport.php:126
+#@ addquicktag
+msgid "Import"
+msgstr "Импортуј"
+
+#: inc/class-settings.php:172
+#: inc/class-settings.php:192
+#: inc/class-settings.php:210
+#: inc/class-settings.php:218
+#@ default
+#@ addquicktag
+msgid "Settings"
+msgstr "Подешавања"
+
+#. translators: plugin header field 'Name'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+#. translators: plugin header field 'PluginURI'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "Allows you to easily add custom Quicktags to the html- and visual-editor."
+msgstr ""
+
+#. translators: plugin header field 'Author'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "Frank Bültge"
+msgstr ""
+
+#. translators: plugin header field 'AuthorURI'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "http://bueltge.de"
+msgstr ""
+
+#: inc/class-code-quicktags.php:81
+#@ addquicktag
+msgid "Enhanced Code Quicktag buttons"
+msgstr ""
+
+#: inc/class-code-quicktags.php:82
+#@ addquicktag
+msgid "Select the checkbox below to add enhanced code buttons."
+msgstr ""
+
+#: inc/class-code-quicktags.php:83
+#@ addquicktag
+msgid "pre: Enhanced Code buttons"
+msgstr ""
+
+#: inc/class-code-quicktags.php:84
+#@ addquicktag
+msgid "Enhanced the default Code buttons. Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text."
+msgstr ""
+
+#: inc/class-code-quicktags.php:85
+#@ addquicktag
+msgid "htmlentities: HTML Entities, HTML Decode"
+msgstr ""
+
+#: inc/class-code-quicktags.php:86
+#@ addquicktag
+msgid "Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back."
+msgstr ""
+
+#: inc/class-code-quicktags.php:104
+#: inc/class-remove-quicktags.php:85
+#@ addquicktag
+msgid "Button"
+msgstr ""
+
+#: inc/class-imexport.php:113
+#@ addquicktag
+msgid "Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site."
+msgstr ""
+
+#: inc/class-imexport.php:118
+#@ addquicktag
+msgid "Download Export File"
+msgstr ""
+
+#: inc/class-imexport.php:129
+#@ addquicktag
+msgid "If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import. (json-Format)"
+msgstr ""
+
+#: inc/class-imexport.php:135
+#@ addquicktag
+msgid "Upload file and import"
+msgstr ""
+
+#: inc/class-imexport.php:198
+#@ addquicktag
+msgid "Please upload a valid .json file"
+msgstr ""
+
+#: inc/class-imexport.php:204
+#@ addquicktag
+msgid "Please upload a file to import."
+msgstr ""
+
+#: inc/class-remove-quicktags.php:66
+#@ addquicktag
+msgid "Remove Core Quicktag buttons"
+msgstr ""
+
+#: inc/class-remove-quicktags.php:67
+#@ addquicktag
+msgid "Select the checkbox below to remove a core quicktags in the editors of the respective post type."
+msgstr ""
+
+#: inc/class-settings.php:299
+#@ addquicktag
+msgid "Button Label* and"
+msgstr ""
+
+#: inc/class-settings.php:301
+#@ addquicktag
+msgid "Start Tag(s)* and"
+msgstr ""
+
+#: inc/class-settings.php:303
+#@ addquicktag
+msgid "Access Key and"
+msgstr ""
+
+#: inc/class-settings.php:304
+#: inc/class-settings.php:417
+#@ addquicktag
+msgid "Order"
+msgstr ""
+
+#: inc/class-settings.php:305
+#@ addquicktag
+msgid "Visual"
+msgstr ""
+
+#: inc/class-settings.php:416
+#@ addquicktag
+msgid "Access Key"
+msgstr ""
+
+#: inc/class-settings.php:432
+#@ default
+msgid "Save Changes"
+msgstr ""
+
+#: inc/class-settings.php:472
+#@ addquicktag
+msgid "Like this plugin?"
+msgstr ""
+
+#: inc/class-settings.php:475
+#@ addquicktag
+msgid "Here's how you can give back:"
+msgstr ""
+
+#: inc/class-settings.php:478
+#@ addquicktag
+msgid "The Plugin on the WordPress plugin repository"
+msgstr ""
+
+#: inc/class-settings.php:478
+#@ addquicktag
+msgid "Give the plugin a good rating."
+msgstr ""
+
+#: inc/class-settings.php:481
+#@ addquicktag
+msgid "Help inside the community other useres and write answer to this plugin questions."
+msgstr ""
+
+#: inc/class-settings.php:481
+#@ addquicktag
+msgid "Help other users in the Support Forum."
+msgstr ""
+
+#: inc/class-settings.php:484
+#@ addquicktag
+msgid "Donate via PayPal"
+msgstr ""
+
+#: inc/class-settings.php:484
+#@ addquicktag
+msgid "Donate a few euros."
+msgstr ""
+
+#: inc/class-settings.php:487
+#@ addquicktag
+msgid "Frank Bültge's Amazon Wish List"
+msgstr ""
+
+#: inc/class-settings.php:487
+#@ addquicktag
+msgid "Get me something from my wish list."
+msgstr ""
+
+#: inc/class-settings.php:490
+#@ addquicktag
+msgid "Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues."
+msgstr ""
+
+#: inc/class-settings.php:490
+#@ addquicktag
+msgid "Github Repo for Contribute, Issues & Bugs"
+msgstr ""
+
+#: inc/class-settings.php:511
+#@ addquicktag
+msgid "About this plugin"
+msgstr ""
+
+#: inc/class-settings.php:515
+#@ addquicktag
+msgid "Version:"
+msgstr ""
+
+#: inc/class-settings.php:520
+#@ addquicktag
+msgid "Description:"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+#@ addquicktag
+msgid "2.3.2"
+msgstr ""
+
+#: inc/class-imexport.php:109
+#@ addquicktag
+msgid "When you click the button below the plugin will create an JSON file for you to save to your computer."
+msgstr ""
+
+#: inc/class-imexport.php:111
+#@ addquicktag
+msgid "This format, a custom JSON, will contain your options from quicktags."
+msgstr ""
+

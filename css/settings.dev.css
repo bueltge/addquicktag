@@ -1,0 +1,63 @@
+/**
+ * AddQuicktag settings style
+ *
+ * @package  AddQuicktag Plugin
+ * @author   Frank Bueltge <frank@bueltge.de>
+ * @version  06/19/2014
+ * @since    2.02.3
+ */
+
+.rmnlQuicktagSettings .rmnlqsheader {
+	height: 10em;
+	vertical-align: bottom;
+}
+
+.hover, table tr:hover {
+	background-color: #ccc;
+}
+
+.rmnlQuicktagSettings th,
+.rmnlCoreQuicktagSettings th,
+.rmnlCodeQuicktagSettings th{
+	vertical-align: bottom !important;
+	text-align: center;
+}
+
+.rmnlQuicktagSettings .rotate {
+	padding: 0 !important;
+	margin: 0 auto;
+	width: 1.2em;
+	vertical-align: bottom !important;
+}
+
+.rmnlQuicktagSettings .rotate span {
+	display: block;
+	padding: 0 !important;
+	margin: 0 auto;
+	width: 1.2em;
+	vertical-align: middle !important;
+	white-space: nowrap;
+	filter: flipv fliph;
+	writing-mode: tb-rl;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+
+	/* Should be unset in IE9+ I think. */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE6,IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */
+}
+
+.rmnlQuicktagSettings input[type='text'] {
+	height: 3.5em;
+	width: 99%;
+	margin: 0 0 .5em 0;
+}
+
+.rmnlQuicktagSettings textarea {
+	height: 3.5em;
+	width: 99%;
+	margin: 0 0 .2em 0;
+}

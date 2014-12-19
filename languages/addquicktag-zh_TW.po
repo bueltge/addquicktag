@@ -1,0 +1,225 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-09-03 04:41+0800\n"
+"Last-Translator: pppdog <tainanshop@gmail.com>\n"
+"Language-Team: zpppdog@gmail.com <dog@pppdog.me>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+# @ addquicktag
+#. translators: plugin header field 'Name'
+#: addquicktag.php:0
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+# @ addquicktag
+#. translators: plugin header field 'PluginURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+msgstr "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+
+# @ addquicktag
+#. translators: plugin header field 'Author'
+#: addquicktag.php:0
+msgid "Frank Bültge"
+msgstr "Frank Bültge"
+
+# @ addquicktag
+#. translators: plugin header field 'AuthorURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de"
+msgstr "http://bueltge.de"
+
+# @ default
+# @ addquicktag
+#: inc/class-settings.php:128 inc/class-settings.php:145
+#: inc/class-settings.php:163 inc/class-settings.php:171
+msgid "Settings"
+msgstr "設定"
+
+# @ addquicktag
+#: inc/class-settings.php:196
+msgid "Add or delete Quicktag buttons"
+msgstr "即時標籤的追加及刪除"
+
+# @ addquicktag
+#: inc/class-settings.php:237
+msgid "Button Label*"
+msgstr "按鈕名稱。*"
+
+# @ addquicktag
+#: inc/class-settings.php:238
+msgid "Title Attribute"
+msgstr "標籤名稱。"
+
+# @ addquicktag
+#: inc/class-settings.php:239
+msgid "Start Tag(s)*"
+msgstr "開始標籤 * "
+
+# @ addquicktag
+#: inc/class-settings.php:240
+msgid "End Tag(s)"
+msgstr "終結標籤"
+
+# @ addquicktag
+#: inc/class-settings.php:241
+msgid "Access Key"
+msgstr "存取密鑰。"
+
+# @ addquicktag
+#: inc/class-settings.php:273
+msgid ""
+"Fill in the fields below to add or edit the quicktags. Fields with * are "
+"required. To delete a tag simply empty all fields."
+msgstr "附有'*'者為必須設定項目。刪除標籤時請空白所有的項目。"
+
+# @ default
+#: inc/class-settings.php:275
+msgid "Save Changes"
+msgstr "保存變更"
+
+# @ addquicktag
+#: inc/class-settings.php:310
+msgid "Like this plugin?"
+msgstr "這個插座你喜歡嗎？"
+
+# @ addquicktag
+#: inc/class-settings.php:312
+msgid "Here's how you can give back:"
+msgstr "正在等待你的支援:"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "The Plugin on the WordPress plugin repository"
+msgstr "本外掛正向 WordPress 的資料庫移動。"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "Give the plugin a good rating."
+msgstr "如果可以給外掛評價五顆星。"
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate via PayPal"
+msgstr "経由PayPal捐增"
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate a few euros."
+msgstr "捐贈n個歐元."
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Frank Bültge's Amazon Wish List"
+msgstr "從Bültge's Amazon 的願望清單"
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Get me something from my wish list."
+msgstr "請從願望清單送某些事項給我。"
+
+# @ addquicktag
+#: inc/class-settings.php:335
+msgid "About this plugin"
+msgstr "關於這個外掛。"
+
+# @ addquicktag
+#: inc/class-settings.php:338
+msgid "Version:"
+msgstr "譯本:"
+
+# @ addquicktag
+#: inc/class-settings.php:342
+msgid "Description:"
+msgstr "説明:"
+
+# @ addquicktag
+#: inc/class-settings.php:214
+msgid "Order"
+msgstr "順序"
+
+# @ addquicktag
+#: inc/class-settings.php:215
+msgid "Visual"
+msgstr "視覺編輯"
+
+# @ addquicktag
+#. translators: plugin header field 'Description'
+#: addquicktag.php:0
+msgid ""
+"Allows you to easily add custom Quicktags to the html- and visual-editor."
+msgstr "在定型輸入時用HTML編輯和視覺編輯可以簡單地追加或管理可使用的即時標籤。"
+
+# @ addquicktag
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+msgid "2.0.0"
+msgstr "2.0.0"
+
+# @ addquicktag
+#: inc/class-imexport.php:64
+msgid "Export"
+msgstr "輸出"
+
+# @ addquicktag
+#: inc/class-imexport.php:66
+msgid ""
+"When you click the button below the plugin will create an XML file for you "
+"to save to your computer."
+msgstr "按下下面的按鈕就可以把保存著插座設定的XML檔案下載到你的電腦裡。"
+
+# @ addquicktag
+#: inc/class-imexport.php:67
+msgid "This format, a custom XML, will contain your options from quicktags."
+msgstr "這個XML檔案裡面保存著外掛的設定(即時標籤的表單等)。"
+
+# @ addquicktag
+#: inc/class-imexport.php:68
+msgid ""
+"Once you’ve saved the download file, you can use the Import function in "
+"another WordPress installation to import this site."
+msgstr ""
+"若執行設定檔案的保存就可以行使插座的輸入機能。可以把這個位置的即時標籤的設定"
+"套入其他 WordPress 資料庫位置裡。"
+
+# @ addquicktag
+#: inc/class-imexport.php:72
+msgid "Download Export File"
+msgstr "輸出檔案的下載。"
+
+# @ addquicktag
+#: inc/class-imexport.php:80
+msgid "Import"
+msgstr "輸入"
+
+# @ addquicktag
+#: inc/class-imexport.php:82
+msgid ""
+"If you have quicktags from other installs, the plugin can import those into "
+"this site. To get started, choose a file to import."
+msgstr "把這個外掛利用到其他位置時可以輸入其設定。請選擇輸入的檔案。"
+
+# @ addquicktag
+#: inc/class-imexport.php:87
+msgid "Upload file and import"
+msgstr "檔案的上傳和輸入。"
+
+# @ addquicktag
+#: inc/class-imexport.php:178
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "設置沒有更新，因為沒有權限。"
+
+# @ addquicktag
+#: inc/class-settings.php:387
+msgid "Options saved."
+msgstr "選擇保存。"

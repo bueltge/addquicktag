@@ -1,0 +1,215 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yuuichi <u1@u-1.net>\n"
+"Language-Team: Yuuichi <u1@u-1.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+# @ addquicktag
+#. translators: plugin header field 'Name'
+#: addquicktag.php:0
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+# @ addquicktag
+#. translators: plugin header field 'PluginURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+msgstr "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+
+# @ addquicktag
+#. translators: plugin header field 'Author'
+#: addquicktag.php:0
+msgid "Frank Bültge"
+msgstr "Frank Bültge"
+
+# @ addquicktag
+#. translators: plugin header field 'AuthorURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de"
+msgstr "http://bueltge.de"
+
+# @ default
+# @ addquicktag
+#: inc/class-settings.php:110
+#: inc/class-settings.php:127
+#: inc/class-settings.php:145
+#: inc/class-settings.php:153
+msgid "Settings"
+msgstr "設定"
+
+# @ addquicktag
+#: inc/class-settings.php:178
+msgid "Add or delete Quicktag buttons"
+msgstr "クイックタグの追加と削除"
+
+# @ addquicktag
+#: inc/class-settings.php:209
+msgid "Button Label*"
+msgstr "ボタン名*"
+
+# @ addquicktag
+#: inc/class-settings.php:210
+msgid "Title Attribute"
+msgstr "ラベル名"
+
+# @ addquicktag
+#: inc/class-settings.php:211
+msgid "Start Tag(s)*"
+msgstr "開始タグ*"
+
+# @ addquicktag
+#: inc/class-settings.php:212
+msgid "End Tag(s)"
+msgstr "終了タグ(s)"
+
+# @ addquicktag
+#: inc/class-settings.php:213
+msgid "Access Key"
+msgstr "アクセスキー"
+
+# @ addquicktag
+#: inc/class-settings.php:273
+msgid "Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields."
+msgstr "クイックタグを追加・編集するには以下の項目を埋めるか変更してください。 * が付いた項目は必須です。タグを削除するには全ての項目を空にしてください。"
+
+# @ default
+#: inc/class-settings.php:275
+msgid "Save Changes"
+msgstr "変更を保存"
+
+# @ addquicktag
+#: inc/class-settings.php:310
+msgid "Like this plugin?"
+msgstr "このプラグインが気に入りましたか?"
+
+# @ addquicktag
+#: inc/class-settings.php:312
+msgid "Here's how you can give back:"
+msgstr "あなたからの支援をお待ちしています:"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "The Plugin on the WordPress plugin repository"
+msgstr "WordPress プラグインリポジトリへ移動"
+
+# @ addquicktag
+#: inc/class-settings.php:314
+msgid "Give the plugin a good rating."
+msgstr "評価をお願いします"
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate via PayPal"
+msgstr "PayPal 経由で寄付"
+
+# @ addquicktag
+#: inc/class-settings.php:315
+msgid "Donate a few euros."
+msgstr "寄付をする"
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Frank Bültge's Amazon Wish List"
+msgstr "Frank Bültge の Amazon ウィッシュリスト"
+
+# @ addquicktag
+#: inc/class-settings.php:316
+msgid "Get me something from my wish list."
+msgstr "ウィッシュリストからどれかを送ってください"
+
+# @ addquicktag
+#: inc/class-settings.php:335
+msgid "About this plugin"
+msgstr "このプラグインについて"
+
+# @ addquicktag
+#: inc/class-settings.php:338
+msgid "Version:"
+msgstr "バージョン:"
+
+# @ addquicktag
+#: inc/class-settings.php:342
+msgid "Description:"
+msgstr "説明:"
+
+# @ addquicktag
+#: inc/class-settings.php:214
+msgid "Order"
+msgstr "順番"
+
+# @ addquicktag
+#: inc/class-settings.php:215
+msgid "Visual"
+msgstr "ビジュアルエディター"
+
+# @ addquicktag
+#. translators: plugin header field 'Description'
+#: addquicktag.php:0
+msgid "Allows you to easily add custom Quicktags to the html- and visual-editor."
+msgstr "HTMLエディターやビジュアルリッチエディターで定型入力に使用できるクイックタグを簡単に追加・管理できます。"
+
+# @ addquicktag
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+msgid "2.0.0"
+msgstr "2.0.0"
+
+# @ addquicktag
+#: inc/class-imexport.php:64
+msgid "Export"
+msgstr "エクスポート"
+
+# @ addquicktag
+#: inc/class-imexport.php:66
+msgid "When you click the button below the plugin will create an XML file for you to save to your computer."
+msgstr "下のボタンを押すとプラグインの設定を保存した XML ファイルをあなたのコンピューターにダウンロードすることができます。"
+
+# @ addquicktag
+#: inc/class-imexport.php:67
+msgid "This format, a custom XML, will contain your options from quicktags."
+msgstr "この XML ファイルにはプラグインの設定(クイックタグのリストなど)が保存されています。"
+
+# @ addquicktag
+#: inc/class-imexport.php:68
+msgid "Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site."
+msgstr "設定ファイルの保存を行うと、プラグインのインポート機能が使用できます。他の WordPress サイトにこのサイトのクイックタグの設定を取り込むことができます。"
+
+# @ addquicktag
+#: inc/class-imexport.php:72
+msgid "Download Export File"
+msgstr "エクスポートファイルのダウンロード"
+
+# @ addquicktag
+#: inc/class-imexport.php:80
+msgid "Import"
+msgstr "インポート"
+
+# @ addquicktag
+#: inc/class-imexport.php:82
+msgid "If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import."
+msgstr "このプラグインを他のサイトで利用の場合、その設定をインポートできます。インポートするファイルを選択してください。"
+
+# @ addquicktag
+#: inc/class-imexport.php:87
+msgid "Upload file and import"
+msgstr "ファイルのアップロード・インポート"
+
+# @ addquicktag
+#: inc/class-imexport.php:178
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "権限がないため設定は更新されません。"
+
+# @ addquicktag
+#: inc/class-settings.php:387
+msgid "Options saved."
+msgstr "設定は保存されました。"
+

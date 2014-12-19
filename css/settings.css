@@ -1,0 +1,10 @@
+/**
+ * AddQuicktag settings style
+ *
+ * @package  AddQuicktag Plugin
+ * @author   Frank Bueltge <frank@bueltge.de>
+ * @version  06/19/2014
+ * @since    2.02.3
+ */
+
+.rmnlQuicktagSettings .rmnlqsheader{height:10em;vertical-align:bottom}.hover,table tr:hover{background-color:#ccc}.rmnlCodeQuicktagSettings th,.rmnlCoreQuicktagSettings th,.rmnlQuicktagSettings th{vertical-align:bottom!important;text-align:center}.rmnlQuicktagSettings .rotate{padding:0!important;margin:0 auto;width:1.2em;vertical-align:bottom!important}.rmnlQuicktagSettings .rotate span{display:block;padding:0!important;margin:0 auto;width:1.2em;vertical-align:middle!important;white-space:nowrap;writing-mode:tb-rl;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);-ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"}.rmnlQuicktagSettings input[type=text]{height:3.5em;width:99%;margin:0 0 .5em}.rmnlQuicktagSettings textarea{height:3.5em;width:99%;margin:0 0 .2em}
