@@ -6,36 +6,11 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.4.0
+ * Version:     2.4.1
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
- *
- *
- *
- * License:
- * ==============================================================================
- * Copyright 2011 - 2014 Frank Bültge  (email : frank@bueltge.de)
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * Requirements:
- * ==============================================================================
- * This plugin requires WordPress >= 3.9 and tested with PHP Interpreter >= 5.3
- *
- *
+ * License URI: ./license.txt
  *
  * Add Quicktag Plugin class
  *

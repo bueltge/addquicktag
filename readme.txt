@@ -147,6 +147,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= 2.4.1 (2015-01-19) =
+* Bugfix for save label of each button; change sanitizing
+
 = 2.4.0 (12/18/2014) =
 * Add traditional Chinese (zh_TW) langugae files
 * Fix filter topic to use tags with attributes [issue #30](https://github.com/bueltge/AddQuicktag/issues/30)

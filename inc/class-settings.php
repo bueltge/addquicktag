@@ -632,7 +632,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 				//preg_replace( '~[^\p{L}]~u', '', $string );
 
-				$b[ 'text' ]  = tag_escape( $b[ 'text' ] );
+				$b[ 'text' ]  = remove_accents( sanitize_text_field( $b[ 'text' ] ) );
 				$b[ 'title' ] = remove_accents( sanitize_text_field( $b[ 'title' ] ) );
 				$b[ 'start' ] = wp_kses_stripslashes( $b[ 'start' ] );
 				$b[ 'end' ]   = wp_kses_stripslashes( $b[ 'end' ] );
