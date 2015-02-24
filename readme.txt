@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: trunk
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
@@ -11,7 +11,7 @@ This plugin makes it easy to add Quicktags to the html - and visual-editor.
 == Description ==
 This plugin makes it easy to add Quicktags to the html - and visual-editor. It is possible to export your Quicktags as a JSON - file that can be imported in other installations of the plugin. 
 
-WP-AddQuicktag for WordPress is originally created by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions in the Repo of AddQuicktag are newer versions, this is a complete rewrite of version 2.0.0 with more functionalities.
+WP-AddQuicktag for WordPress is originally created by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions in the Repo of AddQuicktag are newer versions, this is a complete rewrite of version 2.0.0 with more functionality.
 
 The plugin can add configurable custom quicktags to the editor of every post type, including custom post types from other sources. You may choose a post type for which a quicktag shall show up in the editor.
 If this should not work perfectly well for you, you may also use the hooks inside the plugin. See the examples and hint inside the tab "[Other Notes](http://wordpress.org/extend/plugins/addquicktag/other_notes/)".
@@ -35,7 +35,7 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 **Versions before WordPress 3.0**
 
-If you wish to use this plugin with an older version of WordPress, please use an older version of this plugin, older than version 2.0.0 - you find old versions in the [repo](http://wordpress.org/extend/plugins/addquicktag/download/). Anyway, I will not support this version. The plugin version 2.0.0 and newer are rewrites, that use all new possibilties of the WordPress Core that are not available in WordPress versions before 3.x.
+If you wish to use this plugin with an older version of WordPress, please use an older version of this plugin, older than version 2.0.0 - you find old versions in the [repo](http://wordpress.org/extend/plugins/addquicktag/download/). Anyway, I will not support this version. The plugin version 2.0.0 and newer are rewrites, that use all new possibilities of the WordPress Core that are not available in WordPress versions before 3.x.
 
 
 == Screenshots ==
@@ -55,7 +55,7 @@ If you wish to use this plugin with an older version of WordPress, please use an
 * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
 * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
 * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005), see also his [seetings tutorial video](https://yadi.sk/i/l6YwDpa_V3FaV)
-* Ukranian translation by [Michael Yunat](http://getvoip.com/blog)
+* Ukrainian translation by [Michael Yunat](http://getvoip.com/blog)
 
 = Hook for custom post types =
 The plugin adds the quicktag by default to post types/ID `post`, `page` and `comment`. To use the plugin for other post types also you may use a filter; see the following example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
@@ -143,17 +143,20 @@ The following example adds buttons. The params inside the array are the same as 
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Translations =
-The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information on activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or the plugin [Localization](http://wordpress.org/extend/plugins/codestyling-localization/) for WordPress.
+The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information on activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all definitions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows) or the plugin [Localization](http://wordpress.org/extend/plugins/codestyling-localization/) for WordPress.
 
 
 == Changelog ==
+= 2.4.2 (2015-02-24) =
+* Remove `remove_accents()` for save title and attribute on buttons to allow all characters.
+
 = 2.4.1 (2015-01-19) =
 * Bugfix for save label of each button; change sanitizing
 
 = 2.4.0 (12/18/2014) =
-* Add traditional Chinese (zh_TW) langugae files
+* Add traditional Chinese (zh_TW) language files
 * Fix filter topic to use tags with attributes [issue #30](https://github.com/bueltge/AddQuicktag/issues/30)
-* Update grammer topics [Issue #29](https://github.com/bueltge/AddQuicktag/issues/29)
+* Update grammar topics [Issue #29](https://github.com/bueltge/AddQuicktag/issues/29)
 
 = 2.3.3 (06/26/2014) =
 * Fix PHP notice on different installs
@@ -170,21 +173,21 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Fix JavaScript error on code_buttons
 
 = 2.3.0 (06/19/2014) =
-* Allow Quicktags on edit-comment and quick-edit screen on default
-* Add possibilty to remove core quicktags from each post type
+* Allow quicktags on edit-comment and quick-edit screen on default
+* Add possibility to remove core quicktags from each post type
 * Add possibility to add enhanced code buttons to mask code and format
 * Rewrite the Im-Export function (now works simple with json)
 * Rewrite the german language file
 
 = 2.3.0-RC1 (05/22/2014) =
-* Use on default all post types with active UI, incl. Custom and Defaul Post types
+* Use on default all post types with active UI, incl. Custom and Default Post types
 * New settings UI to easier add quicktags to each post type
-* Add Widget area, now it is possible to use Quicktags on widgets with WP editor
+* Add Widget area, now it is possible to use quicktags on widgets with WP editor
 * Add brazilian translation
 * Add turkish translation
 * Add possibility to remove default quicktags
 * Changes on settings style, check in MP6 design, WP 3.8
-* Add ukranian translation
+* Add ukrainian translation
 * Add solution to remove core quicktag, Beta Status
 * Fix TinyMCE Select Box in WordPress 3.9*
 
@@ -202,12 +205,12 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Add more data in JSON
 * Fix for custom post types; works now also on settings page
 * Change function to add button in html editor --> `QTags.addButton()`
-* Update im/export function for use with custmo post type
+* Update im/export function for use with custom post type
 * Fix settings page on network for WP 3.5
 
 = 2.1.0 =
 * Add fix, see [Forum thread 'array_multisort error'](http://wordpress.org/support/topic/plugin-addquicktag-array_multisort-error#post-2920394)
-* See Quicktag button in visual editor, onbly if an button is actove for visual
+* See quicktag button in visual editor, only if an button is active for visual
 * Change hooks for include scripts
 * Add filter for page in backend
 * Add edit comments to use quicktags
@@ -238,9 +241,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * kill php warnings on debug-mode
 
 = v1.6.4 (12/22/2010) =
-* small changes for depreaced WP functions
+* small changes for deprecated WP functions
 
 = v1.6.3 (16/06/2009) =
-* Add belarussian language file, thanks to Fat Cow
+* Add belorussian language file, thanks to Fat Cow
 
 Find out about older changes on the [the official website](http://bueltge.de/wp-addquicktags-de-plugin/120/#historie "AddQuicktag")!
