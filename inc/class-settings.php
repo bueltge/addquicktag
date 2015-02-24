@@ -98,9 +98,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			// add settings link
 			add_filter(
 				'network_admin_plugin_action_links', array(
-					$this,
-					'network_admin_plugin_action_links'
-				), 10, 2
+				$this,
+				'network_admin_plugin_action_links'
+			), 10, 2
 			);
 			// save settings on network
 			add_action( 'network_admin_edit_' . self::$option_string, array( $this, 'save_network_settings_page' ) );
@@ -168,7 +168,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function plugin_action_links( $links, $file ) {
 
-		if ( parent :: get_plugin_string() == $file ) {
+		if ( parent:: get_plugin_string() == $file ) {
 			$links[ ] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . __( 'Settings' ) . '</a>';
 		}
 
@@ -188,7 +188,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function network_admin_plugin_action_links( $links, $file ) {
 
-		if ( parent :: get_plugin_string() == $file ) {
+		if ( parent:: get_plugin_string() == $file ) {
 			$links[ ] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . __( 'Settings' ) . '</a>';
 		}
 
@@ -207,21 +207,20 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			add_submenu_page(
 				'settings.php',
-				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
-				parent :: get_plugin_data( 'Name' ),
+				parent:: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
+				parent:: get_plugin_data( 'Name' ),
 				'manage_options',
 				plugin_basename( __FILE__ ),
 				array( $this, 'get_settings_page' )
 			);
 		} else {
 			add_options_page(
-				parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
-				parent :: get_plugin_data( 'Name' ),
+				parent:: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', $this->get_textdomain() ),
+				parent:: get_plugin_data( 'Name' ),
 				'manage_options',
 				plugin_basename( __FILE__ ),
 				array( $this, 'get_settings_page' )
 			);
-			add_action( 'contextual_help', array( $this, 'contextual_help' ), 10, 3 );
 		}
 	}
 
@@ -236,224 +235,221 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 		?>
 		<div class="wrap">
-		<h2><?php echo parent :: get_plugin_data( 'Name' ); ?></h2>
+			<h2><?php echo parent:: get_plugin_data( 'Name' ); ?></h2>
 
-		<h3><?php _e( 'Add or delete Quicktag buttons', $this->get_textdomain() ); ?></h3>
+			<h3><?php _e( 'Add or delete Quicktag buttons', $this->get_textdomain() ); ?></h3>
 
-		<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
+			<p><?php _e( 'Fill in the fields below to add or edit the quicktags. Fields with * are required. To delete a tag simply empty all fields.', $this->get_textdomain() ); ?></p>
 
-		<?php
-		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
-			$action = 'edit.php?action=' . self::$option_string;
-		} else {
-			$action = 'options.php';
-		}
-		?>
-		<form method="post" action="<?php echo $action; ?>">
 			<?php
 			if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
-				wp_nonce_field( self::$nonce_string );
-				$options = get_site_option( self::$option_string );
+				$action = 'edit.php?action=' . self::$option_string;
 			} else {
-				settings_fields( self::$option_string . '_group' );
-				$options = get_option( self::$option_string );
-			}
-
-			if ( ! isset( $options[ 'buttons' ] ) ) {
-				$options[ 'buttons' ] = array();
-			}
-
-			if ( 1 < count( $options[ 'buttons' ] ) ) {
-				// sort array by order value
-				$tmp = array();
-				foreach ( $options[ 'buttons' ] as $order ) {
-					if ( isset( $order[ 'order' ] ) ) {
-						$tmp[ ] = $order[ 'order' ];
-					} else {
-						$tmp[ ] = 0;
-					}
-				}
-				array_multisort( $tmp, SORT_ASC, $options[ 'buttons' ] );
-			}
-
-			// loop about the post types, create html an values for title in table
-			$pt_title    = '';
-			$pt_colgroup = '';
-			foreach ( $this->get_post_types_for_js() as $post_type ) {
-
-				$pt_title .= '<th class="row-title rotate" title="Post Type"><span><code>' . $post_type . '</code></span></th>' . "\n";
-				$pt_colgroup .= '<colgroup></colgroup>' . "\n";
+				$action = 'options.php';
 			}
 			?>
-
-			<table class="widefat form-table rmnlQuicktagSettings">
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<?php echo $pt_colgroup; ?>
-				<colgroup></colgroup>
-
-				<tr class="rmnlqsheader">
-					<th class="row-title"><?php _e( 'Button Label* and', $this->get_textdomain() ); ?><br />
-						<?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
-					<th class="row-title"><?php _e( 'Start Tag(s)* and', $this->get_textdomain() ); ?><br />
-						<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
-					<th class="row-title"><?php _e( 'Access Key and', $this->get_textdomain() ); ?><br />
-						<?php _e( 'Order', $this->get_textdomain() ); ?></th>
-					<th class="row-title rotate"><span><?php _e( 'Visual', $this->get_textdomain() ); ?></span></th>
-					<?php echo $pt_title ?>
-					<th class="row-title rotate">&#x2714;</th>
-				</tr>
+			<form method="post" action="<?php echo $action; ?>">
 				<?php
-				if ( empty( $options[ 'buttons' ] ) ) {
+				if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+					wp_nonce_field( self::$nonce_string );
+					$options = get_site_option( self::$option_string );
+				} else {
+					settings_fields( self::$option_string . '_group' );
+					$options = get_option( self::$option_string );
+				}
+
+				if ( ! isset( $options[ 'buttons' ] ) ) {
 					$options[ 'buttons' ] = array();
 				}
-				$class = '';
-				for ( $i = 0; $i < count( $options[ 'buttons' ] ); $i ++ ) {
-					$class       = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
-					$b           = $options[ 'buttons' ][ $i ];
-					$b[ 'text' ] = htmlentities( stripslashes( $b[ 'text' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
-					if ( isset( $b[ 'title' ] ) ) {
-						$b[ 'title' ] = htmlentities( stripslashes( $b[ 'title' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
-					}
-					$b[ 'start' ] = htmlentities( $b[ 'start' ], ENT_COMPAT, get_option( 'blog_charset' ) );
-					if ( isset( $b[ 'end' ] ) ) {
-						$b[ 'end' ] = htmlentities( $b[ 'end' ], ENT_COMPAT, get_option( 'blog_charset' ) );
-					}
-					if ( ! isset( $b[ 'access' ] ) ) {
-						$b[ 'access' ] = '';
-					}
-					$b[ 'access' ] = htmlentities( $b[ 'access' ], ENT_COMPAT, get_option( 'blog_charset' ) );
-					if ( ! isset( $b[ 'order' ] ) ) {
-						$b[ 'order' ] = 0;
-					}
-					$b[ 'order' ] = intval( $b[ 'order' ] );
-					if ( ! isset( $b[ 'visual' ] ) ) {
-						$b[ 'visual' ] = 0;
-					}
-					$b[ 'visual' ] = intval( $b[ 'visual' ] );
-					if ( 1 == $b[ 'visual' ] ) {
-						$checked = ' checked="checked"';
-					} else {
-						$checked = '';
-					}
-					// loop about the post types, create html an values
-					$pt_checkboxes = '';
-					foreach ( $this->get_post_types_for_js() as $post_type ) {
 
+				if ( 1 < count( $options[ 'buttons' ] ) ) {
+					// sort array by order value
+					$tmp = array();
+					foreach ( $options[ 'buttons' ] as $order ) {
+						if ( isset( $order[ 'order' ] ) ) {
+							$tmp[ ] = $order[ 'order' ];
+						} else {
+							$tmp[ ] = 0;
+						}
+					}
+					array_multisort( $tmp, SORT_ASC, $options[ 'buttons' ] );
+				}
+
+				// loop about the post types, create html an values for title in table
+				$pt_title    = '';
+				$pt_colgroup = '';
+				foreach ( $this->get_post_types_for_js() as $post_type ) {
+
+					$pt_title .= '<th class="row-title rotate" title="Post Type"><span><code>' . $post_type . '</code></span></th>' . "\n";
+					$pt_colgroup .= '<colgroup></colgroup>' . "\n";
+				}
+				?>
+
+				<table class="widefat form-table rmnlQuicktagSettings">
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<colgroup></colgroup>
+					<?php echo $pt_colgroup; ?>
+					<colgroup></colgroup>
+
+					<tr class="rmnlqsheader">
+						<th class="row-title"><?php _e( 'Button Label* and', $this->get_textdomain() ); ?><br />
+							<?php _e( 'Title Attribute', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Start Tag(s)* and', $this->get_textdomain() ); ?><br />
+							<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
+						<th class="row-title"><?php _e( 'Access Key and', $this->get_textdomain() ); ?><br />
+							<?php _e( 'Order', $this->get_textdomain() ); ?></th>
+						<th class="row-title rotate"><span><?php _e( 'Visual', $this->get_textdomain() ); ?></span></th>
+						<?php echo $pt_title ?>
+						<th class="row-title rotate">&#x2714;</th>
+					</tr>
+					<?php
+					if ( empty( $options[ 'buttons' ] ) ) {
+						$options[ 'buttons' ] = array();
+					}
+					$class = '';
+					for ( $i = 0; $i < count( $options[ 'buttons' ] ); $i ++ ) {
+						$class       = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+						$b           = $options[ 'buttons' ][ $i ];
+						$b[ 'text' ] = htmlentities( stripslashes( $b[ 'text' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
+						if ( isset( $b[ 'title' ] ) ) {
+							$b[ 'title' ] = htmlentities( stripslashes( $b[ 'title' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
+						}
+						$b[ 'start' ] = htmlentities( $b[ 'start' ], ENT_COMPAT, get_option( 'blog_charset' ) );
+						if ( isset( $b[ 'end' ] ) ) {
+							$b[ 'end' ] = htmlentities( $b[ 'end' ], ENT_COMPAT, get_option( 'blog_charset' ) );
+						}
+						if ( ! isset( $b[ 'access' ] ) ) {
+							$b[ 'access' ] = '';
+						}
+						$b[ 'access' ] = htmlentities( $b[ 'access' ], ENT_COMPAT, get_option( 'blog_charset' ) );
+						if ( ! isset( $b[ 'order' ] ) ) {
+							$b[ 'order' ] = 0;
+						}
+						$b[ 'order' ] = intval( $b[ 'order' ] );
+						if ( ! isset( $b[ 'visual' ] ) ) {
+							$b[ 'visual' ] = 0;
+						}
+						$b[ 'visual' ] = intval( $b[ 'visual' ] );
+						if ( 1 == $b[ 'visual' ] ) {
+							$checked = ' checked="checked"';
+						} else {
+							$checked = '';
+						}
+						// loop about the post types, create html an values
+						$pt_checkboxes = '';
+						foreach ( $this->get_post_types_for_js() as $post_type ) {
+
+							if ( ! isset( $b[ $post_type ] ) ) {
+								$b[ $post_type ] = 0;
+							}
+
+							$b[ $post_type ] = intval( $b[ $post_type ] );
+
+							if ( 1 == $b[ $post_type ] ) {
+								$pt_checked = ' checked="checked"';
+							} else {
+								$pt_checked = '';
+							}
+
+							$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
+							                  self::$option_string . '[buttons][' .
+							                  $i . '][' . $post_type . ']" value="1" ' .
+							                  $pt_checked . '/></td>' . "\n";
+						}
+
+						echo '
+					<tr id="rmqtb' . $i . '">
+						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i
+						     . '][text]" value="' . $b[ 'text' ] . '" /><br />
+						<input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="'
+						     . $b[ 'title' ] . '" /></td>
+						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
+						     . '][start]" rows="2" cols="25" >' . $b[ 'start' ] . '</textarea><br />
+						<textarea class="code" name="' . self::$option_string . '[buttons][' . $i
+						     . '][end]" rows="2" cols="25" >' . $b[ 'end' ] . '</textarea></td>
+						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						     . '][access]" value="' . $b[ 'access' ] . '" /><br />
+						<input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						     . '][order]" value="' . $b[ 'order' ] . '" /></td>
+						<td class="num"><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i
+						     . '][visual]" value="1"' . $checked . '/></td>' .
+						     $pt_checkboxes . '
+						<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="' . $i . '" /></td>' . '
+					</tr>
+					';
+					}
+
+					// loop about the post types, create html an values for empty new checkboxes
+					$pt_new_boxes = '';
+					foreach ( $this->get_post_types_for_js() as $post_type ) {
 						if ( ! isset( $b[ $post_type ] ) ) {
 							$b[ $post_type ] = 0;
 						}
 
 						$b[ $post_type ] = intval( $b[ $post_type ] );
 
-						if ( 1 == $b[ $post_type ] ) {
-							$pt_checked = ' checked="checked"';
-						} else {
-							$pt_checked = '';
-						}
-
-						$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
-						                  self::$option_string . '[buttons][' .
-						                  $i . '][' . $post_type . ']" value="1" ' .
-						                  $pt_checked . '/></td>' . "\n";
+						$pt_new_boxes .= '<td class="num"><input type="checkbox" name="' .
+						                 self::$option_string . '[buttons][' .
+						                 $i . '][' . $post_type . ']" value="1" /></td>' . "\n";
 					}
-
-					echo '
-					<tr id="rmqtb' . $i . '">
-						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i
-					     . '][text]" value="' . $b[ 'text' ] . '" /><br />
-						<input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="'
-					     . $b[ 'title' ] . '" /></td>
-						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
-					     . '][start]" rows="2" cols="25" >' . $b[ 'start' ] . '</textarea><br />
-						<textarea class="code" name="' . self::$option_string . '[buttons][' . $i
-					     . '][end]" rows="2" cols="25" >' . $b[ 'end' ] . '</textarea></td>
-						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
-					     . '][access]" value="' . $b[ 'access' ] . '" /><br />
-						<input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
-					     . '][order]" value="' . $b[ 'order' ] . '" /></td>
-						<td class="num"><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i
-					     . '][visual]" value="1"' . $checked . '/></td>' .
-					     $pt_checkboxes . '
-						<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="' . $i . '" /></td>' . '
+					?>
+					<tr id="rmqtb<?php echo $i ?>">
+						<td>
+							<input type="text" placeholder="<?php _e( 'Button Label*', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
+							<input type="text" placeholder="<?php _e( 'Title Attribute', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" />
+						</td>
+						<td>
+							<textarea placeholder="<?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25"></textarea><br />
+							<textarea placeholder="<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25"></textarea>
+						</td>
+						<td>
+							<input type="text" placeholder="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" title="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /><br />
+							<input type="text" placeholder="<?php _e( 'Order', $this->get_textdomain() ); ?>" title="<?php _e( 'Order', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" />
+						</td>
+						<td class="num">
+							<label>
+								<input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" />
+							</label>
+						</td>
+						<?php echo $pt_new_boxes; ?>
+						<td class="num">
+							<label for="select_all_<?php echo $i ?>"><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></label>
+						</td>
 					</tr>
-					';
-				}
+				</table>
 
-				// loop about the post types, create html an values for empty new checkboxes
-				$pt_new_boxes = '';
-				foreach ( $this->get_post_types_for_js() as $post_type ) {
-					if ( ! isset( $b[ $post_type ] ) ) {
-						$b[ $post_type ] = 0;
-					}
+				<p class="submit">
+					<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
+				</p>
 
-					$b[ $post_type ] = intval( $b[ $post_type ] );
+				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 
-					$pt_checked = '';
-					if ( 1 == $b[ $post_type ] ) {
-						$pt_checked = ' checked="checked"';
-					}
+				<p class="submit">
+					<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
+				</p>
 
-					$pt_new_boxes .= '<td class="num"><input type="checkbox" name="' .
-					                 self::$option_string . '[buttons][' .
-					                 $i . '][' . $post_type . ']" value="1" /></td>' . "\n";
-				}
-				?>
-				<tr id="rmqtb<?php echo $i ?>">
-					<td>
-						<input type="text" placeholder="<?php _e( 'Button Label*', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
-						<input type="text" placeholder="<?php _e( 'Title Attribute', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" />
-					</td>
-					<td>
-						<textarea placeholder="<?php _e( 'Start Tag(s)*', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][start]" rows="2" cols="25"></textarea><br />
-						<textarea placeholder="<?php _e( 'End Tag(s)', $this->get_textdomain() ); ?>" class="code" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][end]" rows="2" cols="25"></textarea>
-					</td>
-					<td>
-						<input type="text" placeholder="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" title="<?php _e( 'Access Key', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][access]" value="" /><br />
-						<input type="text" placeholder="<?php _e( 'Order', $this->get_textdomain() ); ?>" title="<?php _e( 'Order', $this->get_textdomain() ); ?>" class="small-text" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][order]" value="" />
-					</td>
-					<td class="num">
-						<input type="checkbox" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][visual]" value="1" />
-					</td>
-					<?php echo $pt_new_boxes; ?>
-					<td class="num">
-						<input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" />
-					</td>
-				</tr>
-			</table>
+			</form>
 
-			<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
-			</p>
+			<div class="metabox-holder has-right-sidebar">
 
-			<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
-
-			<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
-			</p>
-
-		</form>
-
-		<div class="metabox-holder has-right-sidebar">
-
-			<div class="inner-sidebar">
-				<?php do_action( 'addquicktag_settings_page_sidebar' ); ?>
-			</div>
-			<!-- .inner-sidebar -->
-
-			<div id="post-body">
-				<div id="post-body-content">
-					<?php do_action( 'addquicktag_settings_page', $options ); ?>
+				<div class="inner-sidebar">
+					<?php do_action( 'addquicktag_settings_page_sidebar' ); ?>
 				</div>
-				<!-- #post-body-content -->
-			</div>
-			<!-- #post-body -->
+				<!-- .inner-sidebar -->
 
-		</div>
-		<!-- .metabox-holder -->
+				<div id="post-body">
+					<div id="post-body-content">
+						<?php do_action( 'addquicktag_settings_page', $options ); ?>
+					</div>
+					<!-- #post-body-content -->
+				</div>
+				<!-- #post-body -->
+
+			</div>
+			<!-- .metabox-holder -->
 
 		</div>
 	<?php
@@ -516,12 +512,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			<div class="inside">
 				<p>
 					<strong><?php _e( 'Version:', $this->get_textdomain() ); ?></strong>
-					<?php echo parent :: get_plugin_data( 'Version' ); ?>
+					<?php echo parent:: get_plugin_data( 'Version' ); ?>
 				</p>
 
 				<p>
 					<strong><?php _e( 'Description:', $this->get_textdomain() ); ?></strong>
-					<?php echo parent :: get_plugin_data( 'Description' ); ?>
+					<?php echo parent:: get_plugin_data( 'Description' ); ?>
 				</p>
 			</div>
 
@@ -570,7 +566,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 		// if updated and the right page
 		if ( isset( $_GET[ 'updated' ] ) &&
-		     'settings_page_addquicktag/inc/class-settings-network' === $GLOBALS[ 'current_screen' ] ->id
+		     'settings_page_addquicktag/inc/class-settings-network' === $GLOBALS[ 'current_screen' ]->id
 		) {
 			$message = __( 'Options saved.', $this->get_textdomain() );
 			$notice  = '<div id="message" class="updated"><p>' . $message . '</p></div>';
@@ -686,12 +682,12 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			/**
 			 * $key is core-string
 			 * 'core_buttons' =>
-					array (size=1)
-					'strong' =>
-					array (size=2)
-					'post' => string '1' (length=1)
-					'page' => string '1' (length=1)
-			*/
+			 * array (size=1)
+			 * 'strong' =>
+			 * array (size=2)
+			 * 'post' => string '1' (length=1)
+			 * 'page' => string '1' (length=1)
+			 */
 			$filtered_core_buttons = array();
 			foreach ( $core_buttons as $key => $var ) {
 
@@ -784,29 +780,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		wp_enqueue_style( self::$option_string . '_admin_style' );
 	}
 
-	/**
-	 * Add help text
-	 * @uses    normalize_whitespace
-	 *
-	 * @param   string $contextual_help
-	 * @param   string $screen_id
-	 * @param   string $screen
-	 *
-	 * @since   2.0.0
-	 * @return  string $contextual_help
-	 */
-	public function contextual_help( $contextual_help, $screen_id, $screen ) {
-
-		if ( 'settings_page_' . self::$option_string . '_group' !== $screen_id ) {
-			return $contextual_help;
-		}
-
-		$contextual_help =
-			'<p>' . __( '' ) . '</p>';
-
-		return normalize_whitespace( $contextual_help );
-	}
-
 }
 
-$add_quicktag_settings = Add_Quicktag_Settings :: get_object();
+$add_quicktag_settings = Add_Quicktag_Settings:: get_object();
