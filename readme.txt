@@ -19,9 +19,9 @@ If this should not work perfectly well for you, you may also use the hooks insid
 = Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
 
-**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
+**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
 
-Have a look at the premium plugins in our [market](http://marketpress.com).
+Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
 
 == Installation ==
 = Requirements =
