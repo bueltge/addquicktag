@@ -1,0 +1,348 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AddQuicktag v2.3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-05-30 23:22+0100\n"
+"Last-Translator: Michal Stanke <michal.stanke@mikk.cz>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"Language: cs_CZ\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ addquicktag
+#. translators: plugin header field 'Name'
+#: addquicktag.php:0
+msgid "AddQuicktag"
+msgstr "AddQuicktag"
+
+# @ addquicktag
+#. translators: plugin header field 'PluginURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+msgstr "http://bueltge.de/wp-addquicktags-de-plugin/120/"
+
+# @ addquicktag
+#. translators: plugin header field 'Author'
+#: addquicktag.php:0
+msgid "Frank Bültge"
+msgstr "Frank Bültge"
+
+# @ addquicktag
+#. translators: plugin header field 'AuthorURI'
+#: addquicktag.php:0
+msgid "http://bueltge.de"
+msgstr "http://bueltge.de"
+
+# @ default
+# @ addquicktag
+#: inc/class-settings.php:172 inc/class-settings.php:192
+#: inc/class-settings.php:210 inc/class-settings.php:218
+msgid "Settings"
+msgstr "Nastavení"
+
+# @ addquicktag
+#: inc/class-settings.php:241
+msgid "Add or delete Quicktag buttons"
+msgstr "Přidat nebo smazat tlačítka"
+
+# @ addquicktag
+#: inc/class-settings.php:408
+msgid "Button Label*"
+msgstr "Popisek tlačítka*"
+
+# @ addquicktag
+#: inc/class-settings.php:300 inc/class-settings.php:409
+msgid "Title Attribute"
+msgstr "Atribut title"
+
+# @ addquicktag
+#: inc/class-settings.php:412
+msgid "Start Tag(s)*"
+msgstr "Počáteční značky*"
+
+# @ addquicktag
+#: inc/class-settings.php:302 inc/class-settings.php:413
+msgid "End Tag(s)"
+msgstr "Koncové značky"
+
+# @ addquicktag
+#: inc/class-settings.php:416
+msgid "Access Key"
+msgstr "Access Key"
+
+# @ default
+#: inc/class-settings.php:432
+msgid "Save Changes"
+msgstr "Uložit změny"
+
+# @ addquicktag
+#: inc/class-settings.php:472
+msgid "Like this plugin?"
+msgstr "Líbí se vám tento plugin?"
+
+# @ addquicktag
+#: inc/class-settings.php:475
+msgid "Here's how you can give back:"
+msgstr "Jak můžete zaslat zpětnou vazbu:"
+
+# @ addquicktag
+#: inc/class-settings.php:478
+msgid "The Plugin on the WordPress plugin repository"
+msgstr "Stránka pluginu v adresáři WordPressu"
+
+# @ addquicktag
+#: inc/class-settings.php:478
+msgid "Give the plugin a good rating."
+msgstr "Dejte pluginu dobré hodnocení."
+
+# @ addquicktag
+#: inc/class-settings.php:484
+msgid "Donate via PayPal"
+msgstr "Přispějte přes PayPal"
+
+# @ addquicktag
+#: inc/class-settings.php:484
+msgid "Donate a few euros."
+msgstr "Přispějte několik Euro."
+
+# @ addquicktag
+#: inc/class-settings.php:487
+msgid "Frank Bültge's Amazon Wish List"
+msgstr "Frank Bültge's Amazon Wish List"
+
+# @ addquicktag
+#: inc/class-settings.php:487
+msgid "Get me something from my wish list."
+msgstr "Pořiďte mi něco z mého seznamu přání."
+
+# @ addquicktag
+#: inc/class-settings.php:511
+msgid "About this plugin"
+msgstr "O tomto pluginu"
+
+# @ addquicktag
+#: inc/class-settings.php:515
+msgid "Version:"
+msgstr "Verze:"
+
+# @ addquicktag
+#: inc/class-settings.php:520
+msgid "Description:"
+msgstr "Popis:"
+
+# @ addquicktag
+#: inc/class-settings.php:304 inc/class-settings.php:417
+msgid "Order"
+msgstr "Pořadí"
+
+# @ addquicktag
+#: inc/class-settings.php:305
+msgid "Visual"
+msgstr "Vizuální editor"
+
+# @ addquicktag
+#. translators: plugin header field 'Description'
+#: addquicktag.php:0
+msgid ""
+"Allows you to easily add custom Quicktags to the html- and visual-editor."
+msgstr ""
+"Umožňuje snadno přidat vlastní rychlé značky v režimu vizuálního editoru i "
+"HTML."
+
+# @ addquicktag
+#: inc/class-imexport.php:106
+msgid "Export"
+msgstr "Export"
+
+# @ addquicktag
+#: inc/class-imexport.php:109
+msgid ""
+"When you click the button below the plugin will create an JSON file for you "
+"to save to your computer."
+msgstr ""
+"Po klepnutí na tlačítko níže plugin vytvoří JSON soubor pro uložení exportu "
+"do vašeho počítače."
+
+# @ addquicktag
+#: inc/class-imexport.php:111
+msgid "This format, a custom JSON, will contain your options from quicktags."
+msgstr "Tento formát, vlastní JSON, bude obsahovat vaše nastavení."
+
+# @ addquicktag
+#: inc/class-imexport.php:113
+msgid ""
+"Once you’ve saved the download file, you can use the Import function in "
+"another WordPress installation to import this site."
+msgstr ""
+"Po uložení staženého souboru můžete použít v jakékoliv další instalaci "
+"WordPressu funkci pro import nastavení z této stránky."
+
+# @ addquicktag
+#: inc/class-imexport.php:118
+msgid "Download Export File"
+msgstr "Stáhnout soubor s exportem"
+
+# @ addquicktag
+#: inc/class-imexport.php:126
+msgid "Import"
+msgstr "Import"
+
+# @ addquicktag
+#: inc/class-imexport.php:135
+msgid "Upload file and import"
+msgstr "Nahrát soubor a importovat"
+
+# @ addquicktag
+#: inc/class-imexport.php:189
+msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgstr "Nastavení nebylo aktualizováno - nemáte dostatečná oprávnění!"
+
+# @ addquicktag
+#: inc/class-settings.php:572
+msgid "Options saved."
+msgstr "Nastavení uloženo."
+
+# @ addquicktag
+#: inc/class-settings.php:490
+msgid ""
+"Please give me feedback, contribute and file technical bugs on this GitHub "
+"Repo, use Issues."
+msgstr ""
+"Pošlete mi prosím reakci, jak se vám plugin líbí, přispějte nebo nahlaste "
+"technické chyby v tomto GitHub repositáři (použijte Issues)."
+
+# @ addquicktag
+#: inc/class-settings.php:490
+msgid "Github Repo for Contribute, Issues & Bugs"
+msgstr "GitHub repositář"
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:81
+msgid "Enhanced Code Quicktag buttons"
+msgstr ""
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:82
+msgid "Select the checkbox below to add enhanced code buttons."
+msgstr ""
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:83
+msgid "pre: Enhanced Code buttons"
+msgstr ""
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:84
+msgid ""
+"Enhanced the default Code buttons. Add a pull down menu for different "
+"languages before the default code button and include this as class inside "
+"the code tag. Also add a pre button for preformatted text."
+msgstr ""
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:85
+msgid "htmlentities: HTML Entities, HTML Decode"
+msgstr "htmlentities: HTML Entities, HTML Decode"
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:86
+msgid ""
+"Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;"
+"lt; and back."
+msgstr ""
+"Přidejte tlačítka pro kódování nevyhovujících HTML entit, jako &lt; na &amp;"
+"lt; nebo zpět."
+
+# @ addquicktag
+#: inc/class-code-quicktags.php:104 inc/class-remove-quicktags.php:85
+msgid "Button"
+msgstr "Tlačítko"
+
+# @ addquicktag
+#: inc/class-imexport.php:129
+msgid ""
+"If you have quicktags from other installs, the plugin can import those into "
+"this site. To get started, choose a file to import. (json-Format)"
+msgstr ""
+"Pokud máte nastavené značky v jiné instalaci, tento plugin umožňuje jejich "
+"import na tuto stránku. Jako první vyberte soubor pro import. (ve formátu "
+"JSON)."
+
+# @ addquicktag
+#: inc/class-imexport.php:198
+msgid "Please upload a valid .json file"
+msgstr "Nahrajte prosím validní soubor .json."
+
+# @ addquicktag
+#: inc/class-imexport.php:204
+msgid "Please upload a file to import."
+msgstr "Nahrajte prosím soubor pro import."
+
+# @ addquicktag
+#: inc/class-remove-quicktags.php:66
+msgid "Remove Core Quicktag buttons"
+msgstr "Odebrat výchozí tlačítka rychlých značek"
+
+# @ addquicktag
+#: inc/class-remove-quicktags.php:67
+msgid ""
+"Select the checkbox below to remove a core quicktags in the editors of the "
+"respective post type."
+msgstr ""
+"Pro odebrání výchozích značek zaškrtněte pole níže pro odpovídající typ "
+"příspěvku."
+
+# @ addquicktag
+#: inc/class-settings.php:243
+msgid ""
+"Fill in the fields below to add or edit the quicktags. Fields with * are "
+"required. To delete a tag simply empty all fields."
+msgstr ""
+"Pro přidání rychlé značky přidejte nebo vyplňte pole níže. Pole označená * "
+"jsou povinná. Pro smazání vlastní značky jednoduše smažte obsah všech jejích "
+"polí."
+
+# @ addquicktag
+#: inc/class-settings.php:299
+msgid "Button Label* and"
+msgstr "Popisek tlačítka* a"
+
+# @ addquicktag
+#: inc/class-settings.php:301
+msgid "Start Tag(s)* and"
+msgstr "Počáteční značky* a"
+
+# @ addquicktag
+#: inc/class-settings.php:303
+msgid "Access Key and"
+msgstr "Access Key a"
+
+# @ addquicktag
+#: inc/class-settings.php:481
+msgid ""
+"Help inside the community other useres and write answer to this plugin "
+"questions."
+msgstr ""
+"Pomáhejte společně s komunitou dalších uživatelů a pište odpovědi na otázky "
+"k tomuto pluginu."
+
+# @ addquicktag
+#: inc/class-settings.php:481
+msgid "Help other users in the Support Forum."
+msgstr "Pomozte dalším uživatelům na fóru podpory."
+
+# @ addquicktag
+#. translators: plugin header field 'Version'
+#: addquicktag.php:0
+msgid "2.3.2"
+msgstr "2.3.2"
