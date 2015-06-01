@@ -56,6 +56,7 @@ If you wish to use this plugin with an older version of WordPress, please use an
 * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
 * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005), see also his [seetings tutorial video](https://yadi.sk/i/l6YwDpa_V3FaV)
 * Ukrainian translation by [Michael Yunat](http://getvoip.com/blog)
+* Czech translation by [Michal Stanke](https://github.com/MikkCZ)
 
 = Hook for custom post types =
 The plugin adds the quicktag by default to post types/ID `post`, `page` and `comment`. To use the plugin for other post types also you may use a filter; see the following example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
@@ -147,6 +148,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
+= ??? =
+* Add czech translation, thanks to [https://github.com/MikkCZ](https://github.com/MikkCZ)
+
 = 2.4.2 (2015-02-24) =
 * Remove `remove_accents()` for save title and attribute on buttons to allow all characters.
 
