@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
-Tested up to: 4.3
+Tested up to: 4.4-alpha
 Stable tag: trunk
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
@@ -148,8 +148,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= ??? =
+= 2.4.3 (2015-08-21) =
 * Add czech translation, thanks to [https://github.com/MikkCZ](https://github.com/MikkCZ)
+* Bugfix: TinyMCE input select was changed in his object, changes on the script for the visual editor to set quicktags.
 
 = 2.4.2 (2015-02-24) =
 * Remove `remove_accents()` for save title and attribute on buttons to allow all characters.

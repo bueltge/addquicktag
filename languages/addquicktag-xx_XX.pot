@@ -199,7 +199,7 @@ msgstr "Datei aktualisieren und importieren"
 
 #: inc/class-imexport.php:189
 #@ addquicktag
-msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgid "Options not update - you don&lsquo;t have the privileges to do this!"
 msgstr "Einstellungen wurden nicht aktualisiert - du hast keine ausreichenden Rechte um dies zu tun!"
 
 #: inc/class-settings.php:572

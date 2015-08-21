@@ -185,7 +185,7 @@ msgid "Upload file and import"
 msgstr "Datei aktualisieren und importieren"
 
 #: inc/class-imexport.php:189
-msgid "Options not update - you don&lsquo;t have the privilidges to do this!"
+msgid "Options not update - you don&lsquo;t have the privileges to do this!"
 msgstr ""
 "Einstellungen wurden nicht aktualisiert - du hast keine ausreichenden Rechte "
 "um dies zu tun!"

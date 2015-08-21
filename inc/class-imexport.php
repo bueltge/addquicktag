@@ -103,19 +103,19 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 		?>
 		<div class="postbox">
-			<h3><span><?php _e( 'Export', parent :: get_textdomain() ); ?></span></h3>
+			<h3><span><?php esc_html_e( 'Export', parent :: get_textdomain() ); ?></span></h3>
 
 			<div class="inside">
-				<p><?php _e( 'When you click the button below the plugin will create an JSON file for you to save to your computer.', parent :: get_textdomain() ); ?></p>
+				<p><?php esc_html_e( 'When you click the button below the plugin will create an JSON file for you to save to your computer.', parent :: get_textdomain() ); ?></p>
 
-				<p><?php _e( 'This format, a custom JSON, will contain your options from quicktags.', parent :: get_textdomain() ); ?></p>
+				<p><?php esc_html_e( 'This format, a custom JSON, will contain your options from quicktags.', parent :: get_textdomain() ); ?></p>
 
-				<p><?php _e( 'Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site.', parent :: get_textdomain() ); ?></p>
+				<p><?php esc_html_e( 'Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site.', parent :: get_textdomain() ); ?></p>
 
 				<form method="get" action="">
 					<?php wp_nonce_field( parent :: $nonce_string ); ?>
 					<p class="submit">
-						<input type="submit" name="submit" value="<?php _e( 'Download Export File', parent :: get_textdomain() ); ?> &raquo;" />
+						<input type="submit" name="submit" value="<?php esc_html_e( 'Download Export File', parent :: get_textdomain() ); ?> &raquo;" />
 						<input type="hidden" name="addquicktag_download" value="true" />
 					</p>
 				</form>
@@ -123,16 +123,16 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		</div>
 
 		<div class="postbox">
-			<h3><span><?php _e( 'Import', parent :: get_textdomain() ); ?></span></h3>
+			<h3><span><?php esc_html_e( 'Import', parent :: get_textdomain() ); ?></span></h3>
 
 			<div class="inside">
-				<p><?php _e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import. (json-Format)', parent :: get_textdomain() ); ?></p>
+				<p><?php esc_html_e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import. (json-Format)', parent :: get_textdomain() ); ?></p>
 
 				<form method="post" action="" enctype="multipart/form-data">
 					<?php wp_nonce_field( parent :: $nonce_string ); ?>
 					<p class="submit">
 						<input type="file" name="import_file" />
-						<input type="submit" name="submit" value="<?php _e( 'Upload file and import', parent :: get_textdomain() ); ?> &raquo;" />
+						<input type="submit" name="submit" value="<?php esc_html_e( 'Upload file and import', parent :: get_textdomain() ); ?> &raquo;" />
 						<input type="hidden" name="addquicktag_import" value="true" />
 					</p>
 				</form>
@@ -166,7 +166,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename=addquicktag.-' . date( 'm-d-Y' ) . '.json' );
-		header( "Expires: 0" );
+		header( 'Expires: 0' );
 
 		echo json_encode( $options );
 		exit;
@@ -186,7 +186,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	public function import_file() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( __( 'Options not update - you don&lsquo;t have the privilidges to do this!', parent::get_textdomain() ) );
+			wp_die( esc_html__( 'Options not update - you don&lsquo;t have the privileges to do this!', parent::get_textdomain() ) );
 		}
 
 		check_admin_referer( parent :: $nonce_string );
@@ -194,14 +194,14 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		$extension = explode( '.', $_FILES[ 'import_file' ][ 'name' ] );
 		$extension = end( $extension );
 
-		if ( $extension != 'json' ) {
-			wp_die( __( 'Please upload a valid .json file', parent::get_textdomain() ) );
+		if ( $extension !== 'json' ) {
+			wp_die( esc_html__( 'Please upload a valid .json file', parent::get_textdomain() ) );
 		}
 
 		$import_file = $_FILES[ 'import_file' ][ 'tmp_name' ];
 
 		if ( empty( $import_file ) ) {
-			wp_die( __( 'Please upload a file to import.', parent::get_textdomain() ) );
+			wp_die( esc_html__( 'Please upload a file to import.', parent::get_textdomain() ) );
 		}
 
 		// Retrieve the settings from the file and convert the json object to an array.

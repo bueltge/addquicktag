@@ -78,12 +78,12 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			$options[ 'code_buttons' ] = array();
 		}
 		?>
-		<h3><?php _e( 'Enhanced Code Quicktag buttons', self::$textdomain ); ?></h3>
-		<p><?php _e( 'Select the checkbox below to add enhanced code buttons.', $this->get_textdomain() ); ?></p>
-		<h4><?php _e( 'pre: Enhanced Code buttons', self::$textdomain ); ?></h4>
-		<p><?php _e( 'Enhanced the default Code buttons. Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text.', self::$textdomain ); ?></p>
-		<h4><?php _e( 'htmlentities: HTML Entities, HTML Decode', self::$textdomain ); ?></h4>
-		<p><?php _e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', self::$textdomain ); ?></p>
+		<h3><?php esc_html_e( 'Enhanced Code Quicktag buttons', self::$textdomain ); ?></h3>
+		<p><?php esc_html_e( 'Select the checkbox below to add enhanced code buttons.', $this->get_textdomain() ); ?></p>
+		<h4><?php esc_html_e( 'pre: Enhanced Code buttons', self::$textdomain ); ?></h4>
+		<p><?php esc_html_e( 'Enhanced the default Code buttons. Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text.', self::$textdomain ); ?></p>
+		<h4><?php esc_html_e( 'htmlentities: HTML Entities, HTML Decode', self::$textdomain ); ?></h4>
+		<p><?php esc_html_e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', self::$textdomain ); ?></p>
 
 		<?php
 		// loop about the post types, create html an values for title in table
@@ -101,7 +101,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			<colgroup></colgroup>
 
 			<tr>
-				<th class="row-title"><?php _e( 'Button', self::$textdomain ); ?></th>
+				<th class="row-title"><?php esc_html_e( 'Button', self::$textdomain ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>

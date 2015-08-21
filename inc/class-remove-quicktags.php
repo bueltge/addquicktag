@@ -63,8 +63,8 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			$options[ 'core_buttons' ] = array();
 		}
 		?>
-		<h3><?php _e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
-		<p><?php _e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', $this->get_textdomain() ); ?></p>
+		<h3><?php esc_html_e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
+		<p><?php esc_html_e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', $this->get_textdomain() ); ?></p>
 
 		<?php
 		// loop about the post types, create html an values for title in table
@@ -82,7 +82,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			<colgroup></colgroup>
 
 			<tr>
-				<th class="row-title"><?php _e( 'Button', parent::get_textdomain() ); ?></th>
+				<th class="row-title"><?php esc_html_e( 'Button', parent::get_textdomain() ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
