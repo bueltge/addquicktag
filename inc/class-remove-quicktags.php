@@ -81,12 +81,15 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			<?php echo $pt_colgroup; ?>
 			<colgroup></colgroup>
 
+			<thead>
 			<tr>
 				<th class="row-title"><?php esc_html_e( 'Button', parent::get_textdomain() ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
+			</thead>
 
+			<tbody>
 			<?php
 			// Convert string to array
 			$core_buttons = explode( ',', self::$core_quicktags );
@@ -143,6 +146,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 			// Convert new buttons array back into a comma-separated string
 			$core_qt = implode( ',', $core_buttons );
 			?>
+			</tbody>
 		</table>
 	<?php
 	}

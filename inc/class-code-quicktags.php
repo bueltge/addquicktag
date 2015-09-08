@@ -100,12 +100,15 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			<?php echo $pt_colgroup; ?>
 			<colgroup></colgroup>
 
+			<thead>
 			<tr>
 				<th class="row-title"><?php esc_html_e( 'Button', self::$textdomain ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
+			</thead>
 
+			<tbody>
 			<?php
 			// Convert string to array
 			//$code_buttons = explode( ',', self::$code_quicktags );
@@ -141,7 +144,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 			// Convert new buttons array back into a comma-separated string
 			//$code_qt = implode( ',', $code_buttons );
 			?>
-
+			</tbody>
 		</table>
 	<?php
 	}

@@ -3,9 +3,17 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  06/19/2014
+ * @version  2015-09-08
  * @since    2.02.3
  */
+
+.fixed{
+	top: 0;
+	position: fixed;
+	width: auto;
+	display: none;
+	border: none;
+}
 
 .rmnlQuicktagSettings .rmnlqsheader {
 	height: 10em;

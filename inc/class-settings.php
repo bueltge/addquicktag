@@ -291,7 +291,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					<colgroup></colgroup>
 					<?php echo $pt_colgroup; ?>
 					<colgroup></colgroup>
-
+					<thead>
 					<tr class="rmnlqsheader">
 						<th class="row-title"><?php esc_html_e( 'Button Label* and', $this->get_textdomain() ); ?><br />
 							<?php esc_html_e( 'Title Attribute', $this->get_textdomain() ); ?></th>
@@ -303,6 +303,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						<?php echo $pt_title ?>
 						<th class="row-title rotate">&#x2714;</th>
 					</tr>
+					</thead>
+					<tbody>
 					<?php
 					if ( empty( $options[ 'buttons' ] ) ) {
 						$options[ 'buttons' ] = array();
@@ -417,6 +419,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							<label for="select_all_<?php echo $i ?>"><input type="checkbox" class="toggle" id="select_all_<?php echo $i ?>" value="<?php echo $i ?>" /></label>
 						</td>
 					</tr>
+					</tbody>
 				</table>
 
 				<p class="submit">
@@ -757,6 +760,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.dev' : '';
 
+		wp_register_script(
+			'jquery.fixedheadertable',
+			plugins_url( '/js/fixed_table_rc.js', parent::get_plugin_string() ),
+			array( 'jquery' ),
+			'1.3',
+			TRUE
+		);
 		wp_register_script(
 			self::$option_string . '_admin_script',
 			plugins_url( '/js/settings' . $suffix . '.js', parent::get_plugin_string() ),
