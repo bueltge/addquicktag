@@ -57,6 +57,7 @@ If you wish to use this plugin with an older version of WordPress, please use an
 * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005), see also his [seetings tutorial video](https://yadi.sk/i/l6YwDpa_V3FaV)
 * Ukrainian translation by [Michael Yunat](http://getvoip.com/blog)
 * Czech translation by [Michal Stanke](https://github.com/MikkCZ)
+* Polish translation by [Rachela](http://couponmachine.in)
 
 = Hook for custom post types =
 The plugin adds the quicktag by default to post types/ID `post`, `page` and `comment`. To use the plugin for other post types also you may use a filter; see the following example or an example plugin in the [Gist 1595155](https://gist.github.com/1595155).
