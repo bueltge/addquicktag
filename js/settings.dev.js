@@ -64,6 +64,9 @@ jQuery(document).ready(function ($) {
 	$('table.rmnlQuicktagSettings').fixMe();
 });
 
+/**
+ * Kudos to: http://codepen.io/jgx/pen/wiIGc
+ */
 (function ($) {
 	$.fn.fixMe = function () {
 		return this.each(function () {
