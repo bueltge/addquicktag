@@ -55,6 +55,21 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	protected $page_hook;
 
 	/**
+	 * Store the allowed html tags for filter text field.
+	 *
+	 * @var
+	 */
+	private $allowed_html = array(
+		'span' => array(
+			'dir'      => TRUE,
+			'align'    => TRUE,
+			'lang'     => TRUE,
+			'xml:lang' => TRUE,
+			'class'    => TRUE,
+		),
+	);
+
+	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 * @access  public
 	 * @since   2.0.0
@@ -169,7 +184,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function plugin_action_links( $links, $file ) {
 
 		if ( parent::get_plugin_string() === $file ) {
-			$links[ ] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . esc_html__( 'Settings' ) . '</a>';
+			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . esc_html__( 'Settings' ) . '</a>';
 		}
 
 		return $links;
@@ -189,7 +204,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function network_admin_plugin_action_links( $links, $file ) {
 
 		if ( parent::get_plugin_string() === $file ) {
-			$links[ ] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . esc_html__( 'Settings' ) . '</a>';
+			$links[] = '<a href="settings.php?page=' . plugin_basename( __FILE__ ) . '">' . esc_html__( 'Settings' ) . '</a>';
 		}
 
 		return $links;
@@ -265,9 +280,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					$tmp = array();
 					foreach ( $options[ 'buttons' ] as $order ) {
 						if ( isset( $order[ 'order' ] ) ) {
-							$tmp[ ] = $order[ 'order' ];
+							$tmp[] = $order[ 'order' ];
 						} else {
-							$tmp[ ] = 0;
+							$tmp[] = 0;
 						}
 					}
 					array_multisort( $tmp, SORT_ASC, $options[ 'buttons' ] );
@@ -299,7 +314,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							<?php esc_html_e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
 						<th class="row-title"><?php esc_html_e( 'Access Key and', $this->get_textdomain() ); ?><br />
 							<?php esc_html_e( 'Order', $this->get_textdomain() ); ?></th>
-						<th class="row-title rotate"><span><?php esc_html_e( 'Visual', $this->get_textdomain() ); ?></span></th>
+						<th class="row-title rotate">
+							<span><?php esc_html_e( 'Visual', $this->get_textdomain() ); ?></span></th>
 						<?php echo $pt_title ?>
 						<th class="row-title rotate">&#x2714;</th>
 					</tr>
@@ -453,7 +469,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			<!-- .metabox-holder -->
 
 		</div>
-	<?php
+		<?php
 	}
 
 	/*
@@ -492,7 +508,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				</ul>
 			</div>
 		</div>
-	<?php
+		<?php
 	}
 
 	/*
@@ -523,7 +539,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			</div>
 
 		</div>
-	<?php
+		<?php
 	}
 
 	/*
@@ -614,7 +630,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				}
 			}
 
-			$buttons[ ] = $button;
+			$buttons[] = $button;
 		}
 
 		// return filtered array
@@ -629,7 +645,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 				//preg_replace( '~[^\p{L}]~u', '', $string );
 
-				$b[ 'text' ]  = sanitize_text_field( $b[ 'text' ] );
+				$b[ 'text' ]  = wp_kses( $b[ 'text' ], $this->allowed_html );
 				$b[ 'title' ] = sanitize_text_field( $b[ 'title' ] );
 				$b[ 'start' ] = wp_kses_stripslashes( $b[ 'start' ] );
 				$b[ 'end' ]   = wp_kses_stripslashes( $b[ 'end' ] );
@@ -660,7 +676,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 				}
 
-				$buttons[ ] = $b;
+				$buttons[] = $b;
 			}
 
 		}

@@ -83,7 +83,7 @@ jQuery(document).ready(function ($) {
 				$t_fixed.find("th").each(function (index) {
 					$x++;
 					$th_width = $this.find("th").eq(index).outerWidth();
-					// The first 3 columns are smaller.
+					// The first 3 columns are sm
 					if ( $x < 4 ) {
 						$th_width = $th_width - 11;
 					}
