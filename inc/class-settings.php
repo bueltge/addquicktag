@@ -761,13 +761,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.dev' : '';
 
 		wp_register_script(
-			'jquery.fixedheadertable',
-			plugins_url( '/js/fixed_table_rc.js', parent::get_plugin_string() ),
-			array( 'jquery' ),
-			'1.3',
-			TRUE
-		);
-		wp_register_script(
 			self::$option_string . '_admin_script',
 			plugins_url( '/js/settings' . $suffix . '.js', parent::get_plugin_string() ),
 			array( 'jquery', 'quicktags' ),
