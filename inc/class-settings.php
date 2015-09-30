@@ -293,7 +293,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					<colgroup></colgroup>
 					<thead>
 					<tr class="rmnlqsheader">
-						<th class="row-title"><?php esc_html_e( 'Button Label* and', $this->get_textdomain() ); ?><br />
+						<th class="row-title"><?php esc_html_e( 'Button Label*, Dashicon', $this->get_textdomain() ); ?><br />
 							<?php esc_html_e( 'Title Attribute', $this->get_textdomain() ); ?></th>
 						<th class="row-title"><?php esc_html_e( 'Start Tag(s)* and', $this->get_textdomain() ); ?><br />
 							<?php esc_html_e( 'End Tag(s)', $this->get_textdomain() ); ?></th>
@@ -315,6 +315,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						$class       = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 						$b           = $options[ 'buttons' ][ $i ];
 						$b[ 'text' ] = htmlentities( stripslashes( $b[ 'text' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
+						if ( ! isset( $b[ 'dashicon' ] ) ) {
+							$b[ 'dashicon' ] = '';
+						}
+						$b[ 'dashicon' ] = htmlentities( stripslashes( $b[ 'dashicon' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
 						if ( isset( $b[ 'title' ] ) ) {
 							$b[ 'title' ] = htmlentities( stripslashes( $b[ 'title' ] ), ENT_COMPAT, get_option( 'blog_charset' ) );
 						}
@@ -334,7 +338,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$b[ 'visual' ] = 0;
 						}
 						$b[ 'visual' ] = (int) $b[ 'visual' ];
-						if ( 1 == $b[ 'visual' ] ) {
+						if ( 1 === $b[ 'visual' ] ) {
 							$checked = ' checked="checked"';
 						} else {
 							$checked = '';
@@ -363,20 +367,33 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 						echo '
 					<tr id="rmqtb' . $i . '">
-						<td><input type="text" name="' . self::$option_string . '[buttons][' . $i
+						<td>
+						<input type="text" placeholder="' . esc_html__( 'Button Label*', $this->get_textdomain() )
+						     . '" name="' . self::$option_string . '[buttons][' . $i
 						     . '][text]" value="' . $b[ 'text' ] . '" /><br />
-						<input type="text" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="'
-						     . $b[ 'title' ] . '" /></td>
-						<td><textarea class="code" name="' . self::$option_string . '[buttons][' . $i
+						<input type="text" placeholder="' . esc_html__( 'Dashicon', $this->get_textdomain() )
+						     . '" name="' . self::$option_string . '[buttons][' . $i
+						     . '][dashicon]" value="' . $b[ 'dashicon' ] . '" /><br />
+						<input type="text" placeholder="' . esc_html__( 'Title Attribute', $this->get_textdomain() )
+						     . '" name="' . self::$option_string . '[buttons][' . $i . '][title]" value="'
+						     . $b[ 'title' ] . '" />
+						</td>
+						<td>
+						<textarea placeholder="' . esc_html__( 'Start Tag(s)*', $this->get_textdomain() )
+						     . '" class="code" name="' . self::$option_string . '[buttons][' . $i
 						     . '][start]" rows="2" cols="25" >' . $b[ 'start' ] . '</textarea><br />
-						<textarea class="code" name="' . self::$option_string . '[buttons][' . $i
+						<textarea placeholder="' . esc_html__( 'End Tag(s)', $this->get_textdomain() )
+						     . '" class="code" name="' . self::$option_string . '[buttons][' . $i
 						     . '][end]" rows="2" cols="25" >' . $b[ 'end' ] . '</textarea></td>
-						<td><input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						<td><input placeholder="' . esc_html__( 'Access Key', $this->get_textdomain() )
+						     . '" class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
 						     . '][access]" value="' . $b[ 'access' ] . '" /><br />
-						<input class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
+						<input placeholder="' . esc_html__( 'Order', $this->get_textdomain() )
+						     . '" class="small-text" type="text" name="' . self::$option_string . '[buttons][' . $i
 						     . '][order]" value="' . $b[ 'order' ] . '" /></td>
 						<td class="num"><input type="checkbox" name="' . self::$option_string . '[buttons][' . $i
-						     . '][visual]" value="1"' . $checked . '/></td>' .
+						     . '][visual]" value="1"' . $checked . '/>' .
+						'</td>' .
 						     $pt_checkboxes . '
 						<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="' . $i . '" /></td>' . '
 					</tr>
@@ -400,6 +417,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					<tr id="rmqtb<?php echo $i ?>">
 						<td>
 							<input type="text" placeholder="<?php esc_html_e( 'Button Label*', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
+							<input type="text" placeholder="<?php esc_html_e( 'Dashicon', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][dashicon]" value="" /><br />
 							<input type="text" placeholder="<?php esc_html_e( 'Title Attribute', $this->get_textdomain() ); ?>" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" />
 						</td>
 						<td>
@@ -497,7 +515,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/*
-	 * Return informations about the plugin
+	 * Return information about the plugin
 	 * 
 	 * @uses   _e,esc_attr_e
 	 * @access public
