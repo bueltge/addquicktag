@@ -56,15 +56,25 @@ jQuery(document).ready(function ($) {
 				// check for active on this post type
 				if (1 === parseInt(tiny_tags[i][addquicktag_post_type])) {
 
+					// Create the list items with all custom values from settings.
+					// @see http://www.tinymce.com/wiki.php/api4:class.tinymce.ui.ListBox
 					if (1 == tiny_tags[i].visual) {
-						values.push({text: tiny_tags[i].text, value: String(i)});
+						console.log( tiny_tags[i] );
+						values.push({
+							text: tiny_tags[i].text,
+							value: String(i),
+							tooltip: tiny_tags[i].title,
+							icon: 'icon dashicons dashicons-before dashicons-admin-post',
+							//classes: ''
+						});
 					}
 				}
 			}
 
 			return {
 				type      : 'listbox',
-				//name: 'align',
+				//name      : 'align',
+				icon      : '',
 				text      : 'Quicktags',
 				label     : 'Select :',
 				fixedWidth: true,

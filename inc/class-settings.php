@@ -55,21 +55,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	protected $page_hook;
 
 	/**
-	 * Store the allowed html tags for filter text field.
-	 *
-	 * @var
-	 */
-	private $allowed_html = array(
-		'span' => array(
-			'dir'      => TRUE,
-			'align'    => TRUE,
-			'lang'     => TRUE,
-			'xml:lang' => TRUE,
-			'class'    => TRUE,
-		),
-	);
-
-	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 * @access  public
 	 * @since   2.0.0
@@ -645,7 +630,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 				//preg_replace( '~[^\p{L}]~u', '', $string );
 
-				$b[ 'text' ]  = wp_kses( $b[ 'text' ], $this->allowed_html );
+				$b[ 'text' ]  = sanitize_text_field( $b[ 'text' ] );
 				$b[ 'title' ] = sanitize_text_field( $b[ 'title' ] );
 				$b[ 'start' ] = wp_kses_stripslashes( $b[ 'start' ] );
 				$b[ 'end' ]   = wp_kses_stripslashes( $b[ 'end' ] );
