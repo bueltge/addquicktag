@@ -149,9 +149,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 1.5.0 (???) =
+= 2.5.0 (???) =
 * Add title attribute to view on hover to each button in the TinyMCE listbox.
-* Add fixed header to the settings table.
+* Add possibilty to use Dashicon "icons" for TinyMCE buttons.
+* Button Label is not more required, only the start-tag
 
 = 2.4.3 (2015-08-21) =
 * Add czech translation, thanks to [https://github.com/MikkCZ](https://github.com/MikkCZ)

@@ -3,7 +3,7 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  2015-09-28
+ * @version  2015-12-23
  * @since    2.02.3
  */
 
@@ -64,6 +64,19 @@
 	width: 99%;
 	margin: 0 0 .5em 0;
 }
+
+.rmnlQuicktagSettings input[type='text'].small {
+	height: auto;
+	width: 80%;
+	margin: 0 0 .5em 0;
+}
+
+.rmnlQuicktagSettings button {
+	padding: 0 2px !important;
+	font-size: 20px !important;
+	width: auto !important;
+}
+
 
 .rmnlQuicktagSettings textarea {
 	height: 3.5em;

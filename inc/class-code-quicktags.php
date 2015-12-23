@@ -7,7 +7,7 @@
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
  * @since      01/26/2014
- * @version    06/19/2014
+ * @version    2015-12-23
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -26,13 +26,6 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	 * @var
 	 */
 	private static $code_quicktags = array( 'enhanced_code' => 'pre', 'en_de_coding' => 'htmlentities' );
-
-	/**
-	 * Static var for textdomain
-	 *
-	 * @var string
-	 */
-	public static $textdomain = '';
 
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -62,8 +55,6 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	 */
 	private function __construct() {
 
-		self::$textdomain = parent::get_textdomain();
-
 		add_action( 'addquicktag_settings_form_page', array( $this, 'get_code_quicktag_area' ) );
 	}
 
@@ -74,16 +65,16 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	 */
 	public function get_code_quicktag_area( $options ) {
 
-		if ( ! isset( $options[ 'code_buttons' ] ) ) {
+		if ( ! array_key_exists( 'code_buttons', $options ) ) {
 			$options[ 'code_buttons' ] = array();
 		}
 		?>
-		<h3><?php esc_html_e( 'Enhanced Code Quicktag buttons', self::$textdomain ); ?></h3>
-		<p><?php esc_html_e( 'Select the checkbox below to add enhanced code buttons.', $this->get_textdomain() ); ?></p>
-		<h4><?php esc_html_e( 'pre: Enhanced Code buttons', self::$textdomain ); ?></h4>
-		<p><?php esc_html_e( 'Enhanced the default Code buttons. Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text.', self::$textdomain ); ?></p>
-		<h4><?php esc_html_e( 'htmlentities: HTML Entities, HTML Decode', self::$textdomain ); ?></h4>
-		<p><?php esc_html_e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', self::$textdomain ); ?></p>
+		<h3><?php esc_html_e( 'Enhanced Code Quicktag buttons', 'addquicktag' ); ?></h3>
+		<p><?php esc_html_e( 'Select the checkbox below to add enhanced code buttons.', 'addquicktag' ); ?></p>
+		<h4><?php esc_html_e( 'pre: Enhanced Code buttons', 'addquicktag' ); ?></h4>
+		<p><?php esc_html_e( 'Enhanced the default Code buttons. Add a pull down menu for different languages before the default code button and include this as class inside the code tag. Also add a pre button for preformatted text.', 'addquicktag' ); ?></p>
+		<h4><?php esc_html_e( 'htmlentities: HTML Entities, HTML Decode', 'addquicktag' ); ?></h4>
+		<p><?php esc_html_e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', 'addquicktag' ); ?></p>
 
 		<?php
 		// loop about the post types, create html an values for title in table
@@ -102,7 +93,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 
 			<thead>
 			<tr>
-				<th class="row-title"><?php esc_html_e( 'Button', self::$textdomain ); ?></th>
+				<th class="row-title"><?php esc_html_e( 'Button', 'addquicktag' ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
@@ -124,7 +115,9 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 
 					$pt_checked = '';
-					if ( isset( $options[ 'code_buttons' ][ $value ][ $post_type ] ) && 1 == $options[ 'code_buttons' ][ $value ][ $post_type ] ) {
+					if ( isset( $options[ 'code_buttons' ][ $value ][ $post_type ] )
+						&& 1 === (int) $options[ 'code_buttons' ][ $value ][ $post_type ]
+					) {
 						$pt_checked = ' checked="checked"';
 					}
 

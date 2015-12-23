@@ -1,10 +1,11 @@
 <?php
 /**
  * AddQuicktag - to TinyMCE Editor
- * @license    GPLv2
+ *
  * @package    AddQuicktag
  * @subpackage AddQuicktag 2 TinyMce
  * @author     Frank Bueltge <frank@bueltge.de>
+ * @version    2015-12-23
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -63,7 +64,7 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	 */
 	public function add_externel_buttons( $plugins ) {
 
-		if ( FALSE == is_array( $plugins ) ) {
+		if ( ! is_array( $plugins ) ) {
 			$plugins = array();
 		}
 
@@ -86,9 +87,7 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	 */
 	public function extend_editor_buttons( $buttons, $editor_id = FALSE ) {
 
-		$buttons = array_merge( array( self::$option_string ), $buttons );
-
-		return $buttons;
+		return array_merge( array( self::$option_string ), $buttons );
 	}
 
 } // end class

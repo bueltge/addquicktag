@@ -1,11 +1,11 @@
 <?php
 /**
  * AddQuicktag - Settings to remove core quicktags
- * @license    GPLv2
+ *
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    06/19/2014
+ * @version    2015-12-23
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -55,16 +55,16 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	/**
 	 * Add settings area
 	 *
-	 * @param $options
+	 * @param array $options
 	 */
 	public function get_remove_quicktag_area( $options ) {
 
-		if ( ! isset( $options[ 'core_buttons' ] ) ) {
+		if ( ! array_key_exists( 'core_buttons', $options ) ) {
 			$options[ 'core_buttons' ] = array();
 		}
 		?>
-		<h3><?php esc_html_e( 'Remove Core Quicktag buttons', parent::get_textdomain() ); ?></h3>
-		<p><?php esc_html_e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', $this->get_textdomain() ); ?></p>
+		<h3><?php esc_html_e( 'Remove Core Quicktag buttons', 'addquicktag' ); ?></h3>
+		<p><?php esc_html_e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', 'addquicktag' ); ?></p>
 
 		<?php
 		// loop about the post types, create html an values for title in table
@@ -83,7 +83,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 
 			<thead>
 			<tr>
-				<th class="row-title"><?php esc_html_e( 'Button', parent::get_textdomain() ); ?></th>
+				<th class="row-title"><?php esc_html_e( 'Button', 'addquicktag' ); ?></th>
 				<?php echo $pt_title; ?>
 				<th class="row-title num" style="width:3%;">&#x2714;</th>
 			</tr>
@@ -119,14 +119,16 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				}
 
 				echo '<tr id="rmqtb' . $i . '">' . "\n";
-				echo '<td><input type="button" class="ed_button" title="" value="' . $text . '"' . $style . '> <code>' . $value . '</code></td>';
+				echo '<td><input type="button" class="ed_button" title="" value="'
+					. $text . '"' . $style . '> <code>' . $value . '</code></td>';
 
 				// loop about the post types, create html an values
 				$pt_checkboxes = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 
 					$pt_checked = '';
-					if ( isset( $options[ 'core_buttons' ][ $value ][ $post_type ] ) && 1 == $options[ 'core_buttons' ][ $value ][ $post_type ] ) {
+					if ( isset( $options[ 'core_buttons' ][ $value ][ $post_type ] )
+						&& 1 === (int) $options[ 'core_buttons' ][ $value ][ $post_type ] ) {
 						$pt_checked = ' checked="checked"';
 					}
 
@@ -137,7 +139,8 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				}
 				echo $pt_checkboxes;
 
-				echo '<td class="num"><input type="checkbox" class="toggle" id="select_all_' . $i . '" value="' . $i . '" /></td>' . "\n";
+				echo '<td class="num"><input type="checkbox" class="toggle" id="select_all_'
+					. $i . '" value="' . $i . '" /></td>' . "\n";
 
 				echo '</tr>' . "\n";
 				$i ++;
