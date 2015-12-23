@@ -29,6 +29,11 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 
 #################
+## Grunt, NPM
+#################
+node_modules/
+
+#################
 ## Eclipse / Aptana IDE
 #################
 
