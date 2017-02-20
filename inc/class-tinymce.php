@@ -47,7 +47,6 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    add_action
-	 * @return \Add_Quicktag_2_TinyMce
 	 */
 	private function __construct() {
 

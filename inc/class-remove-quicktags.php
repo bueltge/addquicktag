@@ -45,7 +45,6 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return \Add_Quicktag_Remove_Quicktags
 	 */
 	private function __construct() {
 

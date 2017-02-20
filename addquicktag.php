@@ -6,7 +6,7 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.5.0-beta
+ * Version:     2.5.0-dev
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
@@ -72,7 +72,6 @@ class Add_Quicktag {
 	 * Constructor, init the functions inside WP
 	 *
 	 * @since   2.0.0
-	 * @return  \Add_Quicktag
 	 */
 	private function __construct() {
 
@@ -156,13 +155,13 @@ class Add_Quicktag {
 		$buttons = explode( ',', $qtags_init[ 'buttons' ] );
 
 		// loop about the options to check for each post type
-		foreach ( $options[ 'core_buttons' ] as $button => $post_type ) {
+		foreach ( (array) $options[ 'core_buttons' ] as $button => $post_type ) {
 
 			// if the post type is inside the settings array active, the remove qtags
 			if ( is_array( $post_type ) && array_key_exists( $screen->id, $post_type ) ) {
 
 				// If settings have key inside, then unset this button
-				if ( FALSE !== ( $key = array_search( $button, $buttons ) ) ) {
+				if ( FALSE !== ( $key = array_search( $button, $buttons, TRUE ) ) ) {
 					unset( $buttons[ $key ] );
 				}
 			}
@@ -195,11 +194,12 @@ class Add_Quicktag {
 	public function get_json() {
 		global $current_screen;
 
-		if ( ! in_array(
-				$current_screen->id,
-				$this->get_post_types_for_js()
-			) &&
-			isset( $current_screen->id )
+		if ( isset( $current_screen->id ) &&
+		     ! in_array(
+						     $current_screen->id,
+						     $this->get_post_types_for_js(),
+						     TRUE
+					     )
 		) {
 			return NULL;
 		}
@@ -226,7 +226,7 @@ class Add_Quicktag {
 		if ( 1 < count( $options[ 'buttons' ] ) ) {
 			// sort array by order value
 			$tmp = array();
-			foreach ( $options[ 'buttons' ] as $order ) {
+			foreach ( (array) $options[ 'buttons' ] as $order ) {
 				if ( isset( $order[ 'order' ] ) ) {
 					$tmp[ ] = $order[ 'order' ];
 				} else {
@@ -258,11 +258,12 @@ class Add_Quicktag {
 
 		global $current_screen;
 
-		if ( ! in_array(
-				$current_screen->id,
-				$this->get_post_types_for_js()
-			) &&
-			isset( $current_screen->id )
+		if ( isset( $current_screen->id ) &&
+		     ! in_array(
+						     $current_screen->id,
+						     $this->get_post_types_for_js(),
+						     TRUE
+					     )
 		) {
 			return NULL;
 		}
@@ -271,7 +272,7 @@ class Add_Quicktag {
 
 		if ( version_compare( $GLOBALS[ 'wp_version' ], '3.3alpha', '>=' ) ) {
 			wp_enqueue_script(
-				self::get_textdomain() . '_script',
+				$this->get_textdomain() . '_script',
 				plugins_url( '/js/add-quicktags' . $suffix . '.js', __FILE__ ),
 				array( 'jquery', 'quicktags' ),
 				'',
@@ -280,7 +281,7 @@ class Add_Quicktag {
 			// Load only for WPs, there version is smaller then 3.2
 		} else {
 			wp_enqueue_script(
-				self::get_textdomain() . '_script',
+				$this->get_textdomain() . '_script',
 				plugins_url( '/js/add-quicktags_32' . $suffix . '.js', __FILE__ ),
 				array( 'jquery', 'quicktags' ),
 				'',
@@ -348,7 +349,7 @@ class Add_Quicktag {
 	 * Get Post types with UI to use optional the quicktags
 	 *
 	 * @since   08/1/2013
-	 * @return  Array
+	 * @return  array
 	 */
 	private function get_post_types() {
 
@@ -368,7 +369,7 @@ class Add_Quicktag {
 	 *
 	 * @since   2.1.1
 	 * @access  public
-	 * @return  Array
+	 * @return  array
 	 */
 	public function get_post_types_for_js() {
 
@@ -380,7 +381,7 @@ class Add_Quicktag {
 	 *
 	 * @since   2.1.1
 	 * @access  public
-	 * @return  Array
+	 * @return  array
 	 */
 	public function get_admin_pages_for_js() {
 
@@ -396,7 +397,7 @@ class Add_Quicktag {
 	 */
 	public function get_textdomain() {
 
-		return self::get_plugin_data( 'TextDomain' );
+		return $this->get_plugin_data( 'TextDomain' );
 	}
 
 	/**

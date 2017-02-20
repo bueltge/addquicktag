@@ -40,7 +40,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	/**
 	 * Post types for the settings
 	 *
-	 * @var Array
+	 * @var array
 	 */
 	private static $post_types_for_js;
 
@@ -68,7 +68,6 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return \Add_Quicktag_Im_Export
 	 */
 	private function __construct() {
 
@@ -93,7 +92,6 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @access  public
 	 * @since   2.0.0
 	 * @uses    wp_nonce_field
-	 * @return  string
 	 */
 	public function get_im_export_part() {
 

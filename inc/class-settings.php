@@ -5,7 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    2015-12-23
+ * @version    2017-02-20
  * @since      2.0.0
  */
 
@@ -43,7 +43,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	/**
 	 * post types for the settings
 	 *
-	 * @var Array
+	 * @var array
 	 */
 	static private $post_types_for_js;
 
@@ -83,7 +83,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @access  public
 	 * @since   0.0.2
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
-	 * @return  \Add_Quicktag_Settings
 	 */
 	private function __construct() {
 
@@ -143,7 +142,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 *
 	 * @since   2.1.1
 	 * @access  public
-	 * @return  Array
+	 * @return  array
 	 */
 	public function get_post_types_for_js() {
 
@@ -270,7 +269,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				if ( 1 < count( $options[ 'buttons' ] ) ) {
 					// sort array by order value
 					$tmp = array();
-					foreach ( $options[ 'buttons' ] as $order ) {
+					foreach ( (array) $options[ 'buttons' ] as $order ) {
 						if ( isset( $order[ 'order' ] ) ) {
 							$tmp[] = $order[ 'order' ];
 						} else {
@@ -319,7 +318,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 						$options[ 'buttons' ] = array();
 					}
 					$class = '';
-					for ( $i = 0; $i < count( $options[ 'buttons' ] ); $i ++ ) {
+					$imax = count( $options[ 'buttons' ] );
+					for ( $i = 0; $i < $imax; $i ++ ) {
 						$class       = ( ' class="alternate"' === $class ) ? '' : ' class="alternate"';
 						$b           = $options[ 'buttons' ][ $i ];
 						$b[ 'text' ] = htmlentities(
@@ -352,11 +352,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$b[ 'visual' ] = 0;
 						}
 						$b[ 'visual' ] = (int) $b[ 'visual' ];
+						$checked = '';
 						if ( 1 === $b[ 'visual' ] ) {
 							$checked = ' checked="checked"';
-						} else {
-							$checked = '';
 						}
+
 						// loop about the post types, create html an values
 						$pt_checkboxes = '';
 						foreach ( $this->get_post_types_for_js() as $post_type ) {
@@ -367,10 +367,9 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 
 							$b[ $post_type ] = (int) $b[ $post_type ];
 
+							$pt_checked = '';
 							if ( 1 === $b[ $post_type ] ) {
 								$pt_checked = ' checked="checked"';
-							} else {
-								$pt_checked = '';
 							}
 
 							$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
@@ -779,10 +778,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			 * 'page' => string '1' (length=1)
 			 */
 			$filtered_core_buttons = array();
-			foreach ( $core_buttons as $key => $var ) {
+			foreach ( (array) $core_buttons as $key => $var ) {
 
 				$core_button = array();
-				foreach ( $var as $post_type => $val ) {
+				foreach ( (array) $var as $post_type => $val ) {
 					$core_button[ $post_type ] = (int) $val;
 				}
 
@@ -798,10 +797,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		if ( ! empty( $code_buttons ) ) {
 
 			$filtered_code_buttons = array();
-			foreach ( $code_buttons as $key => $var ) {
+			foreach ( (array) $code_buttons as $key => $var ) {
 
 				$code_button = array();
-				foreach ( $var as $post_type => $val ) {
+				foreach ( (array) $var as $post_type => $val ) {
 					$code_button[ $post_type ] = (int) $val;
 				}
 
