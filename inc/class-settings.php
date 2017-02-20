@@ -692,11 +692,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			array( 'text', 'dashicon', 'title', 'start', 'end', 'access', 'order', 'visual' )
 		);
 
-		$buttons = '';
+		$buttons = array();
 		// filter for allowed values
-		foreach ( $value[ 'buttons' ] as $key => $button ) {
+		foreach ( (array) $value[ 'buttons' ] as $key => $button ) {
 
-			foreach ( $button as $label => $val ) {
+			foreach ( (array) $button as $label => $val ) {
 
 				if ( ! in_array( $label, $allowed_settings, TRUE ) ) {
 					unset( $button[ $label ] );
