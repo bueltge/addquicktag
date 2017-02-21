@@ -21,7 +21,6 @@ Please give me feedback, contribute and file technical bugs on [GitHub Repo](htt
 
 **Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
 
-Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
 
 == Installation ==
 = Requirements =
