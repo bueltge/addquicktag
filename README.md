@@ -28,19 +28,6 @@ Please give me feedback, contribute and file technical bugs on this [GitHub Repo
  3. [Visual editor with new Quicktags](https://github.com/bueltge/AddQuicktag/blob/master/assets/screenshot-4.png)
 
 ## Other Notes
-### Acknowledgements
-**Thanks to**
-
- * German Translation (de_DE) by [myself](http://bueltge.de) ;)
- * French translation (fr_FR) by [Jean-Michel MEYER](http://www.li-an.fr/blog)
- * Japanese translation (ja) by [Yuuichi](http://www.u-1.net/2011/12/29/2498/)
- * Traditional Chinese (zh_TW) by [Zeng pppdog](http://pppdog.me/)
- * Slovak translation by [Branco](http://webhostinggeeks.com/user-reviews/)
- * Brazilian Portuguese translation by [Aluízio Leye Larangeira](http://www.aluizioll.com.br/category/traducao/)
- * Turkish translation by [Turk3005](http://wordpress.org/support/profile/turk3005), see also his [seetings tutorial video](https://yadi.sk/i/l6YwDpa_V3FaV)
- * Ukranian translation by [Michael Yunat](http://www.iphostmonitor.com/), Ukranian
-
-
 ### Hook for custom post types
 The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example, an example plugin in the [Gist 1595155](https://gist.github.com/1595155) or use an example plugin iside this repo, the files end with `.example`.
 
