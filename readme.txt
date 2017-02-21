@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 2.4.3
+Stable tag: 2.5.0
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
 
@@ -131,7 +131,7 @@ The following example adds buttons. The params inside the array are the same as 
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
-= 2.5.0 (???) =
+= 2.5.0 (2017-02-21) =
 * Fixed PHP7.1 problem to save new buttons.
 * Adds title attribute to view on hover to each button in the TinyMCE listbox.
 * Adds possibilty to use Dashicon "icons" for TinyMCE buttons.
