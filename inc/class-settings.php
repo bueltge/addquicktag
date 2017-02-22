@@ -5,7 +5,7 @@
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>
- * @version    2017-02-20
+ * @version    2017-02-22
  * @since      2.0.0
  */
 
@@ -94,6 +94,11 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		self::$plugin            = parent::get_plugin_string();
 		self::$post_types_for_js = parent::get_post_types_for_js();
 		self::$nonce_string      = 'addquicktag_nonce';
+
+	// Makes sure the plugin is defined before trying to use it
+	if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	}
 
 		register_uninstall_hook( __FILE__, array( 'Add_Quicktag_Settings', 'unregister_settings' ) );
 		// settings for an active multisite

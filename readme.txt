@@ -130,6 +130,9 @@ The following example adds buttons. The params inside the array are the same as 
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.5.1 () =
+* Fixed Multisite error for check, is the plugin active in the MU Environment.
+
 = 2.5.0 (2017-02-21) =
 * Fixed PHP7.1 problem to save new buttons.
 * Adds title attribute to view on hover to each button in the TinyMCE listbox.
