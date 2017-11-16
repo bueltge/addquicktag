@@ -6,7 +6,7 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.5.1
+ * Version:     2.5.2
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
@@ -150,6 +150,10 @@ class Add_Quicktag {
 
 		// get current screen, post type
 		$screen = get_current_screen();
+		// No information about the backend page, return.
+		if ( ! isset( $screen->id ) ) {
+			return $qtags_init;
+		}
 
 		// Convert string to array from default core buttons
 		$buttons = explode( ',', $qtags_init[ 'buttons' ] );
@@ -255,7 +259,6 @@ class Add_Quicktag {
 	 * @return  void
 	 */
 	public function admin_enqueue_scripts() {
-
 		global $current_screen;
 
 		if ( isset( $current_screen->id ) &&
@@ -302,7 +305,11 @@ class Add_Quicktag {
 	 */
 	public function localize_plugin() {
 
-		load_plugin_textdomain( $this->get_textdomain(), FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain(
+			$this->get_textdomain(),
+			FALSE,
+			dirname( plugin_basename( __FILE__ ) ) . '/languages'
+		);
 	}
 
 	/**
@@ -326,7 +333,8 @@ class Add_Quicktag {
 		}
 
 		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+			/** @noinspection */
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
 		$plugin_data = get_plugin_data( __FILE__ );
@@ -355,7 +363,7 @@ class Add_Quicktag {
 
 		// list only post types, there was used in UI
 		$args       = array( 'show_ui' => TRUE );
-		$post_types = get_post_types( $args, 'names' );
+		$post_types = get_post_types( $args );
 		// simplify the array
 		$post_types = array_values( $post_types );
 		// merge with strings from var
@@ -397,7 +405,7 @@ class Add_Quicktag {
 	 */
 	public function get_textdomain() {
 
-		return $this->get_plugin_data( 'TextDomain' );
+		return $this->get_plugin_data();
 	}
 
 	/**

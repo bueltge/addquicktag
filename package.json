@@ -1,6 +1,6 @@
 {
   "name": "AddQuicktag",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-cssmin": "^0.14.0",
