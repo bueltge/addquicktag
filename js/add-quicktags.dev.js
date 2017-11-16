@@ -3,26 +3,26 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  12/19/2014
+ * @version  2017-11-16
  * @since    2.0.0
  */
 
 jQuery( document ).ready( function( $ ) {
 
-	if ( typeof addquicktag_tags == 'undefined' ) {
+	if ( typeof addquicktag_tags === 'undefined' ) {
 		return;
 	}
 
-	if ( typeof addquicktag_post_type == 'undefined' ) {
+	if ( typeof addquicktag_post_type === 'undefined' ) {
 		return;
 	}
 
-	if ( typeof addquicktag_pt_for_js == 'undefined' ) {
+	if ( typeof addquicktag_pt_for_js === 'undefined' ) {
 		return;
 	}
 
 	var tags = addquicktag_tags[ 'buttons' ];
-	if ( typeof tags == 'undefined' ) {
+	if ( typeof tags === 'undefined' ) {
 		return;
 	}
 
@@ -34,12 +34,12 @@ jQuery( document ).ready( function( $ ) {
 			return ta.value;
 		} catch ( e ) {
 		}
-		;
+
 		/*Internet Explorer*/
 		try {
 			var d = document.createElement( "div" );
 			d.innerHTML = str.replace( /</g, "&lt;" ).replace( />/g, "&gt;" );
-			if ( typeof d.innerText != "undefined" ) {
+			if ( typeof d.innerText !== "undefined" ) {
 				return d.innerText;
 			}
 			/*Sadly this strips tags as well*/
@@ -78,14 +78,14 @@ jQuery( document ).ready( function( $ ) {
 			// check for active on this post type
 			if ( 1 === parseInt( tags[ i ][ addquicktag_post_type ] ) ) {
 				//console.log(tags[i]);
-				if ( typeof tags[ i ].title == 'undefined' ) {
+				if ( typeof tags[ i ].title === 'undefined' ) {
 					tags[ i ].title = ' ';
 				}
 				console.log( decodeEntities( '&#xf226;' ) );
-				if ( typeof tags[ i ].end == 'undefined' ) {
+				if ( typeof tags[ i ].end === 'undefined' ) {
 					tags[ i ].end = '';
 				}
-				if ( typeof tags[ i ].access == 'undefined' ) {
+				if ( typeof tags[ i ].access === 'undefined' ) {
 					tags[ i ].access = '';
 				}
 
@@ -100,12 +100,12 @@ jQuery( document ).ready( function( $ ) {
 				 * @param instance string optional Limit the button to a specific instance of Quicktags, add to all instances if not present.
 				 */
 				QTags.addButton(
-					html_entity_decode( tags[ i ].text ).replace( /"|\\/gi, "" ).toLowerCase(),
+					html_entity_decode( tags[ i ].text ).replace( /["\\]/gi, "" ).toLowerCase(),
 					tags[ i ].text,
 					tags[ i ].start,
 					tags[ i ].end,
 					tags[ i ].access,
-					tags[ i ].title.replace( /"|\\/gi, "" )
+					tags[ i ].title.replace( /["\\]/gi, "" )
 				);
 
 				/**
@@ -129,22 +129,22 @@ jQuery( document ).ready( function( $ ) {
 	var code_buttons = addquicktag_tags[ 'code_buttons' ];
 
 	// Fallback, if WP core don't set the var
-	if ( typeof typenow == 'undefined' ) {
+	if ( typeof typenow === 'undefined' ) {
 		typenow = '';
 	}
 
 	// IF no code buttons was active
-	if ( typeof code_buttons == 'undefined' ) {
+	if ( typeof code_buttons === 'undefined' ) {
 		return;
 	}
 
 	// Fallback for no htmlentities settings
-	if ( typeof code_buttons.htmlentities == 'undefined' ) {
+	if ( typeof code_buttons.htmlentities === 'undefined' ) {
 		code_buttons.htmlentities = 0;
 	}
 
 	// Fallback for no pre settings
-	if ( typeof code_buttons.pre == 'undefined' ) {
+	if ( typeof code_buttons.pre === 'undefined' ) {
 		code_buttons.pre = 0;
 	}
 
