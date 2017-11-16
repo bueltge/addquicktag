@@ -1,34 +1,24 @@
 /**
- * AddQuicktag Script settings page of the plugin
+ * AddQuicktag Script settings page of the plugin.
  *
- * @version 2015-12-23
+ * @version 2017-11-16
  * @since   06/19/2014
  * @package AddQuicktag Plugin
  */
 
 jQuery( document ).ready( function( $ ) {
 
-	$( 'input:checkbox.toggle' ).click( function( event ) {
+	$( 'input:checkbox.toggle' ).click( function() {
 		var i = $( this ).attr( 'value' ),
 			sel = '#rmqtb' + i + ' input:checkbox';
 
-		if ( this.checked ) {
-			// Iterate each checkbox
-			$( sel ).each( function() {
-				this.checked = true;
-			} );
-		} else {
-			// Iterate each checkbox
-			$( sel ).each( function() {
-				this.checked = false;
-			} );
-		}
+		$( sel ).prop( 'checked', this.checked  );
 	} );
 
 	$( 'table.rmnlQuicktagSettings' ).delegate( 'td', 'mouseover mouseout', function( e ) {
 		var hover = 'hover';
 
-		if ( e.type == 'mouseover' ) {
+		if ( e.type === 'mouseover' ) {
 			$( this ).parent().addClass( hover );
 			$( 'table.rmnlQuicktagSettings colgroup' ).eq( $( this ).index() ).addClass( hover );
 		} else {
@@ -40,7 +30,7 @@ jQuery( document ).ready( function( $ ) {
 	$( 'table.rmnlCoreQuicktagSettings' ).delegate( 'td', 'mouseover mouseout', function( e ) {
 		var hover = 'hover';
 
-		if ( e.type == 'mouseover' ) {
+		if ( e.type === 'mouseover' ) {
 			$( this ).parent().addClass( hover );
 			$( 'table.rmnlCoreQuicktagSettings colgroup' ).eq( $( this ).index() ).addClass( hover );
 		} else {
@@ -52,7 +42,7 @@ jQuery( document ).ready( function( $ ) {
 	$( 'table.rmnlCodeQuicktagSettings' ).delegate( 'td', 'mouseover mouseout', function( e ) {
 		var hover = 'hover';
 
-		if ( e.type == 'mouseover' ) {
+		if ( e.type === 'mouseover' ) {
 			$( this ).parent().addClass( hover );
 			$( 'table.rmnlCodeQuicktagSettings colgroup' ).eq( $( this ).index() ).addClass( hover );
 		} else {
@@ -60,8 +50,6 @@ jQuery( document ).ready( function( $ ) {
 			$( 'table.rmnlCodeQuicktagSettings colgroup' ).eq( $( this ).index() ).removeClass( hover );
 		}
 	} );
-
-	//$( 'table.rmnlQuicktagSettings' ).fixMe();
 } );
 
 /**
