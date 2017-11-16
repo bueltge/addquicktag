@@ -157,7 +157,7 @@ class Add_Quicktag {
 		// loop about the options to check for each post type
 		foreach ( (array) $options[ 'core_buttons' ] as $button => $post_type ) {
 
-			// if the post type is inside the settings array active, the remove qtags
+			// if the post type is inside the settings array active, then remove qtags
 			if ( is_array( $post_type ) && array_key_exists( $screen->id, $post_type ) ) {
 
 				// If settings have key inside, then unset this button
@@ -180,7 +180,7 @@ class Add_Quicktag {
 	 * @since   2.0.0
 	 * @return  void
 	 */
-	public function uninstall() {
+	public static function uninstall() {
 
 		delete_site_option( self::$option_string );
 	}

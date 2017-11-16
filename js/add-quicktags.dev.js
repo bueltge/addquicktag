@@ -81,7 +81,6 @@ jQuery( document ).ready( function( $ ) {
 				if ( typeof tags[ i ].title === 'undefined' ) {
 					tags[ i ].title = ' ';
 				}
-				console.log( decodeEntities( '&#xf226;' ) );
 				if ( typeof tags[ i ].end === 'undefined' ) {
 					tags[ i ].end = '';
 				}
