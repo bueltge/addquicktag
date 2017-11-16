@@ -7,9 +7,9 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					cwd: 'js/', // 'inc/tinymce/'
+					cwd: 'inc/tinymce/', // 'js/',
 					src: ['*.dev.js'],
-					dest: 'js/', // 'inc/tinymce/'
+					dest: 'inc/tinymce/', // 'js/',
 					ext: ['.js']
 				}]
 			}
