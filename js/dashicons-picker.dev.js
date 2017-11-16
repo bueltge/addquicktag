@@ -283,7 +283,7 @@
 
 				for ( var i in icons ) {
 					list.append( '<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>' );
-				};
+				}
 
 				$( 'a', list ).click( function ( e ) {
 					e.preventDefault();
@@ -311,7 +311,7 @@
 
 				popup.appendTo( 'body' ).show();
 
-				$( 'input', control ).on( 'keyup', function ( e ) {
+				$( 'input', control ).on( 'keyup', function () {
 					var search = $( this ).val();
 					if ( search === '' ) {
 						$( 'li:lt(25)', list ).show();
