@@ -131,7 +131,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 
 == Changelog ==
 = 2.5.2 (2017-11-16) =
-* Ficed several code strict style issues.
+* Fixed several code strict style issues.
 * Fixed javascript topics to write more strict.
 
 = 2.5.1 (2017-03-09) =

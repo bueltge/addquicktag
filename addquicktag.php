@@ -8,7 +8,7 @@
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
  * Version:     2.5.2
  * Author:      Frank Bültge
- * Author URI:  http://bueltge.de
+ * Author URI:  https://bueltge.de
  * License:     GPLv2+
  * License URI: ./license.txt
  *
