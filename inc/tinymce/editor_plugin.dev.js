@@ -3,26 +3,26 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  2015-12-23
+ * @version  2017-11-16
  * @since    2.3.0
  */
 
 jQuery( document ).ready( function( $ ) {
 
-	if ( typeof addquicktag_tags == 'undefined' ) {
+	if ( typeof addquicktag_tags === 'undefined' ) {
 		return;
 	}
 
-	if ( typeof addquicktag_post_type == 'undefined' ) {
+	if ( typeof addquicktag_post_type === 'undefined' ) {
 		return;
 	}
 
-	if ( typeof addquicktag_pt_for_js == 'undefined' ) {
+	if ( typeof addquicktag_pt_for_js === 'undefined' ) {
 		return;
 	}
 
 	// wrong post type
-	if ( -1 == $.inArray( addquicktag_post_type, addquicktag_pt_for_js ) ) {
+	if ( -1 === $.inArray( addquicktag_post_type, addquicktag_pt_for_js ) ) {
 		return;
 	}
 
@@ -66,7 +66,7 @@ jQuery( document ).ready( function( $ ) {
 
 					// Create the list items with all custom values from settings.
 					// @see http://www.tinymce.com/wiki.php/api4:class.tinymce.ui.ListBox
-					if ( 1 == tiny_tags[ i ].visual ) {
+					if ( 1 === tiny_tags[ i ].visual ) {
 						//console.log( tiny_tags[ i ] );
 						values.push( {
 							text   : tiny_tags[ i ].text,
@@ -97,11 +97,11 @@ jQuery( document ).ready( function( $ ) {
 
 					if ( typeof(
 							tinymce.activeEditor.selection.getContent()
-						) != 'undefined' ) {
+						) !== 'undefined' ) {
 						marked = true;
 					}
 
-					if ( marked == true ) {
+					if ( marked === true ) {
 
 						console.log( tiny_tags );
 						console.log( value );
@@ -113,11 +113,11 @@ jQuery( document ).ready( function( $ ) {
 							start_tag = start.match( /[a-z]+/ ),
 							end = tiny_tags[ value ].end;
 
-						if ( typeof start == 'undefined' ) {
+						if ( typeof start === 'undefined' ) {
 							start = '';
 						}
 
-						if ( typeof end == 'undefined' ) {
+						if ( typeof end === 'undefined' ) {
 							end = '';
 						}
 
@@ -138,14 +138,14 @@ jQuery( document ).ready( function( $ ) {
 						 /**/
 
 						// Add tag to content
-						if ( start.match( /[a-z]+/i ) != start_content.toLowerCase() ) {
+						if ( start.match( /[a-z]+/i ) !== start_content.toLowerCase() ) {
 							tinymce.activeEditor.selection.setContent(
 								tiny_tags[ value ].start + content + tiny_tags[ value ].end
 							);
 						}
 
 						// Remove existing tag
-						if ( start.match( /[a-z]+/i ) == start_content.toLowerCase() ) {
+						if ( start.match( /[a-z]+/i ) === start_content.toLowerCase() ) {
 
 							// Remove content with tag
 							tinyMCE.activeEditor.dom.remove(
