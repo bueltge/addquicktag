@@ -80,16 +80,16 @@ class Add_Quicktag {
 			return;
 		}
 
-		// get string of plugin
+		// get string of plugin.
 		self::$plugin = plugin_basename( __FILE__ );
 
-		// on uninstall remove capability from roles
+		// on uninstall remove capability from roles.
 		register_uninstall_hook( __FILE__, array( 'Add_Quicktag', 'uninstall' ) );
 		// on deactivate delete all settings in database
 		// register_deactivation_hook( __FILE__, array('Add_Quicktag', 'uninstall' ) );
-		// load translation files
+		// load translation files.
 		add_action( 'admin_init', array( $this, 'localize_plugin' ) );
-		// on init register post type for addquicktag and print js
+		// on init register post type for addquicktag and print js.
 		add_action( 'init', array( $this, 'on_admin_init' ) );
 
 		add_filter( 'quicktags_settings', array( $this, 'remove_quicktags' ), 10, 1 );
@@ -100,7 +100,7 @@ class Add_Quicktag {
 	 * Include other files and print JS
 	 *
 	 * @since   07/16/2012
-	 * @return  void
+	 * @return  null|void
 	 */
 	public function on_admin_init() {
 
@@ -108,9 +108,9 @@ class Add_Quicktag {
 			return null;
 		}
 
-		// Include settings
+		// Include settings.
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
-		// Include solution for TinyMCE
+		// Include solution for TinyMCE.
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-tinymce.php';
 
 		foreach ( $this->get_admin_pages_for_js() as $page ) {
@@ -124,7 +124,7 @@ class Add_Quicktag {
 	 *
 	 * @since   08/15/2013
 	 *
-	 * @param   array $qtags_init the Buttons
+	 * @param   array $qtags_init the Buttons.
 	 *
 	 * @type    string   id
 	 * @type    array    buttons, default: 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen'
@@ -132,7 +132,7 @@ class Add_Quicktag {
 	 */
 	public function remove_quicktags( $qtags_init ) {
 
-		// No core buttons, not necessary to filter
+		// No core buttons, not necessary to filter.
 		if ( empty( $qtags_init['buttons'] ) ) {
 			return $qtags_init;
 		}
@@ -143,35 +143,35 @@ class Add_Quicktag {
 			$options = get_option( self::$option_string );
 		}
 
-		// No settings, not necessary to filter
+		// No settings, not necessary to filter.
 		if ( empty( $options['core_buttons'] ) ) {
 			return $qtags_init;
 		}
 
-		// get current screen, post type
+		// get current screen, post type.
 		$screen = get_current_screen();
 		// No information about the backend page, return.
-		if ( $screen->id === null ) {
+		if ( null === $screen->id ) {
 			return $qtags_init;
 		}
 
-		// Convert string to array from default core buttons
+		// Convert string to array from default core buttons.
 		$buttons = explode( ',', $qtags_init['buttons'] );
 
-		// loop about the options to check for each post type
+		// loop about the options to check for each post type.
 		foreach ( (array) $options['core_buttons'] as $button => $post_type ) {
 
-			// if the post type is inside the settings array active, then remove qtags
+			// if the post type is inside the settings array active, then remove qtags.
 			if ( is_array( $post_type ) && array_key_exists( $screen->id, $post_type ) ) {
 
-				// If settings have key inside, then unset this button
+				// If settings have key inside, then unset this button.
 				if ( false !== ( $key = array_search( $button, $buttons, true ) ) ) {
 					unset( $buttons[ $key ] );
 				}
 			}
 		}
 
-		// Convert new buttons array back into a comma-separated string
+		// Convert new buttons array back into a comma-separated string.
 		$qtags_init['buttons'] = implode( ',', $buttons );
 		$qtags_init['buttons'] = apply_filters( 'addquicktag_remove_buttons', $qtags_init['buttons'] );
 
@@ -193,18 +193,16 @@ class Add_Quicktag {
 	 * Print json data in head
 	 *
 	 * @since   2.0.0
-	 * @return  void
+	 * @return  null|void
 	 */
 	public function get_json() {
 		global $current_screen;
 
-		if ( $current_screen->id !== null &&
-			! in_array(
-				$current_screen->id,
-				$this->get_post_types_for_js(),
-				true
-			)
-		) {
+		if ( null !== $current_screen->id && ! in_array(
+			$current_screen->id,
+			$this->get_post_types_for_js(),
+			true
+		) ) {
 			return null;
 		}
 
@@ -218,9 +216,9 @@ class Add_Quicktag {
 			$options['buttons'] = '';
 		}
 
-		// allow change or enhance buttons array
+		// allow change or enhance buttons array.
 		$options['buttons'] = apply_filters( 'addquicktag_buttons', $options['buttons'] );
-		// hook for filter options
+		// hook for filter options.
 		$options = (array) apply_filters( 'addquicktag_options', $options );
 
 		if ( ! $options ) {
@@ -228,7 +226,7 @@ class Add_Quicktag {
 		}
 
 		if ( 1 < count( $options['buttons'] ) ) {
-			// sort array by order value
+			// sort array by order value.
 			$tmp = array();
 			foreach ( (array) $options['buttons'] as $order ) {
 				if ( isset( $order['order'] ) ) {
@@ -242,9 +240,9 @@ class Add_Quicktag {
 
 		?>
 		<script type="text/javascript">
-			var addquicktag_tags = <?php echo json_encode( $options ); ?>,
-				addquicktag_post_type = <?php echo json_encode( $current_screen->id ); ?>,
-				addquicktag_pt_for_js = <?php echo json_encode( $this->get_post_types_for_js() ); ?>;
+			var addquicktag_tags = <?php echo wp_json_encode( $options ); ?>,
+				addquicktag_post_type = <?php echo wp_json_encode( $current_screen->id ); ?>,
+				addquicktag_pt_for_js = <?php echo wp_json_encode( $this->get_post_types_for_js() ); ?>;
 		</script>
 		<?php
 	}
@@ -254,15 +252,15 @@ class Add_Quicktag {
 	 *
 	 * @internal param string $where
 	 *
-	 * @since    2.0.0
-	 * @access   public
-	 * @return  void
+	 * @since   2.0.0
+	 * @access  public
+	 * @return  null|void
 	 */
 	public function admin_enqueue_scripts() {
 		global $current_screen;
 
-		if ( $current_screen->id !== null &&
-			! in_array(
+		if ( null !== $current_screen->id &&
+		     ! in_array(
 				$current_screen->id,
 				$this->get_post_types_for_js(),
 				true
@@ -281,7 +279,7 @@ class Add_Quicktag {
 				'',
 				true
 			);
-			// Load only for WPs, there version is smaller then 3.2
+			// Load only for WPs, there version is smaller then 3.2.
 		} else {
 			wp_enqueue_script(
 				$this->get_textdomain() . '_script',
@@ -313,12 +311,13 @@ class Add_Quicktag {
 	}
 
 	/**
-	 * return plugin comment data
+	 * Return plugin comment data.
 	 *
 	 * @since  2.0.0
 	 * @access public
 	 *
-	 * @param  $value string, default = 'TextDomain'
+	 * @param  $value string
+	 *                default = 'TextDomain'
 	 *                Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
 	 *
 	 * @return string
@@ -333,9 +332,7 @@ class Add_Quicktag {
 		}
 
 		if ( ! function_exists( 'get_plugin_data' ) ) {
-			/**
-			 *
- @noinspection */
+			// @noinspection
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
@@ -363,12 +360,12 @@ class Add_Quicktag {
 	 */
 	private function get_post_types() {
 
-		// list only post types, there was used in UI
+		// list only post types, there was used in UI.
 		$args       = array( 'show_ui' => true );
 		$post_types = get_post_types( $args );
-		// simplify the array
+		// simplify the array.
 		$post_types = array_values( $post_types );
-		// merge with strings from var
+		// merge with strings from var.
 		return array_merge( $post_types, self::$post_types_for_js );
 	}
 
