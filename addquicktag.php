@@ -6,7 +6,7 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.5.2
+ * Version:     2.5.3
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
  * License:     GPLv2+
@@ -35,7 +35,7 @@ class Add_Quicktag {
 		'post-new.php',
 		'comment.php',
 		'edit-comments.php',
-		'widgets.php'
+		'widgets.php',
 	);
 
 	/**
@@ -151,7 +151,7 @@ class Add_Quicktag {
 		// get current screen, post type
 		$screen = get_current_screen();
 		// No information about the backend page, return.
-		if ( ! isset( $screen->id ) ) {
+		if ( $screen->id === null ) {
 			return $qtags_init;
 		}
 
@@ -198,7 +198,7 @@ class Add_Quicktag {
 	public function get_json() {
 		global $current_screen;
 
-		if ( isset( $current_screen->id ) &&
+		if ( $current_screen->id !== null &&
 		     ! in_array(
 						     $current_screen->id,
 						     $this->get_post_types_for_js(),
@@ -221,7 +221,7 @@ class Add_Quicktag {
 		// allow change or enhance buttons array
 		$options[ 'buttons' ] = apply_filters( 'addquicktag_buttons', $options[ 'buttons' ] );
 		// hook for filter options
-		$options = apply_filters( 'addquicktag_options', $options );
+		$options = (array) apply_filters( 'addquicktag_options', $options );
 
 		if ( ! $options ) {
 			return NULL;
@@ -261,7 +261,7 @@ class Add_Quicktag {
 	public function admin_enqueue_scripts() {
 		global $current_screen;
 
-		if ( isset( $current_screen->id ) &&
+		if ( $current_screen->id !== null &&
 		     ! in_array(
 						     $current_screen->id,
 						     $this->get_post_types_for_js(),
@@ -367,9 +367,7 @@ class Add_Quicktag {
 		// simplify the array
 		$post_types = array_values( $post_types );
 		// merge with strings from var
-		$post_types = array_merge( $post_types, self::$post_types_for_js );
-
-		return $post_types;
+		return array_merge( $post_types, self::$post_types_for_js );
 	}
 
 	/**

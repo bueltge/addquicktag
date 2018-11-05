@@ -1,0 +1,29 @@
+{
+	"name": "bueltge/AddQuicktag",
+	"description": "Allows you to easily add custom Quicktags to the html- and visual-editor.",
+	"keywords"   : ["wordpress", "plugin"],
+	"license": "GPL-2.0-or-later",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/bueltge/AddQuicktag",
+	"authors": [
+		{
+			"name": "Frank Bültge",
+			"homepage": "https://bueltge.de",
+			"email": "frank@bueltge.de",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/bueltge/AddQuicktag/issues"
+	},
+	"require": {
+		"php": ">=5.6",
+		"composer/installers": "~1.0"
+	},
+	"require-dev": {
+		"higidi/composer-phpcodesniffer-standards-plugin": "^0.1.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+		"wp-coding-standards/wpcs": "^0.14",
+		"dg/composer-cleaner": "^2"
+	}
+}

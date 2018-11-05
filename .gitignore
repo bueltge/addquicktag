@@ -16,6 +16,11 @@
 *.iws
 *.iml
 
+## Composer
+composer.phar
+vendor/
+wpcs/
+
 ## Additional for IntelliJ
 out/
 
