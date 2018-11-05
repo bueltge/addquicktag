@@ -2,7 +2,7 @@
 /**
  * AddQuicktag - Settings for enhanced code buttons
  *
- * @license    GPLv2
+ * @license    GPLv3
  * @package    AddQuicktag
  * @subpackage AddQuicktag Settings
  * @author     Frank Bueltge <frank@bueltge.de>

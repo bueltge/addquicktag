@@ -9,7 +9,7 @@
  * Version:     2.5.3-alpha
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
- * License:     GPLv2+
+ * License:     GPLv3+
  * License URI: ./license.txt
  *
  * Add Quicktag Plugin class

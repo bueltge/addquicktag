@@ -2,7 +2,7 @@
 	"name": "bueltge/AddQuicktag",
 	"description": "Allows you to easily add custom Quicktags to the html- and visual-editor.",
 	"keywords"   : ["wordpress", "plugin"],
-	"license": "GPL-2.0-or-later",
+	"license": "GPL-3.0-or-later",
 	"type": "wordpress-plugin",
 	"homepage": "https://github.com/bueltge/AddQuicktag",
 	"authors": [
