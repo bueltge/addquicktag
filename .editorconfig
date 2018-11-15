@@ -5,8 +5,8 @@ insert_final_newline=true
 indent_style=tab
 indent_size=4
 
-[{.babelrc,composer.lock,.stylelintrc,jest.config,.eslintrc,*.json,*.jsb3,*.jsb2,*.bowerrc}]
-indent_style=tab
+[{*.js,.babelrc,composer.lock,.stylelintrc,jest.config,.eslintrc,*.json,*.jsb3,*.jsb2,*.bowerrc}]
+indent_style=space
 indent_size=4
 
 [{*.hphp,*.phtml,*.module,*.php,*.php5,*.php4,*.inc}]

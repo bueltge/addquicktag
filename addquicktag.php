@@ -239,6 +239,7 @@ class Add_Quicktag {
 		}
 
 		?>
+		<!--suppress JSUnusedLocalSymbols -->
 		<script type="text/javascript">
 			var addquicktag_tags = <?php echo wp_json_encode( $options ); ?>,
 				addquicktag_post_type = <?php echo wp_json_encode( $current_screen->id ); ?>,
@@ -289,8 +290,26 @@ class Add_Quicktag {
 				true
 			);
 		}
+
 		// Alternative to JSON function
 		// wp_localize_script( self :: get_textdomain() . '_script', 'addquicktag_tags', get_option( self :: $option_string ) );
+
+		if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) {
+			wp_enqueue_script(
+				$this->get_textdomain() . '_gutenberg',
+				plugins_url( '/js/add-quicktag-gutenberg.dev.js', __FILE__ ),
+				array(
+					'wp-element',
+					'wp-rich-text',
+					'wp-format-library',
+					'wp-editor',
+					'wp-compose',
+					'wp-components',
+				),
+				filemtime( dirname( __FILE__ ) . '/js/add-quicktag-gutenberg' . $suffix . '.js' ),
+				true
+			);
+		}
 	}
 
 	/**
