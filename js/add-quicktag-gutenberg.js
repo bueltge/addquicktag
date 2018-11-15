@@ -1,15 +1,22 @@
-import "core-js/modules/es6.function.name";
+import "core-js/modules/es6.regexp.replace";
+import _parseInt from "@babel/runtime-corejs2/core-js/parse-int";
 import "core-js/modules/web.dom.iterable";
 
 /**
  * AddQuicktag buttons - Playing for Gutenberg.
  */
-[addquicktag_tags, addquicktag_post_type, addquicktag_pt_for_js].forEach(function (element) {
+[addquicktag_tags, addquicktag_tags['buttons'], addquicktag_post_type, addquicktag_pt_for_js].forEach(function (element) {
   if (typeof element === 'undefined') {
     return false;
   }
 });
-console.log('Test Gutenberg in AddQuicktag: all var are existent');
+/*
+// Check if the current post type for quicktags is on the current page.
+if (!addquicktag_pt_for_js.includes(addquicktag_post_type)) {
+    return false;
+}*/
+
+var tags = addquicktag_tags['buttons'];
 var _window$wp$element = window.wp.element,
     createElement = _window$wp$element.createElement,
     Fragment = _window$wp$element.Fragment;
@@ -21,57 +28,97 @@ var __ = window.wp.i18n.__;
 var _window$wp$editor = window.wp.editor,
     RichTextToolbarButton = _window$wp$editor.RichTextToolbarButton,
     RichTextShortcut = _window$wp$editor.RichTextShortcut;
-[{
-  name: 'heart',
-  tagName: 'hearttag',
-  className: 'heart',
-  title: 'Heart',
-  character: '.',
-  icon: 'heart'
-}, {
-  name: 'sub',
-  tagName: 'subtest',
-  className: null,
-  title: 'Subscript',
-  character: ',',
-  icon: 'hammer'
-}].forEach(function (_ref) {
-  var name = _ref.name,
-      tagName = _ref.tagName,
-      className = _ref.className,
-      title = _ref.title,
-      character = _ref.character,
-      icon = _ref.icon;
-  var type = "advanced/".concat(name);
-  registerFormatType(type, {
-    title: title,
-    tagName: tagName,
-    className: className,
-    edit: function edit(_ref2) {
-      var isActive = _ref2.isActive,
-          value = _ref2.value,
-          onChange = _ref2.onChange;
 
-      var onToggle = function onToggle() {
-        return onChange(toggleFormat(value, {
-          type: type
-        }));
-      };
+for (var i = 0; i < tags.length; i++) {
+  // check each tag for active on this post type
+  if (1 === _parseInt(tags[i][addquicktag_post_type])) {
+    (function () {
+      console.log(tags[i]);
 
-      return createElement(Fragment, null, createElement(RichTextShortcut, {
-        type: 'primary',
-        character: character,
-        onUse: onToggle
-      }), createElement(RichTextToolbarButton, {
-        icon: icon,
+      if (typeof tags[i].title === 'undefined') {
+        tags[i].title = ' ';
+      }
+
+      if (typeof tags[i].end === 'undefined') {
+        tags[i].end = '';
+      }
+
+      if (typeof tags[i].access === 'undefined') {
+        tags[i].access = '';
+      }
+
+      var name = html_entity_decode(tags[i].text).replace(/["\\]/gi, "").toLowerCase();
+      var type = "advanced/".concat(name); // ToDo replace <> from tag
+
+      var tagName = 'test'; //tags[ i ].start
+
+      var className = null;
+      var title = tags[i].title;
+      var character = tags[i].access;
+      var icon = tags[i].dashicon.replace(/dashicons-/gi, "");
+      console.log([{
+        name: name,
+        type: type,
+        tagName: tagName,
+        className: className,
         title: title,
-        onClick: onToggle,
-        isActive: isActive,
-        shortcutType: 'primary',
-        shortcutCharacter: character,
-        className: "toolbar-button-with-text toolbar-button__advanced-".concat(name)
-      }));
+        character: character,
+        icon: icon
+      }]);
+      registerFormatType(type, {
+        title: title,
+        tagName: tagName,
+        className: className,
+        edit: function edit(_ref) {
+          var isActive = _ref.isActive,
+              value = _ref.value,
+              onChange = _ref.onChange;
+
+          var onToggle = function onToggle() {
+            return onChange(toggleFormat(value, {
+              type: type
+            }));
+          };
+
+          return createElement(Fragment, null, createElement(RichTextShortcut, {
+            type: 'primary',
+            character: character,
+            onUse: onToggle
+          }), createElement(RichTextToolbarButton, {
+            icon: icon,
+            title: title,
+            onClick: onToggle,
+            isActive: isActive,
+            shortcutType: 'primary',
+            shortcutCharacter: character,
+            className: "toolbar-button-with-text toolbar-button__advanced-".concat(name)
+          }));
+        }
+      });
+      /**});*/
+    })();
+  }
+}
+
+function html_entity_decode(str) {
+  /*Firefox (and IE if the string contains no elements surrounded by angle brackets )*/
+  try {
+    var ta = document.createElement("textarea");
+    ta.innerHTML = str;
+    return ta.value;
+  } catch (e) {}
+  /*Internet Explorer*/
+
+
+  try {
+    var d = document.createElement("div");
+    d.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    if (typeof d.innerText !== "undefined") {
+      return d.innerText;
     }
-  });
-});
+    /*Sadly this strips tags as well*/
+
+  } catch (e) {}
+}
 //# sourceMappingURL=add-quicktag-gutenberg.js.map
