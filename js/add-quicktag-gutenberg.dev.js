@@ -47,7 +47,7 @@ for (let i = 0; i < tags.length; i++) {
         const name = html_entity_decode(tags[i].text).replace(/[ "\\]/gi, "").toLowerCase();
         const type = `advanced/${name}`;
         // String.
-        const tagName = tags[ i ].start.replace(/[<>]/gi, '');
+        const tagName = tags[ i ].start.replace(/[^a-zA-Z0-9!?]+/g, '');
         // String or null.
         const className = null;
         // String, not '' empty, max. of 3 keywords.
