@@ -12,11 +12,6 @@
         return false;
     }
 });
-/*
-// Check if the current post type for quicktags is on the current page.
-if (!addquicktag_pt_for_js.includes(addquicktag_post_type)) {
-    return false;
-}*/
 
 const tags = addquicktag_tags['buttons'];
 const {createElement, Fragment} = window.wp.element;
@@ -108,7 +103,7 @@ for (let i = 0; i < tags.length; i++) {
 function html_entity_decode(str) {
     /*Firefox (and IE if the string contains no elements surrounded by angle brackets )*/
     try {
-        var ta = document.createElement("textarea");
+        const ta = document.createElement("textarea");
         ta.innerHTML = str;
         return ta.value;
     } catch (e) {
@@ -116,7 +111,7 @@ function html_entity_decode(str) {
 
     /*Internet Explorer*/
     try {
-        var d = document.createElement("div");
+        const d = document.createElement("div");
         d.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         if (typeof d.innerText !== "undefined") {
             return d.innerText;
