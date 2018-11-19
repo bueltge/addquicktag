@@ -20,7 +20,7 @@ if (!addquicktag_pt_for_js.includes(addquicktag_post_type)) {
 
 const tags = addquicktag_tags['buttons'];
 const {createElement, Fragment} = window.wp.element;
-const {registerFormatType, unregisterFormatType, toggleFormat} = window.wp.richText;
+const {registerFormatType, getTextContent, applyFormat, toggleFormat, slice, insert} = window.wp.richText;
 const {__} = window.wp.i18n;
 const {RichTextToolbarButton, RichTextShortcut} = window.wp.editor;
 
@@ -37,7 +37,7 @@ for (let i = 0; i < tags.length; i++) {
         if (typeof tags[i].access === 'undefined') {
             tags[i].access = '';
         }
-        if ( tags[i].dashicon === '' ) {
+        if (tags[i].dashicon === '') {
             tags[i].dashicon = 'tag';
         }
 
@@ -47,7 +47,9 @@ for (let i = 0; i < tags.length; i++) {
         const name = html_entity_decode(tags[i].text).replace(/[ "\\]/gi, "").toLowerCase();
         const type = `advanced/${name}`;
         // String.
-        const tagName = tags[ i ].start.replace(/[^a-zA-Z0-9!?]+/g, '');
+        const tagName = tags[i].start; //.replace(/[^a-zA-Z0-9!?]+/g, '');
+        // String.
+        const tagEnd = tags[i].end; //.replace(/[^a-zA-Z0-9!?]+/g, '');
         // String or null.
         const className = null;
         // String, not '' empty, max. of 3 keywords.
@@ -58,37 +60,48 @@ for (let i = 0; i < tags.length; i++) {
         const icon = tags[i].dashicon.replace(/dashicons-/gi, "");
 
         // Debug statement inside the dev js.
-        console.log([{name:name, type:type, tagName:tagName, className:className, title:title, character:character, icon:icon}]);
+        console.log([{
+            name     : name,
+            type     : type,
+            tagName  : tagName,
+            tagEnd   : tagEnd,
+            className: className,
+            title    : title,
+            character: character,
+            icon     : icon
+        }]);
 
         // @see https://github.com/WordPress/gutenberg/blob/4741104c2e035a6b80ab7e01031a9d4086b3f75d/packages/rich-text/src/register-format-type.js#L17
         registerFormatType(type, {
             title,
             tagName,
+            tagEnd,
             className,
             edit({isActive, value, onChange}) {
-                const onToggle = () => onChange(toggleFormat(value, {type}))
+                // Get the selected string.
+                const text = getTextContent(slice(value));
+                const onClick = () => onChange(insert(value, tagName + text + tagEnd));
 
                 return (
                     createElement(Fragment, null,
                         createElement(RichTextShortcut, {
-                            type: 'primary',
+                            type : 'primary',
                             character,
-                            onUse: onToggle
+                            onUse: onClick
                         }),
                         createElement(RichTextToolbarButton, {
                             icon,
                             title,
-                            onClick: onToggle,
+                            onClick          : onClick,
                             isActive,
-                            shortcutType: 'primary',
+                            shortcutType     : 'primary',
                             shortcutCharacter: character,
-                            className: `toolbar-button-with-text toolbar-button__advanced-${name}`
+                            className        : `toolbar-button-with-text toolbar-button__advanced-${name}`
                         })
                     )
                 )
             }
-        })
-        /**});*/
+        });
     }
 }
 
