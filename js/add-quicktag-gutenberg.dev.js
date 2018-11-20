@@ -79,23 +79,24 @@ for (let i = 0; i < tags.length; i++) {
                 //const onClick = () => onChange( insert( value, toInsert ) );
                 const onClick = () => {
                     element = create({
-                        'html' : tagName + text + tagEnd
+                        'html' : toInsert
                     });
                     onChange(insert(value, element));
                 };
+                const onToggle = () => onChange( toggleFormat( value, { type: name } ) );
 
                 return (
                     createElement(Fragment, null,
                         createElement(RichTextShortcut, {
                             type : 'primary',
                             character,
-                            onUse: onClick
+                            onUse: onToggle
                         }),
                         createElement(RichTextToolbarButton, {
                             icon,
                             title,
                             onClick          : onClick,
-                            isActive,
+                            isActive         : isActive,
                             shortcutType     : 'primary',
                             shortcutCharacter: character,
                             className        : `toolbar-button-with-text toolbar-button__advanced-${name}`
