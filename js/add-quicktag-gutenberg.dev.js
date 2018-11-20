@@ -15,7 +15,7 @@
 
 const tags = addquicktag_tags['buttons'];
 const {createElement, Fragment} = window.wp.element;
-const {registerFormatType, getTextContent, applyFormat, toggleFormat, slice, insert} = window.wp.richText;
+const {registerFormatType, getTextContent, applyFormat, toggleFormat, slice, insert, create} = window.wp.richText;
 const {__} = window.wp.i18n;
 const {RichTextToolbarButton, RichTextShortcut} = window.wp.editor;
 
@@ -75,7 +75,14 @@ for (let i = 0; i < tags.length; i++) {
             edit({isActive, value, onChange}) {
                 // Get the selected string.
                 const text = getTextContent(slice(value));
-                const onClick = () => onChange(insert(value, tagName + text + tagEnd));
+                const toInsert = tagName + text + tagEnd;
+                //const onClick = () => onChange( insert( value, toInsert ) );
+                const onClick = () => {
+                    element = create({
+                        'html' : tagName + text + tagEnd
+                    });
+                    onChange(insert(value, element));
+                };
 
                 return (
                     createElement(Fragment, null,
