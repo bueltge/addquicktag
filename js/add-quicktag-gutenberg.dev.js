@@ -81,16 +81,21 @@ for (let i = 0; i < tags.length; i++) {
                     element = create({
                         'html' : toInsert
                     });
-                    onChange(insert(value, element));
+                    if( element.formats.length === 0 ) {
+                        return;
+                    }
+                    for ( let i = element.formats[0].length - 1; i >= 0; i-- ) {
+                        value = toggleFormat(value, element.formats[0][i]);
+                    }
+                    onChange(value);
                 };
-                const onToggle = () => onChange( toggleFormat( value, { type: name } ) );
 
                 return (
                     createElement(Fragment, null,
                         createElement(RichTextShortcut, {
                             type : 'primary',
                             character,
-                            onUse: onToggle
+                            onUse: onClick
                         }),
                         createElement(RichTextToolbarButton, {
                             icon,
