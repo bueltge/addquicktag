@@ -41,7 +41,7 @@ for (var i = 0; i < tags.length; i++) {
         const name = html_entity_decode(tags[i].text).replace(/["\\]/gi, "").toLowerCase()
         const type = `advanced/${name}`
         // ToDo replace <> from tag
-        const tagName = 'test' //tags[ i ].start
+        const tagName = 'test' //tags[ i ].start.replace(/^(?=.<)(?=.>)/gi, "")
         const className = null
         const title = tags[i].title
         const character = tags[i].access
