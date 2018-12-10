@@ -294,7 +294,9 @@ class Add_Quicktag {
 		// Alternative to JSON function
 		// wp_localize_script( self :: get_textdomain() . '_script', 'addquicktag_tags', get_option( self :: $option_string ) );
 
-		if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) {
+        $current_screen = get_current_screen();
+        // In WP 5.0 those functions do not exist no more. Not sure, if they continue to exist in the plugin.
+		if ( isset($current_screen->is_block_editor) && $current_screen->is_block_editor ) {
 			wp_enqueue_script(
 				$this->get_textdomain() . '_gutenberg',
 				plugins_url( '/js/add-quicktag-gutenberg.dev.js', __FILE__ ),
