@@ -14,7 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
+    - name: Clear cache of Composer
+      run: composer clear-cache
+
+    - name: Validate Composer.json and composer.lock
       run: composer validate
 
     - name: Cache Composer packages
