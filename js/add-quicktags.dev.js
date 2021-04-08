@@ -7,85 +7,86 @@
  * @since    2.0.0
  */
 
-jQuery( document ).ready( function( $ ) {
-
-	if ( typeof addquicktag_tags === 'undefined' ) {
+//jQuery( document ).ready( function( $ ) {
+(function ($) {
+	'use strict';
+	if (typeof addquicktag_tags === 'undefined') {
 		return;
 	}
 
-	if ( typeof addquicktag_post_type === 'undefined' ) {
+	if (typeof addquicktag_post_type === 'undefined') {
 		return;
 	}
 
-	if ( typeof addquicktag_pt_for_js === 'undefined' ) {
+	if (typeof addquicktag_pt_for_js === 'undefined') {
 		return;
 	}
 
-	var tags = addquicktag_tags[ 'buttons' ];
-	if ( typeof tags === 'undefined' ) {
+	var tags = addquicktag_tags['buttons'];
+	if (typeof tags === 'undefined') {
 		return;
 	}
 
-	function html_entity_decode( str ) {
+	function html_entity_decode(str) {
 		/*Firefox (and IE if the string contains no elements surrounded by angle brackets )*/
 		try {
-			var ta = document.createElement( "textarea" );
+			var ta = document.createElement("textarea");
 			ta.innerHTML = str;
 			return ta.value;
-		} catch ( e ) {
+		} catch (e) {
 		}
 
 		/*Internet Explorer*/
 		try {
-			var d = document.createElement( "div" );
-			d.innerHTML = str.replace( /</g, "&lt;" ).replace( />/g, "&gt;" );
-			if ( typeof d.innerText !== "undefined" ) {
+			var d = document.createElement("div");
+			d.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			if (typeof d.innerText !== "undefined") {
 				return d.innerText;
 			}
 			/*Sadly this strips tags as well*/
-		} catch ( e ) {
+		} catch (e) {
 		}
 	}
 
 	// window for input; currently not in use; maybe later
-	function qt_callback_input_window( e, c, ed ) {
+	function qt_callback_input_window(e, c, ed) {
 
-		var prmt = prompt( 'Enter Tag Name' );
+		var prmt = prompt('Enter Tag Name');
 
-		if ( prmt === null ) {
+		if (prmt === null) {
 			return;
 		}
 
 		this.tagStart = '[tag]' + prmt + '[/tag]';
 
-		QTags.TagButton.prototype.callback.call( this, e, c, ed );
+		QTags.TagButton.prototype.callback.call(this, e, c, ed);
 	}
 
-	function get_selected_text( canvas ) { // "canvas" is what they call the textarea of the editor
+	function get_selected_text(canvas) { // "canvas" is what they call the textarea of the editor
 		canvas.focus();
 
-		if ( document.selection ) { // IE
+		if (document.selection) { // IE
 			return document.selection.createRange().text;
 		} else { // standards
-			return canvas.value.substring( canvas.selectionStart, canvas.selectionEnd );
+			return canvas.value.substring(canvas.selectionStart, canvas.selectionEnd);
 		}
 	}
 
 	// check post type
-	if ( $.inArray( "addquicktag_post_type", addquicktag_pt_for_js ) ) {
+	if ($.inArray("addquicktag_post_type", addquicktag_pt_for_js)) {
 
-		for ( var i = 0; i < tags.length; i++ ) {
+		for (var i = 0; i < tags.length; i++) {
 			// check for active on this post type
-			if ( 1 === parseInt( tags[ i ][ addquicktag_post_type ] ) ) {
+			if (1 === parseInt(tags[i][addquicktag_post_type])) {
 				//console.log(tags[i]);
-				if ( typeof tags[ i ].title === 'undefined' ) {
-					tags[ i ].title = ' ';
+				if (typeof tags[i].title === 'undefined') {
+					tags[i].title = ' ';
 				}
-				if ( typeof tags[ i ].end === 'undefined' ) {
-					tags[ i ].end = '';
+				if (typeof tags[i].end === 'undefined') {
+					tags[i].end = '';
 				}
-				if ( typeof tags[ i ].access === 'undefined' ) {
-					tags[ i ].access = '';
+				if (typeof tags[i].access === 'undefined') {
+					tags[i].access = '';
 				}
 
 				/**
@@ -99,12 +100,12 @@ jQuery( document ).ready( function( $ ) {
 				 * @param instance string optional Limit the button to a specific instance of Quicktags, add to all instances if not present.
 				 */
 				QTags.addButton(
-					html_entity_decode( tags[ i ].text ).replace( /["\\]/gi, "" ).toLowerCase(),
-					tags[ i ].text,
-					tags[ i ].start,
-					tags[ i ].end,
-					tags[ i ].access,
-					tags[ i ].title.replace( /["\\]/gi, "" )
+					html_entity_decode(tags[i].text).replace(/["\\]/gi, "").toLowerCase(),
+					tags[i].text,
+					tags[i].start,
+					tags[i].end,
+					tags[i].access,
+					tags[i].title.replace(/["\\]/gi, "")
 				);
 
 				/**
@@ -125,82 +126,82 @@ jQuery( document ).ready( function( $ ) {
 	} // end check post type
 
 	// Check the Code buttons, if inside the json
-	var code_buttons = addquicktag_tags[ 'code_buttons' ];
+	var code_buttons = addquicktag_tags['code_buttons'];
 
 	// Fallback, if WP core don't set the var
-	if ( typeof typenow === 'undefined' ) {
+	if (typeof typenow === 'undefined') {
 		typenow = '';
 	}
 
 	// IF no code buttons was active
-	if ( typeof code_buttons === 'undefined' ) {
+	if (typeof code_buttons === 'undefined') {
 		return;
 	}
 
 	// Fallback for no htmlentities settings
-	if ( typeof code_buttons.htmlentities === 'undefined' ) {
+	if (typeof code_buttons.htmlentities === 'undefined') {
 		code_buttons.htmlentities = 0;
 	}
 
 	// Fallback for no pre settings
-	if ( typeof code_buttons.pre === 'undefined' ) {
+	if (typeof code_buttons.pre === 'undefined') {
 		code_buttons.pre = 0;
 	}
 
 	// if the htmlentities settings is active for each post type (var typenow from WP core)
-	if ( code_buttons.htmlentities[ typenow ] === 1 ) {
+	if (code_buttons.htmlentities[typenow] === 1) {
 		/**
 		 * ideas for code buttons and optional window with input possibility
 		 *
 		 * @see @see http://bililite.com/blog/2012/08/20/custom-buttons-in-the-wordpress-html-editor/
 		 */
-		QTags.addButton( 'toHTML', 'HTML Entities', function( el, canvas ) {
+		QTags.addButton('toHTML', 'HTML Entities', function (el, canvas) {
 			QTags.insertContent(
-				get_selected_text( canvas ).replace( /&/g, '&amp;' ).replace( /</g, '&lt;' ).replace( />/g, '&gt;' )
+				get_selected_text(canvas).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 			);
-		}, 'Encode HTML Entities' );
+		}, 'Encode HTML Entities');
 
-		QTags.addButton( 'fromHTML', 'Decode HTML', function( el, canvas ) {
+		QTags.addButton('fromHTML', 'Decode HTML', function (el, canvas) {
 			QTags.insertContent(
-				get_selected_text( canvas ).replace( /&amp;/g, '&' ).replace( /&lt;/g, '<' ).replace( /&gt;/g, '>' )
+				get_selected_text(canvas).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 			);
-		}, 'Decode HTML Entities' );
+		}, 'Decode HTML Entities');
 	}
 
 	// if the pre settings is active for each post type (var typenow from WP core)
-	if ( code_buttons.pre[ typenow ] === 1 ) {
-		var code_languages = [ 'html', 'javascript', 'css', 'bash', 'php', 'vb' ];
+	if (code_buttons.pre[typenow] === 1) {
+		var code_languages = ['html', 'javascript', 'css', 'bash', 'php', 'vb'];
 		// Insert before the code button
-		edButtons[ 109 ] = {
-			html: function( id_prefix ) {
+		edButtons[109] = {
+			html: function (id_prefix) {
 				return '<select id="' + id_prefix + 'code_language" class="language-select">' +
 					'<option>blank</option>' + // include a blank option
-					'<option>' + code_languages.join( '</option><option>' ) + '</option>' +
+					'<option>' + code_languages.join('</option><option>') + '</option>' +
 					'</select>';
 			}
 		};
-		$( 'body' ).on( 'change', 'select.language-select', function() {
-			var lang = $( this ).val();
+		$('body').on('change', 'select.language-select', function () {
+			var lang = $(this).val();
 			// 110 is the code qt-tag from core, wp-includes/js/quicktags.js
-			edButtons[ 110 ].tagStart = lang ? '<code class="language-' + lang + '">' : '<code>';
-		} );
+			edButtons[110].tagStart = lang ? '<code class="language-' + lang + '">' : '<code>';
+		});
 
 		// Add pre button for preformatted text
-		QTags.addButton( 'qt_pre', 'pre', '<pre>', '</pre>', '', 'Preformatted text', '108' );
+		QTags.addButton('qt_pre', 'pre', '<pre>', '</pre>', '', 'Preformatted text', '108');
 	}
 
-} );
+})(jQuery);
 
 var decodeEntities = (
-	function() {
+	function () {
 		// this prevents any overhead from creating the object each time
-		var element = document.createElement( 'div' );
+		var element = document.createElement('div');
 
-		function decodeHTMLEntities( str ) {
-			if ( str && typeof str === 'string' ) {
+		function decodeHTMLEntities(str) {
+			if (str && typeof str === 'string') {
 				// strip script/html tags
-				str = str.replace( /<script[^>]*>([\S\s]*?)<\/script>/gmi, '' );
-				str = str.replace( /<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '' );
+				str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+				str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
 				element.innerHTML = str;
 				str = element.textContent;
 				element.textContent = '';

@@ -285,7 +285,7 @@
 					list.append( '<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>' );
 				}
 
-				$( 'a', list ).click( function ( e ) {
+				$( 'a', list ).on('click', function ( e ) {
 					e.preventDefault();
 					var title = $( this ).attr( 'title' );
 					target.val( 'dashicons-' + title );
@@ -300,7 +300,7 @@
 					<a data-direction="forward" href="#"><span class="dashicons dashicons-arrow-right-alt2"></span></a>'
 				);
 
-				$( 'a', control ).click( function ( e ) {
+				$( 'a', control ).on('click', function ( e ) {
 					e.preventDefault();
 					if ( $( this ).data( 'direction' ) === 'back' ) {
 						$( 'li:gt(' + ( icons.length - 26 ) + ')', list ).prependTo( list );
