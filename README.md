@@ -32,39 +32,39 @@ Please give me feedback, contribute and file technical bugs on this [GitHub Repo
 The plugin add the quicktag on default to post types/ID `post`, `page` and `comment`. If you will also the plugin for other post types you can use a filter; see the follow example, an example plugin in the [Gist 1595155](https://gist.github.com/1595155) or use an example plugin iside this repo, the files end with `.example`.
 
 ```php
-	// add custom function to filter hook 'addquicktag_post_types'
-	add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
-	/**
-	 * Return array $post_types with custom post types
-	 * 
-	 * @param   $post_types Array
-	 * @return  Array
-	 */
-	function my_addquicktag_post_types( $post_types ) {
-		
-		$post_types[] = 'edit-comments';
-		
-		return $post_types;
-	}
+// add custom function to filter hook 'addquicktag_post_types'
+add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
+/**
+ * Return array $post_types with custom post types
+ * 
+ * @param   $post_types Array
+ * @return  Array
+ */
+function my_addquicktag_post_types( $post_types ) {
+	
+	$post_types[] = 'edit-comments';
+	
+	return $post_types;
+}
 ```
 
 ### Hook for custom pages
 Also, it is possible to filter the pages inside the backend. On default was the scripts include the pages `post.php`, `post-new.php` and `comment.php`. The follow example change this for an another page.
 
 ```php
-	add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
-	/**
-	 * Return array $page with custom page strings
-	 * 
-	 * @param   $page Array
-	 * @return  Array
-	 */
-	function my_addquicktag_pages( $page ) {
-		
-		$page[] = 'edit-comments.php';
-		
-		return $page;
-	}
+add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
+/**
+ * Return array $page with custom page strings
+ * 
+ * @param   $page Array
+ * @return  Array
+ */
+function my_addquicktag_pages( $page ) {
+	
+	$page[] = 'edit-comments.php';
+	
+	return $page;
+}
 ```
 
 See this Gist als example for add the Quicktags to the editor of comments: [Gist: 3076698](https://gist.github.com/3076698).
@@ -77,41 +77,41 @@ Is usefull to easyier add buttons about the solution of this plugin.
 See the follow example to add buttons. The params inside the array is the same as in the settings of the plugin.
 
 ```php
-	if ( class_exists( 'Add_Quicktag' ) ) :
-	add_filter( 'addquicktag_buttons', 'my_addquicktag_buttons' );
-	
-	function my_addquicktag_buttons( $buttons ) {
-	
-	    $buttons[] = array(
-	        'text'          => 'Permalink', 
-	        'title'         => '',
-	        'start'         => '[permalink]',
-	        'end'           => '[/permalink]',
-	        'access'        => '',
-	        'order'         => 1,
-	        'visual'        => 1,
-	        'post'          => 0,
-	        'page'          => 1,
-	        'comment'       => 0,
-	        'edit-comments' => 0
-	    );
-	    $buttons[] = array(
-	        'text'          => 'Button', 
-	        'title'         => '',
-	        'start'         => '<span class="border blue">',
-	        'end'           => '</span>',
-	        'access'        => '',
-	        'order'         => 2,
-	        'visual'        => 1,
-	        'post'          => 0,
-	        'page'          => 1,
-	        'comment'       => 0,
-	        'edit-comments' => 0
-	    );
-	
-	    return $buttons;
-	}
-	endif;
+if ( class_exists( 'Add_Quicktag' ) ) :
+add_filter( 'addquicktag_buttons', 'my_addquicktag_buttons' );
+
+function my_addquicktag_buttons( $buttons ) {
+
+    $buttons[] = array(
+        'text'          => 'Permalink', 
+        'title'         => '',
+        'start'         => '[permalink]',
+        'end'           => '[/permalink]',
+        'access'        => '',
+        'order'         => 1,
+        'visual'        => 1,
+        'post'          => 0,
+        'page'          => 1,
+        'comment'       => 0,
+        'edit-comments' => 0
+    );
+    $buttons[] = array(
+        'text'          => 'Button', 
+        'title'         => '',
+        'start'         => '<span class="border blue">',
+        'end'           => '</span>',
+        'access'        => '',
+        'order'         => 2,
+        'visual'        => 1,
+        'post'          => 0,
+        'page'          => 1,
+        'comment'       => 0,
+        'edit-comments' => 0
+    );
+
+    return $buttons;
+}
+endif;
 ```
 
 ### License
