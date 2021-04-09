@@ -130,6 +130,9 @@ The following example adds buttons. The params inside the array are the same as 
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [positive review](https://wordpress.org/support/plugin/addquicktag/reviews/#new-post) for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.6.0 (ToDo) =
+* Maintenance for the jQuery Update to run with the last WP Core update, jQuery 3.5*
+
 = 2.5.3 (2018-11-06) =
 * Fix error warning in edit mode without button settings.
 
