@@ -6,9 +6,7 @@
  * @package AddQuicktag Plugin
  */
 
-//jQuery( document ).ready( function( $ ) {
 (function ($) {
-	'use strict';
 	$('input:checkbox.toggle').on('click', function () {
 		var i = $(this).attr('value'),
 			sel = '#rmqtb' + i + ' input:checkbox';
@@ -85,8 +83,7 @@
 			}
 
 			function scrollFixed() {
-				var that = this;
-				var offset = that.scrollTop(),
+				var offset = this.scrollTop(),
 					tableOffsetTop = $this.offset().top,
 					tableOffsetBottom = tableOffsetTop + $this.height() - $this.find("thead").height();
 				if (offset < tableOffsetTop || offset > tableOffsetBottom) {

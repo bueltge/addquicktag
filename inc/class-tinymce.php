@@ -69,10 +69,8 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.dev' : '';
 
-		$url     = plugins_url( '/tinymce/editor_plugin' . $suffix . '.js', __FILE__ );
-		$plugins = array_merge( $plugins, array( self::$option_string => $url ) );
-
-		return $plugins;
+		$url    = plugins_url( '/js/editor_plugin' . $suffix . '.js', __DIR__ );
+		return array_merge( $plugins, array( self::$option_string => $url ) );
 	}
 
 	/**

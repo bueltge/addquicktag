@@ -3,13 +3,12 @@
  *
  * @package  AddQuicktag Plugin
  * @author   Frank Bueltge <frank@bueltge.de>
- * @version  2017-11-16
+ * @version  2021-04-09
  * @since    2.0.0
  */
 
-//jQuery( document ).ready( function( $ ) {
 (function ($) {
-	'use strict';
+
 	if (typeof addquicktag_tags === 'undefined') {
 		return;
 	}
@@ -27,6 +26,12 @@
 		return;
 	}
 
+	/**
+	 * Decode html strings.
+	 *
+	 * @param str
+	 * @returns {string}
+	 */
 	function html_entity_decode(str) {
 		/*Firefox (and IE if the string contains no elements surrounded by angle brackets )*/
 		try {
@@ -48,7 +53,13 @@
 		}
 	}
 
-	// window for input; currently not in use; maybe later
+	/**
+	 * Window for input.
+	 *
+	 * @param e
+	 * @param c
+	 * @param ed
+	 */
 	function qt_callback_input_window(e, c, ed) {
 
 		var prmt = prompt('Enter Tag Name');
@@ -62,14 +73,19 @@
 		QTags.TagButton.prototype.callback.call(this, e, c, ed);
 	}
 
+	/**
+	 * Get string from selection.
+	 *
+	 * @param canvas
+	 * @returns {string|*}
+	 */
 	function get_selected_text(canvas) { // "canvas" is what they call the textarea of the editor
 		canvas.focus();
 
 		if (document.selection) { // IE
 			return document.selection.createRange().text;
-		} else { // standards
-			return canvas.value.substring(canvas.selectionStart, canvas.selectionEnd);
 		}
+		return canvas.value.substring(canvas.selectionStart, canvas.selectionEnd);
 	}
 
 	// check post type
