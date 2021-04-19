@@ -3,6 +3,15 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		removelogging: {
+			dist: {
+				src: ['js/editor_plugin.dev.js'],
+				dest: 'js/editor_plugin.log.js',
+
+				options: {
+				}
+			}
+		},
 		uglify: {
 			all: {
 				files: [{
@@ -27,11 +36,12 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks("grunt-remove-logging");
 	// Load the plugin that provides the "uglify" task.
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	// Default task(s).
-	grunt.registerTask('default', ['uglify', 'cssmin']);
+	grunt.registerTask('default', ['removelogging', 'uglify', 'cssmin']);
 
 };
