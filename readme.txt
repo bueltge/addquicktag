@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
-Requires at least: 3.0
-Tested up to: 5
-Stable tag: 2.5.3
+Requires at least: 4.0
+Tested up to: 5.7
+Stable tag: 2.6.0
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
 
@@ -14,17 +14,17 @@ This plugin makes it easy to add Quicktags to the html - and visual-editor. It i
 WP-AddQuicktag for WordPress is originally created by [Roel Meurders](http://roel.meurders.nl/ "Roel Meurders"). The versions in the Repo of AddQuicktag are newer versions, this is a complete rewrite of version 2.0.0 with more functionality.
 
 The plugin can add configurable custom quicktags to the editor of every post type, including custom post types from other sources. You may choose a post type for which a quicktag shall show up in the editor.
-If this should not work perfectly well for you, you may also use the hooks inside the plugin. See the examples and hint inside the tab "[Other Notes](http://wordpress.org/extend/plugins/addquicktag/other_notes/)".
+If this should not work perfectly well for you, you may also use the hooks inside the plugin. See the examples and hint inside the tab "[Other Notes](https://wordpress.org/extend/plugins/addquicktag/other_notes/)".
 
 = Bugs, technical hints or contribute =
-Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/AddQuicktag).
+Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/addquicktag).
 
-**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
+**Crafted by [Inpsyde](https://inpsyde.com) · Engineering the web since 2006.**
 
 
 == Installation ==
 = Requirements =
-* WordPress version 3.0 and later (see _Compatible up to_)
+* WordPress version 4.0 and later (see _Compatible up to_)
 
 = Installation =
 1. Unpack the download-package
@@ -32,16 +32,10 @@ Please give me feedback, contribute and file technical bugs on [GitHub Repo](htt
 1. Activate the plugin through the 'Plugins' menu in WordPress or for the Network, if you will use in Multisite for all Sites
 1. Got to 'Settings' menu and configure the plugin
 
-**Versions before WordPress 3.0**
-
-If you wish to use this plugin with an older version of WordPress, please use an older version of this plugin, older than version 2.0.0 - you find old versions in the [repo](http://wordpress.org/extend/plugins/addquicktag/download/). Anyway, I will not support this version. The plugin version 2.0.0 and newer are rewrites, that use all new possibilities of the WordPress Core that are not available in WordPress versions before 3.x.
-
-
 == Screenshots ==
 1. Settings area in WordPress 4.0-alpha
 2. HTML Editor with new Quicktags
 3. Visual editor with new Quicktags
-
 
 == Other Notes ==
 = Hook for custom post types =
@@ -58,7 +52,6 @@ The plugin adds the quicktag by default to post types/ID `post`, `page` and `com
 	function my_addquicktag_post_types( $post_types ) {
 
 		$post_types[] = 'edit-comments';
-
 		return $post_types;
 	}
 
@@ -76,7 +69,6 @@ It is possible also to filter the pages inside the backend. By default the scrip
 	function my_addquicktag_pages( $page ) {
 
 		$page[] = 'edit-comments.php';
-
 		return $page;
 	}
 
@@ -120,11 +112,9 @@ The following example adds buttons. The params inside the array are the same as 
 	        'comment'       => 0,
 	        'edit-comments' => 0
 	    );
-
 	    return $buttons;
 	}
 	endif;
-
 
 = License =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [positive review](https://wordpress.org/support/plugin/addquicktag/reviews/#new-post) for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
@@ -132,6 +122,8 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 == Changelog ==
 = 2.6.0 (ToDo) =
 * Maintenance for the jQuery Update to run with the last WP Core update, jQuery 3.5*
+* Maintenance several code styles, testing PHP7/8
+* Remove dependecies for WP version smaller 3.3
 
 = 2.5.3 (2018-11-06) =
 * Fix error warning in edit mode without button settings.
@@ -252,4 +244,4 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 = v1.6.3 (16/06/2009) =
 * Add belorussian language file, thanks to Fat Cow
 
-Find out about older changes on the [the official website](http://bueltge.de/wp-addquicktags-de-plugin/120/#historie "AddQuicktag")!
+Find out about older changes on the [the official website](https://bueltge.de/wp-addquicktags-de-plugin/120/#historie "AddQuicktag")!

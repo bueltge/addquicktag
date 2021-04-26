@@ -7,7 +7,7 @@
 	],
 	"license": "GPL-3.0-or-later",
 	"type": "wordpress-plugin",
-	"homepage": "https://github.com/bueltge/AddQuicktag",
+	"homepage": "https://github.com/bueltge/addquicktag",
 	"authors": [
 		{
 			"name": "Frank Bültge",
@@ -17,7 +17,7 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/bueltge/AddQuicktag/issues"
+		"issues": "https://github.com/bueltge/addquicktag/issues"
 	},
 	"require": {
 		"php": ">=5.6",
