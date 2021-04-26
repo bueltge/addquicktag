@@ -43,7 +43,6 @@ add_filter( 'addquicktag_post_types', 'my_addquicktag_post_types' );
 function my_addquicktag_post_types( $post_types ) {
 	
 	$post_types[] = 'edit-comments';
-	
 	return $post_types;
 }
 ```
@@ -62,7 +61,6 @@ add_filter( 'addquicktag_pages', 'my_addquicktag_pages' );
 function my_addquicktag_pages( $page ) {
 	
 	$page[] = 'edit-comments.php';
-	
 	return $page;
 }
 ```
@@ -108,7 +106,6 @@ function my_addquicktag_buttons( $buttons ) {
         'comment'       => 0,
         'edit-comments' => 0
     );
-
     return $buttons;
 }
 endif;

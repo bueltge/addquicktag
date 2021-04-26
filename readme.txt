@@ -17,7 +17,7 @@ The plugin can add configurable custom quicktags to the editor of every post typ
 If this should not work perfectly well for you, you may also use the hooks inside the plugin. See the examples and hint inside the tab "[Other Notes](https://wordpress.org/extend/plugins/addquicktag/other_notes/)".
 
 = Bugs, technical hints or contribute =
-Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/addquicktag).
+Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/addquicktag). The Wiki on this page has also several hints for the plugin.
 
 **Crafted by [Inpsyde](https://inpsyde.com) · Engineering the web since 2006.**
 
