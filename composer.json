@@ -39,6 +39,7 @@
 	"prefer-stable": true,
 	"scripts": {
 		"cs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"csf": "@php ./vendor/bin/phpcbf",
 		"pu": "@php ./vendor/bin/phpunit",
 		"qa": [
 			"@cs",

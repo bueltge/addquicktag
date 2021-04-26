@@ -21,21 +21,24 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 	/**
 	 * string for translation
+	 *
 	 * @var string
 	 */
-	static public $textdomain;
+	public static $textdomain;
 
 	/**
 	 * string for options in table options
+	 *
 	 * @var string
 	 */
-	static private $option_string;
+	private static $option_string;
 
 	/**
 	 * string for plugin file
+	 *
 	 * @var string
 	 */
-	static private $plugin;
+	private static $plugin;
 
 	/**
 	 * Post types for the settings
@@ -52,10 +55,9 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return \Add_Quicktag|\Add_Quicktag_Im_Export|\Add_Quicktag_Settings $instance
 	 */
 	public static function get_object() {
-
 		static $instance;
 
-		if ( NULL === $instance ) {
+		if ( null === $instance ) {
 			$instance = new self();
 		}
 
@@ -70,16 +72,15 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @uses    register_activation_hook, register_uninstall_hook, add_action
 	 */
 	private function __construct() {
-
 		self::$option_string     = parent::get_option_string();
 		self::$plugin            = parent::get_plugin_string();
 		self::$post_types_for_js = parent::get_post_types_for_js();
 
-		if ( isset( $_GET[ 'addquicktag_download' ] ) && check_admin_referer( parent :: $nonce_string ) ) {
+		if ( isset( $_GET['addquicktag_download'] ) && check_admin_referer( parent::$nonce_string ) ) {
 			$this->get_export_file();
 		}
 
-		if ( isset( $_POST[ 'addquicktag_import' ] ) && check_admin_referer( parent :: $nonce_string ) ) {
+		if ( isset( $_POST['addquicktag_import'] ) && check_admin_referer( parent::$nonce_string ) ) {
 			$this->import_file();
 		}
 
@@ -107,7 +108,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				<p><?php esc_html_e( 'Once you’ve saved the download file, you can use the Import function in another WordPress installation to import this site.', 'addquicktag' ); ?></p>
 
 				<form method="get" action="">
-					<?php wp_nonce_field( parent :: $nonce_string ); ?>
+					<?php wp_nonce_field( parent::$nonce_string ); ?>
 					<p class="submit">
 						<input type="submit" name="submit" value="<?php esc_html_e( 'Download Export File', 'addquicktag' ); ?> &raquo;" />
 						<input type="hidden" name="addquicktag_download" value="true" />
@@ -123,7 +124,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				<p><?php esc_html_e( 'If you have quicktags from other installs, the plugin can import those into this site. To get started, choose a file to import. (json-Format)', 'addquicktag' ); ?></p>
 
 				<form method="post" action="" enctype="multipart/form-data">
-					<?php wp_nonce_field( parent :: $nonce_string ); ?>
+					<?php wp_nonce_field( parent::$nonce_string ); ?>
 					<p class="submit">
 						<input type="file" name="import_file" />
 						<input type="submit" name="submit" value="<?php esc_html_e( 'Upload file and import', 'addquicktag' ); ?> &raquo;" />
@@ -132,7 +133,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 				</form>
 			</div>
 		</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -142,12 +143,11 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @since   2.0.0
 	 */
 	public function get_export_file() {
-
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
-		check_admin_referer( parent :: $nonce_string );
+		check_admin_referer( parent::$nonce_string );
 
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			$options = get_site_option( self::$option_string );
@@ -155,7 +155,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			$options = get_option( self::$option_string );
 		}
 
-		ignore_user_abort( TRUE );
+		ignore_user_abort( true );
 
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
@@ -178,28 +178,27 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	 * @return  void
 	 */
 	public function import_file() {
-
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'Options not update - you don&lsquo;t have the privileges to do this!', 'addquicktag' ) );
 		}
 
-		check_admin_referer( parent :: $nonce_string );
+		check_admin_referer( parent::$nonce_string );
 
-		$extension = explode( '.', $_FILES[ 'import_file' ][ 'name' ] );
+		$extension = explode( '.', $_FILES['import_file']['name'] );
 		$extension = end( $extension );
 
 		if ( $extension !== 'json' ) {
 			wp_die( esc_html__( 'Please upload a valid .json file', 'addquicktag' ) );
 		}
 
-		$import_file = $_FILES[ 'import_file' ][ 'tmp_name' ];
+		$import_file = $_FILES['import_file']['tmp_name'];
 
 		if ( empty( $import_file ) ) {
 			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
 		}
 
 		// Retrieve the settings from the file and convert the json object to an array.
-		$options = (array) json_decode( file_get_contents( $import_file ), TRUE );
+		$options = (array) json_decode( file_get_contents( $import_file ), true );
 
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			update_site_option( self::$option_string, $options );
@@ -211,7 +210,10 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			wp_redirect(
 				add_query_arg(
-					array( 'page' => self::$plugin, 'updated' => 'true' ),
+					array(
+						'page'    => self::$plugin,
+						'updated' => 'true',
+					),
 					network_admin_url( 'settings.php' )
 				)
 			);
@@ -219,7 +221,10 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			$page = str_replace( basename( __FILE__ ), 'class-settings.php', plugin_basename( __FILE__ ) );
 			wp_redirect(
 				add_query_arg(
-					array( 'page' => $page, 'updated' => 'true' ),
+					array(
+						'page'    => $page,
+						'updated' => 'true',
+					),
 					admin_url( 'options-general.php' )
 				)
 			);
