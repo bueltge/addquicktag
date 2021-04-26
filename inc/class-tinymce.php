@@ -44,7 +44,7 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	}
 
 	/**
-	 * Constructor, init on defined hooks of WP and include second class
+	 * Constructor, init on defined hooks of WP and include second class.
 	 *
 	 * @access  public
 	 * @since   0.0.2
@@ -56,9 +56,9 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	}
 
 	/**
-	 * Add the script url to plugins of TinyMCE
+	 * Add the script url to plugins of TinyMCE.
 	 *
-	 * @param $plugins
+	 * @param array $plugins List of plugins.
 	 *
 	 * @return array
 	 */
@@ -74,13 +74,12 @@ class Add_Quicktag_2_TinyMce extends Add_Quicktag {
 	}
 
 	/**
-	 * Add key for address the button via script
+	 * Add key for address the button via script.
 	 *
-	 * @param bool    $editor_id
+	 * @param array $buttons TinyMCE buttons.
+	 * @param bool  $editor_id ID of the editor.
 	 *
 	 * @return array
-	 *
-	 * @param      $buttons
 	 */
 	public function extend_editor_buttons( $buttons, $editor_id = false ) {
 		return array_merge( array( self::$option_string ), $buttons );

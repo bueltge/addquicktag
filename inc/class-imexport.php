@@ -20,28 +20,28 @@ if ( ! function_exists( 'add_action' ) ) {
 class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 	/**
-	 * string for translation
+	 * String for translation.
 	 *
 	 * @var string
 	 */
 	public static $textdomain;
 
 	/**
-	 * string for options in table options
+	 * String for options in table options.
 	 *
 	 * @var string
 	 */
 	private static $option_string;
 
 	/**
-	 * string for plugin file
+	 * Store string for plugin file.
 	 *
 	 * @var string
 	 */
 	private static $plugin;
 
 	/**
-	 * Post types for the settings
+	 * Post types for the settings.
 	 *
 	 * @var array
 	 */
@@ -88,7 +88,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 	}
 
 	/**
-	 * get markup for ex- and import on settings page
+	 * Get markup for ex- and import on settings page.
 	 *
 	 * @access  public
 	 * @since   2.0.0
@@ -159,7 +159,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=addquicktag.-' . date( 'm-d-Y' ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=addquicktag.-' . gmdate( 'm-d-Y' ) . '.json' );
 		header( 'Expires: 0' );
 
 		echo json_encode( $options );
@@ -184,14 +184,22 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 
 		check_admin_referer( parent::$nonce_string );
 
-		$extension = explode( '.', $_FILES['import_file']['name'] );
+		if ( ! isset( $_FILES ) || ! isset( $_FILES['import_file']['name'] ) ) {
+			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
+		}
+
+		$extension = explode( '.', sanitize_file_name( wp_unslash( $_FILES['import_file']['name'] ) ) );
 		$extension = end( $extension );
 
-		if ( $extension !== 'json' ) {
+		if ( 'json' !== $extension ) {
 			wp_die( esc_html__( 'Please upload a valid .json file', 'addquicktag' ) );
 		}
 
-		$import_file = $_FILES['import_file']['tmp_name'];
+		if ( ! isset( $_FILES['import_file']['tmp_name'] ) ) {
+			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
+		}
+
+		$import_file = sanitize_file_name( wp_unslash( $_FILES['import_file']['tmp_name'] ) );
 
 		if ( empty( $import_file ) ) {
 			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
@@ -206,9 +214,9 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			update_option( self::$option_string, $options );
 		}
 
-		// redirect to settings page in network
+		// Redirect to settings page in network.
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
-			wp_redirect(
+			wp_safe_redirect(
 				add_query_arg(
 					array(
 						'page'    => self::$plugin,
@@ -219,7 +227,7 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			);
 		} else {
 			$page = str_replace( basename( __FILE__ ), 'class-settings.php', plugin_basename( __FILE__ ) );
-			wp_redirect(
+			wp_safe_redirect(
 				add_query_arg(
 					array(
 						'page'    => $page,

@@ -46,6 +46,7 @@ class Add_Quicktag {
 	private static $post_types_for_js = array( 'comment', 'edit-comments', 'widgets' );
 
 	/**
+	 * Store plugin string.
 	 *
 	 * @var string
 	 */
@@ -274,9 +275,6 @@ class Add_Quicktag {
 			'2021-05-26',
 			true
 		);
-
-		// Alternative to JSON function
-		// wp_localize_script( self :: get_textdomain() . '_script', 'addquicktag_tags', get_option( self :: $option_string ) );
 	}
 
 	/**
@@ -301,10 +299,7 @@ class Add_Quicktag {
 	 * @since  2.0.0
 	 * @access public
 	 *
-	 * @param  $value string
-	 *                default = 'TextDomain'
-	 *                Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
-	 *
+	 * @param  string $value default = 'TextDomain'.
 	 * @return string
 	 */
 	public function get_plugin_data( $value = 'TextDomain' ) {

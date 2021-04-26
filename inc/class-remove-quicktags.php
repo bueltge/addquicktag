@@ -18,7 +18,11 @@ if ( ! function_exists( 'add_action' ) ) {
  */
 class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 
-	// default buttons from WP Core
+	/**
+	 * Default buttons from WP Core.
+	 *
+	 * @var string
+	 */
 	private static $core_quicktags = 'strong,em,link,block,del,ins,img,ul,ol,li,code,more,close,fullscreen';
 
 	/**
@@ -50,9 +54,9 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 	}
 
 	/**
-	 * Add settings area
+	 * Add settings area.
 	 *
-	 * @param array $options
+	 * @param array $options Store options content.
 	 */
 	public function get_remove_quicktag_area( $options ) {
 		if ( ! array_key_exists( 'core_buttons', $options ) ) {
@@ -63,7 +67,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 		<p><?php esc_html_e( 'Select the checkbox below to remove a core quicktags in the editors of the respective post type.', 'addquicktag' ); ?></p>
 
 		<?php
-		// loop about the post types, create html an values for title in table
+		// Loop about the post types, create html an values for title in table.
 		$pt_title    = '';
 		$pt_colgroup = '';
 		foreach ( $this->get_post_types_for_js() as $post_type ) {
@@ -87,13 +91,13 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 
 			<tbody>
 			<?php
-			// Convert string to array
+			// Convert string to array.
 			$core_buttons = explode( ',', self::$core_quicktags );
-			// Loop over items to remove and unset them from the buttons
+			// Loop over items to remove and unset them from the buttons.
 			$i = 999;
 			foreach ( $core_buttons as $key => $value ) {
 
-				// same style as in editor
+				// Same style as in editor.
 				if ( 'strong' === $value ) {
 					$text  = 'b';
 					$style = ' style="font-weight: bold;"';
@@ -118,7 +122,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				echo '<td><input type="button" class="ed_button" title="" value="'
 					. $text . '"' . $style . '> <code>' . $value . '</code></td>';
 
-				// loop about the post types, create html an values
+				// Loop about the post types, create html an values.
 				$pt_checkboxes = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					$pt_checked = '';
@@ -128,9 +132,9 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 					}
 
 					$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
-									  parent::get_option_string() . '[core_buttons][' .
-									  $value . '][' . $post_type . ']" value="1"' .
-									  $pt_checked . '/></td>' . "\n";
+									parent::get_option_string() . '[core_buttons][' .
+									$value . '][' . $post_type . ']" value="1"' .
+									$pt_checked . '/></td>' . "\n";
 				}
 				echo $pt_checkboxes;
 
@@ -141,7 +145,7 @@ class Add_Quicktag_Remove_Quicktags extends Add_Quicktag_Settings {
 				$i ++;
 			}
 
-			// Convert new buttons array back into a comma-separated string
+			// Convert new buttons array back into a comma-separated string.
 			$core_qt = implode( ',', $core_buttons );
 			?>
 			</tbody>

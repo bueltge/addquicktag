@@ -20,42 +20,44 @@ if ( ! function_exists( 'add_action' ) ) {
 class Add_Quicktag_Settings extends Add_Quicktag {
 
 	/**
-	 * string for translation
+	 * String for translation.
 	 *
 	 * @var string
 	 */
 	public static $textdomain;
 
 	/**
-	 * string for options in table options
+	 * String for options in table options.
 	 *
 	 * @var string
 	 */
 	private static $option_string;
 
 	/**
-	 * string for plugin file
+	 * String for plugin file.
 	 *
 	 * @var string
 	 */
 	private static $plugin;
 
 	/**
-	 * post types for the settings
+	 * Post types for the settings.
 	 *
 	 * @var array
 	 */
 	private static $post_types_for_js;
 
 	/**
-	 * string for nonce fields
+	 * String for nonce fields.
 	 *
 	 * @var string
 	 */
 	public static $nonce_string;
 
 	/**
-	 * @var
+	 * Store page string for hook to the settings page.
+	 *
+	 * @var string
 	 */
 	protected $page_hook;
 
@@ -93,16 +95,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		self::$post_types_for_js = parent::get_post_types_for_js();
 		self::$nonce_string      = 'addquicktag_nonce';
 
-		// Makes sure the plugin is defined before trying to use it
+		// Makes sure the plugin is defined before trying to use it.
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
 		register_uninstall_hook( __FILE__, array( 'Add_Quicktag_Settings', 'unregister_settings' ) );
-		// settings for an active multisite
+		// Settings for an active multisite.
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			add_action( 'network_admin_menu', array( $this, 'add_settings_page' ) );
-			// add settings link
+			// add settings link.
 			add_filter(
 				'network_admin_plugin_action_links',
 				array(
@@ -112,39 +114,39 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				10,
 				2
 			);
-			// save settings on network
+			// Save settings on network.
 			add_action( 'network_admin_edit_' . self::$option_string, array( $this, 'save_network_settings_page' ) );
-			// return message for update settings
+			// Return message for update settings.
 			add_action( 'network_admin_notices', array( $this, 'get_network_admin_notices' ) );
-			// add script on settings page
+			// Add script on settings page.
 		} else {
 			add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
-			// add settings link
+			// Add settings link.
 			add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
-			// use settings API
+			// Use settings API.
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 		}
-		// include js
+		// Include js.
 		add_action(
 			'admin_print_scripts-settings_page_' . str_replace( '.php', '', plugin_basename( __FILE__ ) ),
 			array( $this, 'print_scripts' )
 		);
 
-		// add meta boxes on settings pages
+		// Add meta boxes on settings pages.
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
 		add_action( 'addquicktag_settings_page_sidebar', array( $this, 'get_about_plugin' ) );
 
-		// include class for remove core quicktags
+		// Include class for remove core quicktags.
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-remove-quicktags.php';
-		// include class for add enhanced code quicktags
-		// @TODO Solution for special code tags in quicktags
+		// Include class for add enhanced code quicktags.
+		// @TODO Solution for special code tags in quicktags.
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-code-quicktags.php';
-		// include class for im/export
+		// Include class for im/export.
 		require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'class-imexport.php';
 	}
 
 	/**
-	 * Return allowed post types for include scripts
+	 * Return allowed post types for include scripts.
 	 *
 	 * @since   2.1.1
 	 * @access  public
@@ -155,13 +157,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Add settings link on plugins.php in backend
+	 * Add settings link on plugins.php in backend.
 	 *
 	 * @uses
 	 * @access  public
 	 *
-	 * @param  array  $links , string $file
-	 * @param  string $file
+	 * @param  array  $links An array of plugin action links.
+	 * @param  string $file  Path to the plugin file relative to the plugins directory.
 	 *
 	 * @since   2.0.0
 	 * @return  string $links
@@ -169,7 +171,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	public function plugin_action_links( $links, $file ) {
 		if ( parent::get_plugin_string() === $file ) {
 			$links[] = '<a href="options-general.php?page=' . plugin_basename( __FILE__ ) . '">' . esc_html__(
-				'Settings'
+				'Settings', 'addquicktag'
 			) . '</a>';
 		}
 
@@ -177,7 +179,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Add settings link on plugins.php on network admin in backend
+	 * Add settings link on plugins.php on network admin in backend.
 	 *
 	 * @uses
 	 * @access public
@@ -199,7 +201,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Add settings page in WP backend
+	 * Add settings page in WP backend.
 	 *
 	 * @uses   add_options_page
 	 * @access public
@@ -227,7 +229,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Return form and markup on settings page
+	 * Return form and markup on settings page.
 	 *
 	 * @uses   settings_fields, normalize_whitespace, is_plugin_active_for_network, get_site_option, get_option
 	 * @access public
@@ -273,7 +275,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				}
 
 				if ( 1 < count( $options['buttons'] ) ) {
-					// sort array by order value
+					// Sort array by order value.
 					$tmp = array();
 					foreach ( (array) $options['buttons'] as $order ) {
 						if ( isset( $order['order'] ) ) {
@@ -285,7 +287,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					array_multisort( $tmp, SORT_ASC, $options['buttons'] );
 				}
 
-				// loop about the post types, create html an values for title in table
+				// Loop about the post types, create html an values for title in table.
 				$pt_title    = '';
 				$pt_colgroup = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
@@ -368,7 +370,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 							$checked = ' checked="checked"';
 						}
 
-						// loop about the post types, create html an values
+						// Loop about the post types, create html an values.
 						$pt_checkboxes = '';
 						foreach ( $this->get_post_types_for_js() as $post_type ) {
 							if ( ! isset( $b[ $post_type ] ) ) {
@@ -433,7 +435,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					';
 					}
 
-					// loop about the post types, create html an values for empty new checkboxes
+					// Loop about the post types, create html an values for empty new checkboxes.
 					$pt_new_boxes = '';
 					foreach ( $this->get_post_types_for_js() as $post_type ) {
 						if ( ! isset( $b[ $post_type ] ) ) {
@@ -449,49 +451,25 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					?>
 					<tr id="rmqtb<?php echo $i; ?>">
 						<td>
-							<input type="text" placeholder="
-							<?php
-							esc_html_e(
-								'Button Label*',
-								'addquicktag'
-							);
-							?>
-							"
+							<input type="text" placeholder="<?php esc_html_e( 'Button Label*', 'addquicktag' ); ?>"
 								name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][text]" value="" /><br />
 							<input type="text" class="small" id="dashicons_picker_icon_new" placeholder="
-							<?php
-							esc_html_e( 'Dashicon', 'addquicktag' );
-							?>
-							" name="
-							<?php
-							echo self::$option_string;
-							?>
-							[buttons][<?php echo $i; ?>][dashicon]" value="" />
+							<?php esc_html_e( 'Dashicon', 'addquicktag' ); ?>
+							" name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][dashicon]" value="" />
 							<button type="button" data-target="#dashicons_picker_icon_new"
 								class="button dashicons-picker dashicons dashicons-dashboard"></button>
 							<br />
-							<input type="text" placeholder="
-							<?php
-							esc_html_e(
-								'Title Attribute',
-								'addquicktag'
-							);
-							?>
-							"
+							<input type="text" placeholder="<?php esc_html_e( 'Title Attribute', 'addquicktag' ); ?>"
 								name="<?php echo self::$option_string; ?>[buttons][<?php echo $i; ?>][title]" value="" />
 						</td>
 						<td>
 							<textarea placeholder="<?php esc_html_e( 'Start Tag(s)*', 'addquicktag' ); ?>"
 								class="code" name="<?php echo self::$option_string; ?>[buttons][
-															  <?php
-																echo $i;
-																?>
+															  <?php	echo $i; ?>
 							][start]" rows="2" cols="25"></textarea><br />
 							<textarea placeholder="<?php esc_html_e( 'End Tag(s)', 'addquicktag' ); ?>"
 								class="code" name="<?php echo self::$option_string; ?>[buttons][
-															  <?php
-																echo $i;
-																?>
+															  <?php	echo $i; ?>
 							][end]" rows="2" cols="25"></textarea>
 						</td>
 						<td>
@@ -533,13 +511,13 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 				</table>
 
 				<p class="submit">
-					<input type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes' ); ?>" />
+					<input type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes', 'addquicktag' ); ?>" />
 				</p>
 
 				<?php do_action( 'addquicktag_settings_form_page', $options ); ?>
 
 				<p class="submit">
-					<input type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes' ); ?>" />
+					<input type="submit" class="button-primary" value="<?php esc_html_e( 'Save Changes', 'addquicktag' ); ?>" />
 				</p>
 
 			</form>
@@ -567,7 +545,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/*
-	 * Return information to donate
+	 * Return information to donate.
 	 *
 	 * @uses   _e,esc_attr_e
 	 * @access public
@@ -661,10 +639,10 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		<?php
 	}
 
-	/*
-	 * Return information about the plugin
+	/**
+	 * Return information about the plugin.
 	 *
-	 * @uses   _e,esc_attr_e
+	 * @uses   _e, esc_attr_e
 	 * @access public
 	 * @since  2.0.0
 	 * @return void
@@ -692,8 +670,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		<?php
 	}
 
-	/*
-	 * Save network settings
+	/**
+	 * Save network settings.
 	 *
 	 * @uses   update_site_option, wp_redirect, add_query_arg, network_admin_url
 	 * @access public
@@ -701,17 +679,20 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @return void
 	 */
 	public function save_network_settings_page() {
-		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], self::$nonce_string ) ) {
+		if ( null !== wp_unslash( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), self::$nonce_string ) ) {
 			wp_die( 'Sorry, you failed the nonce test.' );
 		}
 
-		// validate options
-		$value = $this->validate_settings( $_POST[ self::$option_string ] );
+		// Validate options.
+		if ( isset( $_POST[ self::$option_string ] ) ) {
+        	$value = $this->validate_settings( wp_unslash( $_POST[ self::$option_string ] ) );
 
-		// update options
-		update_site_option( self::$option_string, $value );
-		// redirect to settings page in network
-		wp_redirect(
+            // Update options.
+        	update_site_option( self::$option_string, $value );
+        }
+		
+		// Redirect to settings page in network.
+		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => plugin_basename( __FILE__ ),
@@ -723,8 +704,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		exit();
 	}
 
-	/*
-	 * Retrun string vor update message
+	/**
+	 * Retrun string vor update message.
 	 *
 	 * @uses
 	 * @access public
@@ -733,7 +714,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 */
 	public function get_network_admin_notices() {
 
-		// if updated and the right page
+		// If updated and the right page.
 		if ( array_key_exists(
 			'updated',
 			$_GET
@@ -741,42 +722,41 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			&& 'settings_page_addquicktag/inc/class-settings-network' === $GLOBALS['current_screen']->id
 		) {
 			$message = esc_html__( 'Options saved.', 'addquicktag' );
-			$notice  = '<div id="message" class="updated"><p>' . $message . '</p></div>';
-			echo $notice;
+			echo '<div id="message" class="updated"><p>' . $message . '</p></div>';
 		}
 	}
 
 	/**
-	 * Validate settings for options
+	 * Validate settings for options.
 	 *
 	 * @uses   normalize_whitespace
 	 * @access public
 	 *
-	 * @param  array $value
+	 * @param  array $value String for validation.
 	 *
 	 * @since  2.0.0
 	 * @return string $value
 	 */
 	public function validate_settings( $value ) {
 
-		// Save core buttons changes
+		// Save core buttons changes.
 		if ( array_key_exists( 'core_buttons', $value ) ) {
 			$core_buttons = $value['core_buttons'];
 		}
 
-		// Save Code buttons
+		// Save Code buttons.
 		if ( array_key_exists( 'code_buttons', $value ) ) {
 			$code_buttons = $value['code_buttons'];
 		}
 
-		// set allowed values for import, only the defaults of plugin and custom post types
+		// Set allowed values for import, only the defaults of plugin and custom post types.
 		$allowed_settings = (array) array_merge(
 			$this->get_post_types_for_js(),
 			array( 'text', 'dashicon', 'title', 'start', 'end', 'access', 'order', 'visual' )
 		);
 
 		$buttons = array();
-		// filter for allowed values
+		// Filter for allowed values.
 		foreach ( (array) $value['buttons'] as $key => $button ) {
 			foreach ( (array) $button as $label => $val ) {
 				if ( ! in_array( $label, $allowed_settings, true ) ) {
@@ -787,7 +767,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			$buttons[] = $button;
 		}
 
-		// return filtered array
+		// Return filtered array.
 		$filtered_values['buttons'] = $buttons;
 		$value                      = $filtered_values;
 
@@ -796,9 +776,6 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 		for ( $i = 0; $i < $c_buttons; $i ++ ) {
 			$b = $value['buttons'][ $i ];
 			if ( ! empty( $b['start'] ) ) {
-
-				// preg_replace( '~[^\p{L}]~u', '', $string );
-
 				$b['text']     = sanitize_text_field( $b['text'] );
 				$b['dashicon'] = sanitize_text_field( $b['dashicon'] );
 				$b['title']    = sanitize_text_field( $b['title'] );
@@ -813,19 +790,15 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					$b['order'] = (int) $b['order'];
 				}
 
-				// visual settings
+				$b['visual'] = 0;
 				if ( array_key_exists( 'visual', $b ) ) {
 					$b['visual'] = (int) $b['visual'];
-				} else {
-					$b['visual'] = 0;
 				}
 
-				// post types
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
+					$b[ $post_type ] = 0;
 					if ( array_key_exists( $post_type, $b ) ) {
 						$b[ $post_type ] = (int) $b[ $post_type ];
-					} else {
-						$b[ $post_type ] = 0;
 					}
 				}
 
@@ -833,16 +806,16 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			}
 		}
 		$value['buttons'] = $buttons;
-		// Check for wrong empty values and kill
+		// Check for wrong empty values and kill.
 		foreach ( $value['buttons'] as $key => $b ) {
 			if ( empty( $b['text'] ) && empty( $b['start'] ) ) {
 				unset( $value['buttons'][ $key ] );
 			}
 		}
-		// reorder the array
+		// Reorder the array.
 		$value['buttons'] = array_values( $value['buttons'] );
 
-		// Filter core button values, strings and convert to integer
+		// Filter core button values, strings and convert to integer.
 		if ( ! empty( $core_buttons ) ) {
 
 			/**
@@ -867,7 +840,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			$value['core_buttons'] = $filtered_core_buttons;
 		}
 
-		// Filter code button values, strings and convert to integer
+		// Filter code button values, strings and convert to integer.
 		if ( ! empty( $code_buttons ) ) {
 			$filtered_code_buttons = array();
 			foreach ( (array) $code_buttons as $key => $var ) {
@@ -886,7 +859,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Register settings for options
+	 * Register settings for options.
 	 *
 	 * @uses    register_setting
 	 * @access  public
@@ -898,7 +871,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Unregister and delete settings; clean database
+	 * Unregister and delete settings; clean database.
 	 *
 	 * @uses    unregister_setting, delete_option
 	 * @access  public
@@ -911,7 +884,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	}
 
 	/**
-	 * Enqueue scripts and stylesheets
+	 * Enqueue scripts and stylesheets.
 	 *
 	 * @since    0.0.2
 	 *
@@ -924,7 +897,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			self::$option_string . '_dashicon_picker',
 			plugins_url( '/js/dashicons-picker' . $suffix . '.js', parent::get_plugin_string() ),
 			array( 'jquery' ),
-			'',
+			'2021-04-26',
 			true
 		);
 
@@ -932,7 +905,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			self::$option_string . '_admin_script',
 			plugins_url( '/js/settings' . $suffix . '.js', parent::get_plugin_string() ),
 			array( 'jquery', 'quicktags' ),
-			'',
+			'2021-04-26',
 			true
 		);
 		wp_enqueue_script( self::$option_string . '_dashicon_picker' );
@@ -942,7 +915,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			self::$option_string . '_dashicon_picker',
 			plugins_url( '/css/dashicons-picker' . $suffix . '.css', parent::get_plugin_string() ),
 			array( 'dashicons' ),
-			false,
+			'2021-04-26',
 			'screen'
 		);
 
@@ -950,7 +923,7 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 			self::$option_string . '_admin_style',
 			plugins_url( '/css/settings' . $suffix . '.css', parent::get_plugin_string() ),
 			array(),
-			false,
+			'2021-04-26',
 			'screen'
 		);
 		wp_enqueue_style( self::$option_string . '_dashicon_picker' );

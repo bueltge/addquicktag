@@ -48,7 +48,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	}
 
 	/**
-	 * Constructor, init on defined hooks of WP and include second class
+	 * Constructor, init on defined hooks of WP and include second class.
 	 *
 	 * @access  public
 	 * @since   0.0.2
@@ -59,9 +59,9 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 	}
 
 	/**
-	 * Add settings area
+	 * Add settings area.
 	 *
-	 * @param $options
+	 * @param array $options Store options content.
 	 */
 	public function get_code_quicktag_area( $options ) {
 		if ( ! array_key_exists( 'code_buttons', $options ) ) {
@@ -76,7 +76,7 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 		<p><?php esc_html_e( 'Add buttons to do the inconvient HTML encoding/decoding, like &lt; to &amp;lt; and back.', 'addquicktag' ); ?></p>
 
 		<?php
-		// loop about the post types, create html an values for title in table
+		// Loop about the post types, create html an values for title in table.
 		$pt_title    = '';
 		$pt_colgroup = '';
 		foreach ( $this->get_post_types_for_js() as $post_type ) {
@@ -100,15 +100,13 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 
 			<tbody>
 			<?php
-			// Convert string to array
-			// $code_buttons = explode( ',', self::$code_quicktags );
-			// Loop over items to remove and unset them from the buttons
+			// Loop over items to remove and unset them from the buttons.
 			$i = 9999;
 			foreach ( self::$code_quicktags as $key => $value ) {
 				echo '<tr id="rmqtb' . $i . '">' . "\n";
 				echo '<td><input type="button" class="ed_button" title="" value="' . $value . '"></td>';
 
-				// loop about the post types, create html an values
+				// Loop about the post types, create html an values.
 				$pt_checkboxes = '';
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
 					$pt_checked = '';
@@ -119,9 +117,9 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 					}
 
 					$pt_checkboxes .= '<td class="num"><input type="checkbox" name="' .
-									  parent::get_option_string() . '[code_buttons][' .
-									  $value . '][' . $post_type . ']" value="1"' .
-									  $pt_checked . '/></td>' . "\n";
+									parent::get_option_string() . '[code_buttons][' .
+									$value . '][' . $post_type . ']" value="1"' .
+									$pt_checked . '/></td>' . "\n";
 				}
 				echo $pt_checkboxes;
 
@@ -130,9 +128,6 @@ class Add_Quicktag_Code_Quicktags extends Add_Quicktag_Settings {
 				echo '</tr>' . "\n";
 				$i ++;
 			}
-
-			// Convert new buttons array back into a comma-separated string
-			// $code_qt = implode( ',', $code_buttons );
 			?>
 			</tbody>
 		</table>
