@@ -1,9 +1,9 @@
 {
 	"name": "AddQuicktag",
-	"version": "2.5.2",
+	"version": "2.6.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/bueltge/AddQuicktag"
+		"url": "https://github.com/bueltge/addquicktag"
 	},
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
