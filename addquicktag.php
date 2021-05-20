@@ -6,7 +6,7 @@
  * Text Domain: addquicktag
  * Domain Path: /languages
  * Description: Allows you to easily add custom Quicktags to the html- and visual-editor.
- * Version:     2.6.0
+ * Version:     2.6.1
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
  * License:     GPLv3+

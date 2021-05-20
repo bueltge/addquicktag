@@ -790,15 +790,17 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 					$b['order'] = (int) $b['order'];
 				}
 
-				$b['visual'] = 0;
 				if ( array_key_exists( 'visual', $b ) ) {
 					$b['visual'] = (int) $b['visual'];
+				} else {
+					$b['visual'] = 0;
 				}
 
 				foreach ( $this->get_post_types_for_js() as $post_type ) {
-					$b[ $post_type ] = 0;
 					if ( array_key_exists( $post_type, $b ) ) {
 						$b[ $post_type ] = (int) $b[ $post_type ];
+					} else {
+						$b[ $post_type ] = 0;
 					}
 				}
 
