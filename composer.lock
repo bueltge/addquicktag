@@ -445,7 +445,7 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "2.3.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
