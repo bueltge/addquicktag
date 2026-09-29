@@ -199,14 +199,28 @@ class Add_Quicktag_Im_Export extends Add_Quicktag_Settings {
 			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
 		}
 
-		$import_file = sanitize_file_name( wp_unslash( $_FILES['import_file']['tmp_name'] ) );
+		// Do not run the temporary path through sanitize_file_name(): it strips the
+		// directory separators the path needs, so "/tmp/phpA1B2C3" becomes
+		// "tmpphpA1B2C3" and the read below fails. is_uploaded_file() is the correct
+		// safeguard here: it confirms the path really is a PHP upload.
+		$import_file = $_FILES['import_file']['tmp_name']; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- validated by is_uploaded_file() below; sanitising a path would corrupt it.
 
-		if ( empty( $import_file ) ) {
+		if ( empty( $import_file ) || ! is_uploaded_file( $import_file ) ) {
 			wp_die( esc_html__( 'Please upload a file to import.', 'addquicktag' ) );
 		}
 
+		$contents = file_get_contents( $import_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- reading a local upload, not a remote resource.
+
+		if ( false === $contents ) {
+			wp_die( esc_html__( 'The uploaded file could not be read.', 'addquicktag' ) );
+		}
+
 		// Retrieve the settings from the file and convert the json object to an array.
-		$options = (array) json_decode( file_get_contents( $import_file ), true );
+		$options = json_decode( $contents, true );
+
+		if ( ! is_array( $options ) ) {
+			wp_die( esc_html__( 'Please upload a valid .json file', 'addquicktag' ) );
+		}
 
 		if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
 			update_site_option( self::$option_string, $options );
