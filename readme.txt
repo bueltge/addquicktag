@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 2.6.1
+Tested up to: 7.1
+Stable tag: 2.6.2
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
 
@@ -120,6 +120,10 @@ The following example adds buttons. The params inside the array are the same as 
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you may consider to thank me and leave a [positive review](https://wordpress.org/support/plugin/addquicktag/reviews/#new-post) for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.6.2 =
+* Fix: PHP 8.x "Undefined array key" warning when the network (multisite) settings form is submitted without a nonce (inc/class-settings.php). No behavior change — that path already rejected the request either way, just without the warning noise.
+* Verified clean (no warnings, no errors) under PHP 8.2 and WordPress 7.1.
+
 = 2.6.1 (2021-05-20) =
 * Fix storage and update of post type checkboxes in the settings pages.
 

@@ -679,7 +679,8 @@ class Add_Quicktag_Settings extends Add_Quicktag {
 	 * @return void
 	 */
 	public function save_network_settings_page() {
-		if ( null !== wp_unslash( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), self::$nonce_string ) ) {
+		$wpnonce = isset( $_REQUEST['_wpnonce'] ) ? wp_unslash( $_REQUEST['_wpnonce'] ) : null;
+		if ( null !== $wpnonce || ! wp_verify_nonce( $wpnonce, self::$nonce_string ) ) {
 			wp_die( 'Sorry, you failed the nonce test.' );
 		}
 
