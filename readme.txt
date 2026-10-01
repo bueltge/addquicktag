@@ -1,10 +1,12 @@
 === AddQuicktag ===
-Contributors: Bueltge, inpsyde
+Contributors: Bueltge
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
-Tags: quicktag, editor, tinymce, add buttons, button, buttons, visual editor
+Tags: quicktag, editor, tinymce, button
 Requires at least: 4.0
-Tested up to: 7.4
+Tested up to: 7.1
 Stable tag: 2.6.2
+License: GPLv3 or later
+License URI: LICENSE.txt
 
 This plugin makes it easy to add Quicktags to the html - and visual-editor.
 
@@ -18,9 +20,6 @@ If this should not work perfectly well for you, you may also use the hooks insid
 
 = Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/addquicktag). The Wiki on this page has also several hints for the plugin.
-
-**Crafted by [Inpsyde](https://inpsyde.com) · Engineering the web since 2006.**
-
 
 == Installation ==
 = Requirements =
